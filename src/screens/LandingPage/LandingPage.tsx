@@ -151,7 +151,8 @@ export const LandingPage = (): JSX.Element => {
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
-      <div className="responsive-container bg-white overflow-hidden relative">
+      <div className="responsive-wrapper">
+        <div className="responsive-container bg-white overflow-hidden relative">
         <div className="absolute w-[4180px] h-[6571px] top-[-109px] left-[-1226px]">
           <div className="absolute w-[4180px] h-[6557px] top-0 left-0">
             <div className="absolute w-[1728px] h-[3053px] top-[109px] left-[1226px] bg-[linear-gradient(180deg,rgba(57,0,53,1)_0%,rgba(144,29,107,1)_50%,rgba(255,255,255,1)_100%)]" />
@@ -534,17 +535,18 @@ export const LandingPage = (): JSX.Element => {
         </div>
 
 
-        <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
+          <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
+        </div>
       </div>
       
       {/* Pulsante Registrati ora - FISSO al viewport (fuori dal responsive-container) */}
-      <div className="fixed w-[246px] h-[50px] top-[82px] left-1/2 transform -translate-x-1/2 z-[100]" onClick={handleOpenModal}>
+      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]" onClick={handleOpenModal}>
         <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
-            <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
+            <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-base sm:text-lg md:text-xl tracking-[0] leading-[normal] antialiased">
               Registrati ora
             </span>
             <svg 
-              className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
+              className="w-3 sm:w-3.5 md:w-4 h-2.5 sm:h-2.5 md:h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
               viewBox="0 0 16 12" 
               xmlns="http://www.w3.org/2000/svg"
             >

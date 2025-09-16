@@ -241,54 +241,31 @@
 /* Responsive Scaling System - preserva la struttura originale ma scala proporzionalmente */
 .responsive-container {
   width: 1728px;
-  height: 6893px;
-  transform-origin: top left;
-  margin: 0 auto;
-  
-  /* Desktop (1728px e oltre) - scala 1:1 */
-  transform: scale(1);
+  transform-origin: top center;
+  position: relative;
+  left: 50%;
+  --scale: clamp(0.18, calc(100vw / 1728px), 1);
+  transform: translateX(-50%) scale(var(--scale));
 }
 
-/* Large screens (1920px+) - scala leggermente più grande */
+/* Large screens (1920px+) - permetti scala maggiore di 1 */
 @media (min-width: 1920px) {
   .responsive-container {
-    transform: scale(1.1);
+    --scale: 1.1;
   }
 }
 
-/* Medium screens (1400px - 1727px) - scala più piccolo */
-@media (max-width: 1727px) {
+/* Per dispositivi molto grandi, usa scala massima 1 */
+@media (min-width: 1728px) {
   .responsive-container {
-    transform: scale(0.8);
+    --scale: 1;
   }
 }
 
-/* Small screens (1200px - 1399px) - scala ancora più piccolo */
-@media (max-width: 1399px) {
-  .responsive-container {
-    transform: scale(0.7);
-  }
-}
-
-/* Tablet (768px - 1199px) - scala per tablet */
-@media (max-width: 1199px) {
-  .responsive-container {
-    transform: scale(0.45);
-  }
-}
-
-/* Mobile (fino a 767px) - scala per mobile */
-@media (max-width: 767px) {
-  .responsive-container {
-    transform: scale(0.25);
-  }
-}
-
-/* Extra small mobile (fino a 480px) */
-@media (max-width: 480px) {
-  .responsive-container {
-    transform: scale(0.2);
-  }
+/* Wrapper per prevenire overflow orizzontale */
+.responsive-wrapper {
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Assicura che il container padre possa contenere il contenuto scalato */
