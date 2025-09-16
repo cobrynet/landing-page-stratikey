@@ -1,6 +1,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset e layout base */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* evita lo scroll orizzontale */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* la pagina occupa almeno lo schermo */
+}
+
+main {
+  flex: 1; /* il contenuto si espande */
+}
+
+footer {
+  margin: 0;
+  padding: 20px;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
 @layer components {
   .all-\[unset\] {
     all: unset;
