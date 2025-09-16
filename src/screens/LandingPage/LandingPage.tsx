@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useRef } from "react";
-import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { RegistrationModal } from "../../components/RegistrationModal";
 
@@ -22,25 +21,6 @@ const featureBadges = [
   },
 ];
 
-const mainFeatureCards = [
-  {
-    title: "Semplicità",
-    bgClass: "bg-[#390035]",
-    hasImage: true,
-    imageSrc: "/image-4.png",
-  },
-  {
-    title: "Gestione\npiù rapida",
-    bgClass: "bg-[#390035]",
-    hasImage: true,
-    imageSrc: "/mask-group.png",
-  },
-  {
-    title: "Efficenza",
-    bgClass:
-      "[background:radial-gradient(50%_50%_at_50%_21%,rgba(144,29,107,1)_0%,rgba(57,0,53,1)_100%)]",
-  },
-];
 
 const ellipseImages = [
   { className: "w-[396px] h-[458px] top-3 left-3", src: "/ellipse-28.svg" },
@@ -75,25 +55,6 @@ const ellipseImages = [
   },
 ];
 
-const footerContacts = [
-  {
-    label: "Contatti",
-    items: ["info@stratikey.com", "351 663 8114", "P.IVA 02100690474"],
-  },
-  {
-    label: "Servizi",
-    items: [
-      "Brand Identity",
-      "Sito Web",
-      "Foto e video aziendali",
-      "Materiale stampato",
-    ],
-  },
-  {
-    label: "Applicativi",
-    items: ["Email marketing e automazioni", "Live chat e assistenza clienti"],
-  },
-];
 
 // BackgroundCanvas component for scalable artboard
 const BackgroundCanvas = ({ children }: { children: React.ReactNode }) => {
@@ -234,297 +195,21 @@ export const LandingPage = (): JSX.Element => {
 
             <div className="absolute w-[1076px] h-[1076px] top-0 left-[1552px] rounded-[538px] [background:radial-gradient(50%_50%_at_50%_50%,rgba(144,29,107,1)_0%,rgba(144,29,107,0)_100%)]" />
 
-            <img
-              className="absolute w-[246px] h-[57px] top-[184px] left-[1276px] object-cover"
-              alt="Stratikey alto"
-              src="/stratikey-alto.png"
-            />
 
-            <div className="absolute top-[375px] left-[1777px] [font-family:'Outfit',Helvetica] font-normal text-white text-[64px] text-center tracking-[0] leading-[normal]">
-              Il digitale che potenzia
-              <br />
-              il tuo commerciale.
-            </div>
 
-            <div className="absolute top-[565px] left-[1758px] [font-family:'Outfit',Helvetica] font-light text-white text-[32px] text-center tracking-[0] leading-[normal]">
-              La piattaforma che allinea marketing e vendite:
-              <br />
-              trattative più rapide, più contratti chiusi.
-            </div>
 
-            <div className="fixed w-[246px] h-[50px] top-[86px] left-[2048px] z-50" onClick={handleOpenModal}>
-              <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
-                  <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
-                    Registrati ora
-                  </span>
-                  <svg 
-                    className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
-                    viewBox="0 0 16 12" 
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
-                  </svg>
-              </div>
-            </div>
 
-            <div className="absolute w-[276px] h-[50px] top-[716px] left-[1952px]">
-              <div className="glass-button w-full h-full cursor-pointer" onClick={handleOpenModal}>
-                <div className="glass-surface">
-                  <div className="glass-highlight"></div>
-                  <div className="glass-refraction"></div>
-                  <div className="glass-content">
-                    <span className="[font-family:'Outfit',Helvetica] font-medium text-white text-2xl text-center tracking-[-0.02em] leading-[1.2] select-none antialiased">
-                      Registrati adesso
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            {featureBadges.map((badge, index) => (
-              <img
-                key={index}
-                ref={el => badgeRefs.current[index] = el}
-                className={`absolute ${badge.className} fade-in`}
-                alt={badge.alt}
-                src={badge.src}
-              />
-            ))}
 
-            <Card className="left-[1493px] bg-white absolute w-[582px] h-[785px] top-[1842px] rounded-[50px] border-0">
-              <CardContent className="p-0">
-                <div className="absolute w-[547px] h-[610px] top-[175px] left-[17px]">
-                  <div className="absolute top-[74px]">
-                    <img
-                     ref={disconnessioneSvgRef}
-                     className="w-[328.9px] h-[479.54px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
-                     style={{ transition: 'transform 0.1s linear', transform: 'rotate(-27.98deg)' }}
-                      alt="Illustrazione disconnessione"
-                      src="/disconnessione.svg"
-                    />
-                  </div>
-                </div>
-                <div className="absolute w-[490px] top-[51px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-[#901d6b] text-5xl tracking-[0] leading-[39.8px]">
-                  La connessione si
-                  <br />è persa.
-                </div>
-                <div className="absolute w-[464px] top-[155px] left-[59px] [font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-2xl tracking-[0] leading-[26px]">
-                  Le aziende industriali si trovano a lavorare con strumenti
-                  separati, strategie frammentate e processi commerciali lenti e
-                  poco coordinati.
-                </div>
-              </CardContent>
-            </Card>
 
-            <Card className="left-[2105px] bg-[#390035] absolute w-[582px] h-[785px] top-[1842px] rounded-[50px] border-0">
-              <CardContent className="p-0">
-                <div className="absolute w-[380px] h-[530px] top-[235px] left-[177px]">
-                  <img
-                   ref={connessioneSvgRef}
-                   className="w-[380px] h-[530px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
-                    style={{ transition: 'transform 0.1s linear', transform: 'rotate(-93.23deg) scaleX(-1)' }}
-                    alt="Illustrazione connessione"
-                    src="/connessione.svg"
-                  />
-                </div>
-                <div className="absolute w-[490px] top-[51px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px]">
-                  È il momento di ritrovarla.
-                </div>
-                <div className="absolute w-[464px] top-[155px] left-[59px] [font-family:'Outfit',Helvetica] font-light text-white text-2xl tracking-[0] leading-[26px]">
-                  Il commerciale diventa finalmente connesso al digitale: un
-                  unico ecosistema che integra marketing, vendite e materiali,
-                  per trasformare ogni opportunità in contratto.
-                </div>
-              </CardContent>
-            </Card>
 
-            <div className="absolute w-[1194px] top-[3912px] left-[1493px] bg-[linear-gradient(90deg,#901d6b_0%,#cf1f96_50%,#390035_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-medium text-transparent text-[48px] text-center tracking-[0] leading-[normal] [text-shadow:0_2px_4px_rgba(0,0,0,0.1)] drop-shadow-sm">
-              Con Stratikey la strategia diventa semplice e concreta. Un'unica visione che unisce marketing e vendite, assicura coerenza tra digitale e fisico e trasforma i dati in decisioni efficaci per far crescere la tua azienda.
-            </div>
 
-            <div className="absolute w-[1194px] top-[5300px] left-[1493px] [font-family:'Outfit',Helvetica] font-normal text-[#390035] text-[32px] text-center tracking-[0] leading-[normal]">
-              <span className="text-[#390035]">Con il nostro marketplace interno puoi acquistare applicativi e</span>
-              <br />
-              <span className="text-[#390035]">servizi </span><span className="font-semibold text-[#901d6b]">con un solo click</span><span className="text-[#390035]">, senza perdite di tempo e senza</span>
-              <br />
-              <span className="text-[#390035]">fornitori esterni.</span>
-            </div>
 
-            <div className="absolute w-[510px] top-[4463px] left-[1493px] bg-[linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(205,143,190,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-medium text-transparent text-5xl tracking-[0] leading-[normal]">
-              Intelligenza Artificiale per l&apos;Industria
-            </div>
 
-            <div className="absolute w-[510px] top-[4601px] left-[1493px] bg-[linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(205,143,190,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-light text-transparent text-[32px] tracking-[0] leading-[normal]">
-              L&apos;intelligenza artificiale di Stratikey è progettata e
-              istruita specificamente per il settore industriale: comprende
-              dinamiche, tempi e complessità delle vendite B2B, supportando il
-              commerciale con suggerimenti mirati, automazioni intelligenti e
-              analisi capaci di trasformare i dati in opportunità reali.
-            </div>
 
-            <Card className="left-[1493px] absolute w-[582px] h-[472px] top-[5513px] bg-[#390035] hover:bg-[#901d6b] transition-colors duration-300 rounded-[50px] border-0">
-              <CardContent className="p-0">
-                <div className="absolute top-[50px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px]">
-                  Applicativi
-                </div>
-                <div className="w-[464px] top-[124px] left-[59px] font-light text-white text-[32px] leading-[36.7px] absolute [font-family:'Outfit',Helvetica] tracking-[0]">
-                  Email marketing e automazioni
-                  <br />
-                  Live chat e assistenza clienti
-                </div>
-                <div className="absolute w-[464px] top-60 left-[59px] [font-family:'Outfit',Helvetica] font-semibold text-white text-[28px] tracking-[0] leading-[40.5px]">
-                  Work in progress...
-                </div>
-              </CardContent>
-            </Card>
 
-            <Card className="left-[2105px] absolute w-[582px] h-[472px] top-[5513px] bg-[#390035] hover:bg-[#901d6b] transition-colors duration-300 rounded-[50px] border-0">
-              <CardContent className="p-0">
-                <div className="absolute top-[50px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px]">
-                  Servizi
-                </div>
-                <div className="absolute w-[464px] top-[124px] left-[59px] [font-family:'Outfit',Helvetica] font-light text-white text-[32px] tracking-[0] leading-[36.7px]">
-                  Brand Identity
-                  <br />
-                  Sito Web
-                  <br />
-                  Foto e video aziendali
-                  <br />
-                  Materiale stampato
-                  <br />
-                  Contenuti per piani editoriali
-                </div>
-                <div className="top-[343px] left-[59px] text-white absolute w-[464px] [font-family:'Outfit',Helvetica] font-semibold text-[28px] tracking-[0] leading-[40.5px]">
-                  Work in progress...
-                </div>
-              </CardContent>
-            </Card>
 
-            <img
-              className="absolute w-[1555px] h-px top-[6294px] left-[1312px] object-cover"
-              alt="Linea footer"
-              src="/linea-footer.svg"
-            />
 
-            {/* Footer Section */}
-            <div className="absolute w-[1194px] top-[6350px] left-[1493px]">
-              {/* Layout principale del footer */}
-              <div className="flex gap-16">
-                {/* Prima colonna: Logo e tagline */}
-                <div className="flex flex-col min-w-[280px]">
-                  <img
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="w-[243px] h-[57px] mb-4 object-cover"
-                    style={{ cursor: 'pointer' }}
-                    alt="Stratkey basso"
-                    src="/stratkey-basso.png"
-                  />
-                  <div className="[font-family:'Outfit',Helvetica] font-normal text-[#901d6b] text-xl tracking-[0] leading-[24px] mb-6">
-                    <div style={{ marginTop: '23px' }}>
-                      La chiave del risultato<br />è la strategia.
-                    </div>
-                  </div>
-                  <div className="bg-[linear-gradient(90deg,rgba(144,29,107,1)_0%,rgba(205,143,190,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-semibold text-transparent text-[28px] tracking-[0] leading-[32px] mt-[43px]">
-                  <div className="bg-[linear-gradient(90deg,rgba(144,29,107,1)_0%,rgba(205,143,190,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-semibold text-transparent text-[28px] tracking-[0] leading-[32px] -mt-[4px]">
-                    Work in progress...
-                  </div>
-                </div>
-                </div>
-
-                {/* Seconda colonna: Contatti */}
-                <div className="min-w-[200px]">
-                  <h3 className="[font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] mb-4">
-                    Contatti
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      info@stratikey.com
-                    </div>
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      351 663 8114
-                    </div>
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      P.IVA 02100690474
-                    </div>
-                  </div>
-                  <div className="mt-16">
-                    <h4 className="[font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] mb-2 -mt-[5px]">
-                      Piattaforma
-                    </h4>
-                    <button 
-                      onClick={handleOpenModal}
-                      className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px] mt-[8px] cursor-pointer hover:text-[#901d6b] transition-colors duration-200 bg-transparent border-none p-0 text-left"
-                    >
-                      Registrati
-                    </button>
-                  </div>
-                </div>
-
-                {/* Terza colonna: Servizi */}
-                <div className="min-w-[200px]">
-                  <h3 className="[font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] mb-4">
-                    Servizi
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      Brand Identity
-                    </div>
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      Sito Web
-                    </div>
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      Foto e video aziendali
-                    </div>
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      Materiale stampato
-                    </div>
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      Contenuti per piani editoriali
-                    </div>
-                  </div>
-                </div>
-
-                {/* Quarta colonna: Applicativi */}
-                <div className="min-w-[200px]">
-                  <h3 className="[font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] mb-4">
-                    Applicativi
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      Email marketing e automazioni
-                    </div>
-                    <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                      Live chat e assistenza clienti
-                    </div>
-                  </div>
-                  <div className="mt-[96px] space-y-3">
-                    <a 
-                      href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/cookie-policy-it" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="[font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] hover:text-[#cd8fbe] transition-colors cursor-pointer block"
-                    >
-                      Cookie Policy
-                    </a>
-                    <a 
-                      href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="[font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] hover:text-[#cd8fbe] transition-colors cursor-pointer block"
-                    >
-                      Privacy Policy
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Copyright */}
-            <div className="absolute w-[1194px] top-[6950px] left-[1493px] text-center">
-              <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
-                © 2025 Cobrynet – Tutti i diritti riservati.
-              </div>
-            </div>
 
             <div className="quadranti absolute top-[2952px] left-[1493px] w-[1194px] h-[650px]">
               <article className="quad left card bg-[#390035] semplicita-card">
@@ -617,32 +302,412 @@ export const LandingPage = (): JSX.Element => {
 
       {/* Responsive Content Container */}
       <ContentContainer>
-        {/* Hero section content - qui sposteremo il contenuto principale */}
-        <div className="relative pt-safe-top min-h-screen">
-          {/* CTA desktop - responsive positioning */}
-          <div className="hidden md:block fixed top-4 right-4 lg:top-6 lg:right-8 z-50" onClick={handleOpenModal}>
-            <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer px-6 py-3 rounded-full" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
-              <span className="font-outfit font-medium group-hover:font-semibold text-white text-lg tracking-[0] leading-[normal] antialiased">
-                Registrati ora
-              </span>
-              <svg className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
-              </svg>
+        {/* Hero Section - Responsive */}
+        <section className="relative pt-safe-top min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
+          {/* Logo - Responsive positioning */}
+          <div className="mb-8 lg:mb-12">
+            <img
+              className="h-12 sm:h-14 lg:h-16 object-contain mx-auto"
+              alt="Stratikey logo"
+              src="/stratikey-alto.png"
+            />
+          </div>
+
+          {/* Hero Title - Responsive typography */}
+          <h1 className="text-white font-outfit font-normal text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-6 sm:mb-8 max-w-4xl">
+            Il digitale che potenzia
+            <br />
+            il tuo commerciale.
+          </h1>
+
+          {/* Hero Subtitle - Responsive typography */}
+          <p className="text-white font-outfit font-light text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed mb-8 sm:mb-12 max-w-3xl">
+            La piattaforma che allinea marketing e vendite:
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
+            trattative più rapide, più contratti chiusi.
+          </p>
+
+          {/* Main CTA - Responsive glass button */}
+          <div className="mb-16" onClick={handleOpenModal}>
+            <div className="glass-button cursor-pointer inline-flex items-center px-8 sm:px-10 lg:px-12 py-3 sm:py-4 rounded-full transform hover:scale-105 transition-all duration-300">
+              <div className="glass-surface relative">
+                <div className="glass-highlight"></div>
+                <span className="relative font-outfit font-medium text-white text-lg sm:text-xl lg:text-2xl tracking-[0] leading-normal antialiased">
+                  Registrati adesso
+                </span>
+              </div>
             </div>
           </div>
-          
-          {/* CTA mobile - sticky bottom */}
-          <div className="md:hidden fixed bottom-safe-bottom inset-x-0 p-4 z-50" onClick={handleOpenModal}>
-            <div className="glow-button w-full flex items-center justify-center gap-2 group cursor-pointer py-4 rounded-full" style={{ background: 'rgba(144, 29, 107, 0.8)' }}>
-              <span className="font-outfit font-medium text-white text-lg tracking-[0] leading-[normal] antialiased">
-                Registrati ora
-              </span>
-              <svg className="w-4 h-3 fill-white opacity-90 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
-              </svg>
-            </div>
+        </section>
+
+        {/* CTA Buttons - Fixed positioned */}
+        
+        {/* CTA desktop - top right */}
+        <div className="hidden md:block fixed top-4 right-4 lg:top-6 lg:right-8 z-50" onClick={handleOpenModal}>
+          <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer px-6 py-3 rounded-full" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
+            <span className="font-outfit font-medium group-hover:font-semibold text-white text-lg tracking-[0] leading-[normal] antialiased">
+              Registrati ora
+            </span>
+            <svg className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
+            </svg>
           </div>
         </div>
+        
+        {/* CTA mobile - sticky bottom */}
+        <div className="md:hidden fixed bottom-safe-bottom inset-x-0 p-4 z-50" onClick={handleOpenModal}>
+          <div className="glow-button w-full flex items-center justify-center gap-2 group cursor-pointer py-4 rounded-full" style={{ background: 'rgba(144, 29, 107, 0.8)' }}>
+            <span className="font-outfit font-medium text-white text-lg tracking-[0] leading-[normal] antialiased">
+              Registrati ora
+            </span>
+            <svg className="w-4 h-3 fill-white opacity-90 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Feature Badges Section - Responsive */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 max-w-6xl mx-auto">
+            {featureBadges.map((badge, index) => (
+              <div 
+                key={index}
+                className="flex items-center justify-center fade-in transform hover:scale-105 transition-all duration-300"
+              >
+                <img
+                  ref={el => badgeRefs.current[index] = el}
+                  className="h-16 sm:h-20 lg:h-24 object-contain"
+                  alt={badge.alt}
+                  src={badge.src}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Feature Cards Section - Responsive */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
+            {/* Disconnection Card */}
+            <Card className="bg-white rounded-3xl sm:rounded-[40px] lg:rounded-[50px] border-0 overflow-hidden transform hover:scale-105 transition-all duration-300">
+              <CardContent className="p-6 sm:p-8 lg:p-12 relative h-96 sm:h-[400px] lg:h-[500px]">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <img
+                    ref={disconnessioneSvgRef}
+                    className="w-64 sm:w-80 lg:w-96 h-auto object-contain drop-shadow-lg"
+                    style={{ transition: 'transform 0.1s linear', transform: 'rotate(-27.98deg)' }}
+                    alt="Illustrazione disconnessione"
+                    src="/disconnessione.svg"
+                  />
+                </div>
+                <div className="relative z-10">
+                  <h2 className="font-outfit font-medium text-[#901d6b] text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4 sm:mb-6">
+                    La connessione si<br />è persa.
+                  </h2>
+                  <p className="font-outfit font-light text-[#901d6b] text-lg sm:text-xl lg:text-2xl leading-relaxed">
+                    Le aziende industriali si trovano a lavorare con strumenti
+                    separati, strategie frammentate e processi commerciali lenti e
+                    poco coordinati.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Connection Card */}
+            <Card className="bg-[#390035] rounded-3xl sm:rounded-[40px] lg:rounded-[50px] border-0 overflow-hidden transform hover:scale-105 transition-all duration-300">
+              <CardContent className="p-6 sm:p-8 lg:p-12 relative h-96 sm:h-[400px] lg:h-[500px]">
+                <div className="absolute top-1/2 right-4 sm:right-8 lg:right-12 transform -translate-y-1/2">
+                  <img
+                    ref={connessioneSvgRef}
+                    className="w-64 sm:w-80 lg:w-96 h-auto object-contain drop-shadow-lg"
+                    style={{ transition: 'transform 0.1s linear', transform: 'rotate(-93.23deg) scaleX(-1)' }}
+                    alt="Illustrazione connessione"
+                    src="/connessione.svg"
+                  />
+                </div>
+                <div className="relative z-10">
+                  <h2 className="font-outfit font-medium text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4 sm:mb-6">
+                    È il momento di ritrovarla.
+                  </h2>
+                  <p className="font-outfit font-light text-white text-lg sm:text-xl lg:text-2xl leading-relaxed">
+                    Il commerciale diventa finalmente connesso al digitale: un
+                    unico ecosistema che integra marketing, vendite e materiali,
+                    per trasformare ogni opportunità in contratto.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Main Feature Cards Section - Responsive */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 max-w-7xl mx-auto">
+            {/* Semplicità Card */}
+            <Card className="bg-[#390035] rounded-3xl sm:rounded-[40px] lg:rounded-[50px] border-0 overflow-hidden relative group h-64 sm:h-80 lg:h-96 transform hover:scale-105 transition-all duration-300">
+              <CardContent className="p-0 relative h-full">
+                <img 
+                  className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500" 
+                  src="/maschera-stratikey.png" 
+                  alt="Maschera Stratikey"
+                />
+                <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 lg:bottom-12 lg:left-12 z-10">
+                  <h3 className="font-outfit font-medium text-white text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight mb-2 card-title">
+                    Semplicità
+                  </h3>
+                  <p className="font-outfit font-light text-white text-base sm:text-lg lg:text-xl xl:text-2xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 card-subtitle">
+                    Da processi complessi a<br />un'unica piattaforma<br />intuitiva
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Gestione Card */}
+            <Card className="bg-[#390035] rounded-3xl sm:rounded-[40px] lg:rounded-[50px] border-0 overflow-hidden relative group h-64 sm:h-80 lg:h-96 transform hover:scale-105 transition-all duration-300">
+              <CardContent className="p-0 relative h-full">
+                <div className="absolute inset-0 opacity-100 transition-all duration-500">
+                  <img
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    alt="Gestione background"
+                    src="/immagine-sito.jpg"
+                  />
+                </div>
+                <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 lg:bottom-12 lg:left-12 z-10">
+                  <h3 className="font-outfit font-medium text-white text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight mb-2 card-title">
+                    Gestione<br />più rapida
+                  </h3>
+                  <p className="font-outfit font-light text-white text-base sm:text-lg lg:text-xl xl:text-2xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 card-subtitle">
+                    Meno tempo sprecato,<br />più opportunità colte
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Efficienza Card */}
+            <Card className="bg-gradient-to-br from-[#901d6b] to-[#390035] rounded-3xl sm:rounded-[40px] lg:rounded-[50px] border-0 overflow-hidden relative group h-64 sm:h-80 lg:h-96 transform hover:scale-105 transition-all duration-300">
+              <CardContent className="p-0 relative h-full">
+                <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 lg:bottom-12 lg:left-12 z-10">
+                  <h3 className="font-outfit font-medium text-white text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight mb-2 card-title">
+                    Efficienza
+                  </h3>
+                  <p className="font-outfit font-light text-white text-base sm:text-lg lg:text-xl xl:text-2xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 card-subtitle">
+                    Ogni attività, dal marketing<br />al commerciale, gestite in<br />un solo ecosistema
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Strategy Section - Responsive */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="max-w-6xl mx-auto text-center">
+            <p className="font-outfit font-medium text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-relaxed bg-gradient-to-r from-[#901d6b] via-[#cf1f96] to-[#390035] bg-clip-text text-transparent">
+              Con Stratikey la strategia diventa semplice e concreta. Un'unica visione che unisce marketing e vendite, assicura coerenza tra digitale e fisico e trasforma i dati in decisioni efficaci per far crescere la tua azienda.
+            </p>
+          </div>
+        </section>
+
+        {/* AI Section - Responsive */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-outfit font-medium text-3xl sm:text-4xl lg:text-5xl leading-tight mb-6 sm:mb-8 bg-gradient-to-r from-white via-[#cd8fbe] to-white bg-clip-text text-transparent">
+              Intelligenza Artificiale per l'Industria
+            </h2>
+            <p className="font-outfit font-light text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed bg-gradient-to-r from-white via-[#cd8fbe] to-white bg-clip-text text-transparent">
+              L'intelligenza artificiale di Stratikey è progettata e
+              istruita specificamente per il settore industriale: comprende
+              dinamiche, tempi e complessità delle vendite B2B, supportando il
+              commerciale con suggerimenti mirati, automazioni intelligenti e
+              analisi capaci di trasformare i dati in opportunità reali.
+            </p>
+          </div>
+        </section>
+
+        {/* Marketplace Section - Responsive */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          <div className="max-w-6xl mx-auto text-center mb-12 sm:mb-16">
+            <p className="font-outfit font-normal text-xl sm:text-2xl lg:text-3xl leading-relaxed text-[#390035]">
+              <span>Con il nostro marketplace interno puoi acquistare applicativi e</span>
+              <br />
+              <span>servizi </span><span className="font-semibold text-[#901d6b]">con un solo click</span><span>, senza perdite di tempo e senza</span>
+              <br />
+              <span>fornitori esterni.</span>
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+            {/* Applicativi Card */}
+            <Card className="bg-[#390035] hover:bg-[#901d6b] rounded-3xl sm:rounded-[40px] lg:rounded-[50px] border-0 transition-colors duration-300 transform hover:scale-105">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h3 className="font-outfit font-medium text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-6 sm:mb-8">
+                  Applicativi
+                </h3>
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <p className="font-outfit font-light text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                    Email marketing e automazioni
+                  </p>
+                  <p className="font-outfit font-light text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                    Live chat e assistenza clienti
+                  </p>
+                </div>
+                <p className="font-outfit font-semibold text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                  Work in progress...
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Servizi Card */}
+            <Card className="bg-[#390035] hover:bg-[#901d6b] rounded-3xl sm:rounded-[40px] lg:rounded-[50px] border-0 transition-colors duration-300 transform hover:scale-105">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h3 className="font-outfit font-medium text-white text-3xl sm:text-4xl lg:text-5xl leading-tight mb-6 sm:mb-8">
+                  Servizi
+                </h3>
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <p className="font-outfit font-light text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                    Brand Identity
+                  </p>
+                  <p className="font-outfit font-light text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                    Sito Web
+                  </p>
+                  <p className="font-outfit font-light text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                    Foto e video aziendali
+                  </p>
+                  <p className="font-outfit font-light text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                    Materiale stampato
+                  </p>
+                  <p className="font-outfit font-light text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                    Contenuti per piani editoriali
+                  </p>
+                </div>
+                <p className="font-outfit font-semibold text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl leading-relaxed">
+                  Work in progress...
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Footer Section - Responsive */}
+        <footer className="py-16 sm:py-20 lg:py-24 border-t border-[#901d6b]/20">
+          <div className="max-w-6xl mx-auto">
+            {/* Footer line decoration */}
+            <div className="w-full h-px bg-[#901d6b]/30 mb-12"></div>
+            
+            {/* Main Footer Content */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+              {/* Logo and Tagline */}
+              <div className="lg:col-span-1">
+                <img
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="h-12 sm:h-14 object-contain mb-6 cursor-pointer"
+                  alt="Stratikey logo"
+                  src="/stratkey-basso.png"
+                />
+                <p className="font-outfit font-normal text-[#901d6b] text-lg sm:text-xl leading-relaxed mb-6">
+                  La chiave del risultato<br />è la strategia.
+                </p>
+                <p className="font-outfit font-semibold text-2xl sm:text-3xl leading-tight bg-gradient-to-r from-[#901d6b] to-[#cd8fbe] bg-clip-text text-transparent">
+                  Work in progress...
+                </p>
+              </div>
+
+              {/* Contatti */}
+              <div>
+                <h3 className="font-outfit font-light text-[#901d6b] text-lg sm:text-xl leading-tight mb-4">
+                  Contatti
+                </h3>
+                <div className="space-y-3">
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    info@stratikey.com
+                  </p>
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    351 663 8114
+                  </p>
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    P.IVA 02100690474
+                  </p>
+                </div>
+                <div className="mt-8">
+                  <h4 className="font-outfit font-light text-[#901d6b] text-lg sm:text-xl leading-tight mb-2">
+                    Piattaforma
+                  </h4>
+                  <button 
+                    onClick={handleOpenModal}
+                    className="font-outfit font-normal text-[#390035] hover:text-[#901d6b] text-base sm:text-lg leading-tight transition-colors duration-200 bg-transparent border-none p-0 text-left cursor-pointer"
+                  >
+                    Registrati
+                  </button>
+                </div>
+              </div>
+
+              {/* Servizi */}
+              <div>
+                <h3 className="font-outfit font-light text-[#901d6b] text-lg sm:text-xl leading-tight mb-4">
+                  Servizi
+                </h3>
+                <div className="space-y-3">
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    Brand Identity
+                  </p>
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    Sito Web
+                  </p>
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    Foto e video aziendali
+                  </p>
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    Materiale stampato
+                  </p>
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    Contenuti per piani editoriali
+                  </p>
+                </div>
+              </div>
+
+              {/* Applicativi and Legal */}
+              <div>
+                <h3 className="font-outfit font-light text-[#901d6b] text-lg sm:text-xl leading-tight mb-4">
+                  Applicativi
+                </h3>
+                <div className="space-y-3 mb-8">
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    Email marketing e automazioni
+                  </p>
+                  <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                    Live chat e assistenza clienti
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <a 
+                    href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/cookie-policy-it" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="font-outfit font-light text-[#901d6b] hover:text-[#cd8fbe] text-lg sm:text-xl leading-tight transition-colors cursor-pointer block"
+                  >
+                    Cookie Policy
+                  </a>
+                  <a 
+                    href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="font-outfit font-light text-[#901d6b] hover:text-[#cd8fbe] text-lg sm:text-xl leading-tight transition-colors cursor-pointer block"
+                  >
+                    Privacy Policy
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Copyright */}
+            <div className="text-center pt-8 border-t border-[#901d6b]/20">
+              <p className="font-outfit font-normal text-[#390035] text-base sm:text-lg leading-tight">
+                © 2025 Cobrynet – Tutti i diritti riservati.
+              </p>
+            </div>
+          </div>
+        </footer>
       </ContentContainer>
 
       {/* Registration Modal */}
