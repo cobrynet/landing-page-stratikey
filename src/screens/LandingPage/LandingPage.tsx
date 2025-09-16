@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useRef } from "react";
-import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { RegistrationModal } from "../../components/RegistrationModal";
 
@@ -22,25 +21,6 @@ const featureBadges = [
   },
 ];
 
-const mainFeatureCards = [
-  {
-    title: "Semplicità",
-    bgClass: "bg-[#390035]",
-    hasImage: true,
-    imageSrc: "/image-4.png",
-  },
-  {
-    title: "Gestione\npiù rapida",
-    bgClass: "bg-[#390035]",
-    hasImage: true,
-    imageSrc: "/mask-group.png",
-  },
-  {
-    title: "Efficenza",
-    bgClass:
-      "[background:radial-gradient(50%_50%_at_50%_21%,rgba(144,29,107,1)_0%,rgba(57,0,53,1)_100%)]",
-  },
-];
 
 const ellipseImages = [
   { className: "w-[396px] h-[458px] top-3 left-3", src: "/ellipse-28.svg" },
@@ -75,25 +55,6 @@ const ellipseImages = [
   },
 ];
 
-const footerContacts = [
-  {
-    label: "Contatti",
-    items: ["info@stratikey.com", "351 663 8114", "P.IVA 02100690474"],
-  },
-  {
-    label: "Servizi",
-    items: [
-      "Brand Identity",
-      "Sito Web",
-      "Foto e video aziendali",
-      "Materiale stampato",
-    ],
-  },
-  {
-    label: "Applicativi",
-    items: ["Email marketing e automazioni", "Live chat e assistenza clienti"],
-  },
-];
 
 export const LandingPage = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
