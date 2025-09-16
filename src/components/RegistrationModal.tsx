@@ -59,13 +59,12 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
       {/* Modal Overlay */}
       <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         
-        {/* Modal Container - Responsive */}
+        {/* Modal Container - Più grande e perfettamente centrato */}
         <div 
-          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl max-h-[95vh] overflow-y-auto p-[2px] shadow-2xl"
+          className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl max-h-[90vh] overflow-y-auto p-[2px] shadow-2xl"
           style={{ 
             borderRadius: '25px',
-            background: 'linear-gradient(45deg, #cd8fbe, #901d6b)',
-            transform: 'translateY(-25px)'
+            background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
           }}
         >
           {/* Close Button - Responsive */}
@@ -78,9 +77,9 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
             </svg>
           </button>
 
-          {/* Modal Content - Responsive */}
+          {/* Modal Content - Dimensioni aumentate per contenuto completo */}
           <div 
-            className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] backdrop-blur-lg bg-[#390035] bg-opacity-90 overflow-hidden pb-6 md:pb-8"
+            className="relative w-full backdrop-blur-lg bg-[#390035] bg-opacity-90 overflow-hidden pb-6 md:pb-8 lg:pb-10"
             style={{ 
               borderRadius: '23px'
             }}
