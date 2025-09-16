@@ -216,7 +216,7 @@ export const LandingPage = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-white relative min-h-screen" style={{
+    <div className="bg-white relative min-h-screen overflow-x-hidden" style={{
       '--artboard-scale': 'clamp(0.3, calc(100vw / 1728), 1.5)'
     } as React.CSSProperties}>
       {/* Background Canvas - scalabile */}
