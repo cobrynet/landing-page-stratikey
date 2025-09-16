@@ -31,23 +31,10 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="modal">
-      {/* Background Overlay */}
-      <div className="modal__backdrop"></div>
-      
-      {/* Modal Dialog */}
-      <div className="modal__dialog">
-        <div className="relative w-full h-full flex flex-col"
-          style={{ 
-            background: 'linear-gradient(45deg, #cd8fbe, #901d6b)', 
-            borderRadius: '25px', 
-            padding: '2px' 
-          }}
+    <div className="registration-modal">
+      <div className="registration-modal__content">
+        <div className="registration-modal__inner relative"
         >
-          <div 
-            className="relative w-full h-full backdrop-blur-lg bg-[#390035] bg-opacity-90 flex flex-col justify-center px-8 py-6"
-            style={{ borderRadius: '23px' }}
-          >
             {/* Close Button */}
             <button
               onClick={onClose}
@@ -166,7 +153,6 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                 </button>
               </form>
             </div>
-          </div>
         </div>
       </div>
     </div>
