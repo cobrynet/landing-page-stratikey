@@ -52,21 +52,20 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
           background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
         }}
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 md:top-6 md:right-6 lg:top-8 lg:right-8 text-white hover:text-gray-300 transition-colors z-20 bg-black bg-opacity-20 rounded-full p-1 md:p-2"
-        >
-          <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
         {/* Modal Content */}
         <div 
           className="relative w-full h-full backdrop-blur-lg bg-[#390035] bg-opacity-90 flex flex-col justify-center px-8 py-6"
           style={{ borderRadius: '23px' }}
         >
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:text-gray-300 transition-colors z-20 bg-black bg-opacity-20 rounded-full p-1 md:p-2"
+          >
+            <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           {/* Logo */}
           <div className="flex justify-center mb-6">
             <img 
