@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface RegistrationModalProps {
   isOpen: boolean;
@@ -13,6 +13,19 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
     phone: '',
     acceptTerms: false
   });
+
+  // Lock/unlock body scroll when modal is open/closed
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -81,71 +94,74 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
           </div>
 
           {/* Form */}
-          <div className="flex-1 flex flex-col justify-center max-w-md mx-auto w-full">
-            <form onSubmit={handleSubmit} className="w-full space-y-4">
+          <div className="flex-1 flex flex-col justify-center max-w-2xl md:max-w-3xl mx-auto w-full">
+            <form onSubmit={handleSubmit} className="w-full">
               
-              {/* Name Input */}
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full h-12 px-4 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-base placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
-                style={{ fontFamily: 'Outfit', fontWeight: '300' }}
-                placeholder="Nome e Cognome"
-                required
-              />
+              {/* Input Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+                {/* Name Input */}
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full h-14 md:h-16 px-6 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-lg md:text-xl placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
+                  style={{ fontFamily: 'Outfit', fontWeight: '300' }}
+                  placeholder="Nome e Cognome"
+                  required
+                />
 
-              {/* Company Input */}
-              <input
-                type="text"
-                name="company"
-                value={formData.company}
-                onChange={handleInputChange}
-                className="w-full h-12 px-4 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-base placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
-                style={{ fontFamily: 'Outfit', fontWeight: '300' }}
-                placeholder="Azienda"
-                required
-              />
+                {/* Company Input */}
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className="w-full h-14 md:h-16 px-6 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-lg md:text-xl placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
+                  style={{ fontFamily: 'Outfit', fontWeight: '300' }}
+                  placeholder="Azienda"
+                  required
+                />
 
-              {/* Phone Input */}
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className="w-full h-12 px-4 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-base placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
-                style={{ fontFamily: 'Outfit', fontWeight: '300' }}
-                placeholder="Telefono"
-              />
+                {/* Phone Input */}
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full h-14 md:h-16 px-6 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-lg md:text-xl placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
+                  style={{ fontFamily: 'Outfit', fontWeight: '300' }}
+                  placeholder="Telefono"
+                />
 
-              {/* Email Input */}
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full h-12 px-4 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-base placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
-                style={{ fontFamily: 'Outfit', fontWeight: '300' }}
-                placeholder="Email"
-                required
-              />
+                {/* Email Input */}
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full h-14 md:h-16 px-6 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-lg md:text-xl placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
+                  style={{ fontFamily: 'Outfit', fontWeight: '300' }}
+                  placeholder="Email"
+                  required
+                />
+              </div>
 
               {/* Terms Checkbox */}
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-4 mb-6">
                 <input
                   type="checkbox"
                   name="acceptTerms"
                   checked={formData.acceptTerms}
                   onChange={handleInputChange}
-                  className="w-5 h-5 cursor-pointer"
+                  className="w-6 h-6 cursor-pointer"
                   required
                 />
                 <a
                   href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#cd8fbe] underline hover:text-[#901d6b] transition-colors cursor-pointer text-sm"
+                  className="text-[#cd8fbe] underline hover:text-[#901d6b] transition-colors cursor-pointer text-base md:text-lg"
                   style={{ fontFamily: 'Outfit', fontWeight: '300' }}
                 >
                   Accetta Termini e Condizioni
@@ -155,7 +171,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full h-12 bg-[#901d6b] hover:bg-[#b15197] text-white text-lg font-semibold rounded-full transition-colors"
+                className="w-full h-14 md:h-16 bg-[#901d6b] hover:bg-[#b15197] text-white text-xl md:text-2xl font-semibold rounded-full transition-colors"
                 style={{ fontFamily: 'Outfit' }}
               >
                 ACCEDI
