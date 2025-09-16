@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface RegistrationModalProps {
   isOpen: boolean;
@@ -14,21 +14,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
     acceptTerms: false
   });
 
-  // Lock/unlock body scroll when modal is open/closed
-  useEffect(() => {
-    if (isOpen) {
-      // Scroll to top to make modal visible
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Lock body scroll
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
+  // No body scroll lock - allow scrolling behind modal
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -47,10 +33,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-start justify-center z-50 p-1" style={{ paddingTop: '300px' }}>
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
       <div 
         className="w-[95vw] h-[100vh] p-[2px] shadow-2xl"
         style={{ 
+          transform: 'translateY(150px)',
           borderRadius: '25px',
           background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
         }}
