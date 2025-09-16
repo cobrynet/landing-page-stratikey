@@ -57,13 +57,13 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
       `}</style>
       
       {/* Modal Overlay */}
-      <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-6">
         
-        {/* Modal Container - Più grande e perfettamente centrato */}
+        {/* Modal Container - Grande come nel secondo screenshot */}
         <div 
-          className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-4xl 2xl:max-w-5xl max-h-[90vh] overflow-y-auto p-[2px] shadow-2xl"
+          className="relative w-full max-w-[90vw] max-h-[85vh] overflow-y-auto overflow-x-hidden p-[3px] shadow-2xl"
           style={{ 
-            borderRadius: '25px',
+            borderRadius: '30px',
             background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
           }}
         >
@@ -77,11 +77,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
             </svg>
           </button>
 
-          {/* Modal Content - Dimensioni aumentate per contenuto completo */}
+          {/* Modal Content - Adattato alle dimensioni grandi */}
           <div 
-            className="relative w-full backdrop-blur-lg bg-[#390035] bg-opacity-90 overflow-hidden pb-6 md:pb-8 lg:pb-10"
+            className="relative w-full backdrop-blur-lg bg-[#390035] bg-opacity-95"
             style={{ 
-              borderRadius: '23px'
+              borderRadius: '27px'
             }}
           >
             {/* Logo/Icon - Responsive */}
