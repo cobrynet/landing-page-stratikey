@@ -31,14 +31,12 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div 
-        className="fixed w-[90vw] h-[90vh] p-[2px] shadow-2xl"
+        className="w-[90vw] h-[90vh] p-[2px] shadow-2xl"
         style={{ 
           borderRadius: '25px',
-          background: 'linear-gradient(45deg, #cd8fbe, #901d6b)',
-          top: '5vh',
-          left: '5vw'
+          background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
         }}
       >
         {/* Close Button */}
