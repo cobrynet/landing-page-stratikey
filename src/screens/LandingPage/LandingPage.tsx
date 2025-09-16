@@ -89,8 +89,27 @@ export const LandingPage = (): JSX.Element => {
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   React.useEffect(() => {
+    // Check if user prefers reduced motion for accessibility
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      // If user prefers reduced motion, set static angles and return
+      const disconnectionSvg = disconnessioneSvgRef.current;
+      const connessioneSvg = connessioneSvgRef.current;
+      
+      if (disconnectionSvg) {
+        disconnectionSvg.style.transform = 'rotate(-27.98deg)';
+      }
+      if (connessioneSvg) {
+        connessioneSvg.style.transform = 'rotate(-77.25deg) scaleX(-1)';
+      }
+      return;
+    }
+
     const minAngle = -80;
     const maxAngle = -27.98;
+    let rafId: number | null = null;
+    let isAnimating = false;
 
     const updateRotation = () => {
       const svg = disconnessioneSvgRef.current;
@@ -124,24 +143,45 @@ export const LandingPage = (): JSX.Element => {
       svg.style.transform = `rotate(${angle}deg) scaleX(-1)`;
     };
 
-    const handleScroll = () => {
+    // Throttled animation function using requestAnimationFrame
+    const animateRotations = () => {
       updateRotation();
       updateConnessioneRotation();
+      isAnimating = false;
+    };
+
+    const handleScroll = () => {
+      // Only schedule new animation frame if one isn't already pending
+      if (!isAnimating) {
+        isAnimating = true;
+        rafId = requestAnimationFrame(animateRotations);
+      }
     };
 
     const handleResize = () => {
+      // For resize, update immediately since it's less frequent
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
       updateRotation();
       updateConnessioneRotation();
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
+    // Add passive event listeners for better performance
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
+    
+    // Initialize animations
     updateRotation(); // inizializza disconnessione
     updateConnessioneRotation(); // inizializza connessione
 
     return () => {
+      // Clean up event listeners and any pending animation frames
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
     };
   }, []);
 
