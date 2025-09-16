@@ -190,22 +190,6 @@ export const LandingPage = (): JSX.Element => {
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
-      {/* Pulsante Fixed - fuori dal container scalato per rimanere sempre visibile */}
-      <div className="fixed w-[246px] h-[50px] top-[86px] right-8 z-50" onClick={handleOpenModal}>
-        <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
-            <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
-              Registrati ora
-            </span>
-            <svg 
-              className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
-              viewBox="0 0 16 12" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
-            </svg>
-        </div>
-      </div>
-      
       <div className="responsive-container bg-white overflow-hidden relative">
         <div className="absolute w-[4180px] h-[6571px] top-[-109px] left-[-1226px]">
           <div className="absolute w-[4180px] h-[6557px] top-0 left-0">
@@ -237,6 +221,22 @@ export const LandingPage = (): JSX.Element => {
               La piattaforma che allinea marketing e vendite:
               <br />
               trattative più rapide, più contratti chiusi.
+            </div>
+
+            {/* Pulsante Registrati ora - posizionato nello sfondo viola */}
+            <div className="absolute w-[246px] h-[50px] top-[300px] left-[2100px] z-50" onClick={handleOpenModal}>
+              <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
+                  <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
+                    Registrati ora
+                  </span>
+                  <svg 
+                    className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
+                    viewBox="0 0 16 12" 
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
+                  </svg>
+              </div>
             </div>
 
 
