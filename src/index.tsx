@@ -5,5 +5,5 @@ import { LandingPage } from "./screens/LandingPage/LandingPage";
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     <LandingPage />
-  </StrictMode>,
+  </StrictMode>
 );
