@@ -136,6 +136,24 @@
   }
 }
 
+@keyframes rotate-ellipses-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-ellipses-fast {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes spiral-interweave {
   0% {
     transform: rotate(0deg) scale(1) rotateY(0deg);
@@ -238,243 +256,166 @@
   transform: translateY(0) scale(1);
 }
 
-/* Fluid Responsive System - uses percentages and container queries */
-:root {
-  /* Design tokens based on 1728px base width */
-  --base-width: 1728;
-  --container-max: min(100vw, 1728px);
-  
-  /* Fluid typography scale */
-  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
-  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1.125rem);
-  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
-  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
-  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
-  --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
-  --text-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.875rem);
-  --text-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3.75rem);
-  --text-5xl: clamp(3rem, 2.4rem + 3vw, 4.5rem);
-  --text-6xl: clamp(3.75rem, 2.8rem + 4.75vw, 6rem);
-  
-  /* Fluid spacing scale */
-  --space-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
-  --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1.125rem);
-  --space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);
-  --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
-  --space-xl: clamp(2rem, 1.6rem + 2vw, 3rem);
-  --space-2xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
-  --space-3xl: clamp(3rem, 2.4rem + 3vw, 5rem);
-}
-
-.fluid-container {
-  width: 100%;
-  max-width: 1728px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2rem);
-  container-type: inline-size;
-}
-
-/* Container query utilities */
-.use-cq {
-  container-type: inline-size;
-}
-
-/* Percentage-based positioning utilities */
-.pos-from-base {
-  position: absolute;
-}
-
-/* Container Query Rules for fluid responsive design */
-@container (max-width: 600px) {
-  .hero-content h1 {
-    font-size: var(--text-4xl);
-    line-height: 1.2;
+  /* ===== Layout container ===== */
+  .quadranti{
+    display:flex;
+    gap:24px;                 /* spazio fisso fra i pannelli */
+    align-items:stretch;
+    width:100%;
   }
-  
-  .hero-content p {
-    font-size: var(--text-lg);
+
+  /* ===== Card base ===== */
+  .quad{
+    --r:28px;                 /* raggio */
+    position:relative;
+    min-height:380px;
+    background:#580545;       /* colore di base (cambialo) */
+    border-radius:var(--r);
+    overflow:hidden;          /* evita sbordi di contenuti/effetti */
+    min-width:0;              /* permette di comprimersi bene */
+    cursor:pointer;
+
+    /* la magia: i pannelli si dividono lo spazio e possono animare la "quota" */
+    flex:1 1 0;
+    transition:
+      flex-grow .55s cubic-bezier(.22,1,.36,1),
+      box-shadow .35s ease,
+      transform .55s cubic-bezier(.22,1,.36,1),
+      filter .35s ease;
   }
-}
 
-@container (min-width: 1200px) {
-  .hero-mockup {
-    max-width: 85%;
+  /* stato di riposo: tutti uguali */
+  .quadranti:hover .quad{ filter:saturate(.9); }
+
+  /* pannello attivo: prende più spazio, gli altri si comprimono */
+  .quadranti:hover .quad:hover{
+    flex-grow:1.8;            /* quanto si allarga il pannello attivo */
+    filter:saturate(1.05);
+    box-shadow:0 12px 40px rgba(0,0,0,.35);
   }
-}
 
-/* Glass button styling */
-.glass-button {
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
+  /* Testo hover specifico per le card */
+  .quad:hover p {
+    opacity: 1 !important;
+  }
 
-.glass-button:hover {
-  background: rgba(144, 29, 107, 0.5) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px rgba(144, 29, 107, 0.3);
-}
+  /* Mantenere padding laterale durante l'espansione delle card */
+  .quad .card-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 
-/* ===== Layout container ===== */
-.quadranti{
-  display:flex;
-  gap:24px;                 /* spazio fisso fra i pannelli */
-  align-items:stretch;
-  width:100%;
-}
+  .quad:hover .card-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  /* ===== Direzione dell'allargamento (solo feeling visivo) =====
+     Con flex il sinistro "cresce" a destra e il destro a sinistra per natura.
+     Aggiungo una micro–scala con origin diversi per enfatizzare. */
+  .quad.left:hover   { transform-origin:left center;   transform:scale(1.01); }
+  .quad.center:hover { transform-origin:center center; transform:scale(1.01); }
+  .quad.right:hover  { transform-origin:right center;  transform:scale(1.01); }
 
-/* ===== Card base ===== */
-.quad{
-  --r:28px;                 /* raggio */
-  position:relative;
-  min-height:380px;
-  background:#580545;       /* colore di base (cambialo) */
-  border-radius:var(--r);
-  overflow:hidden;          /* evita sbordi di contenuti/effetti */
-  min-width:0;              /* permette di comprimersi bene */
-  cursor:pointer;
+  /* Accessibilità: anche con tastiera (focus dentro la card) */
+  .quad:focus-within{
+    outline: none;
+    box-shadow:0 0 0 2px #ffffff22 inset, 0 12px 40px rgba(0,0,0,.35);
+  }
+  .quadranti:has(.quad:focus-within) .quad{
+    filter:saturate(.9);
+  }
+  .quadranti:has(.quad:focus-within) .quad:focus-within{
+    flex-grow:1.8;
+    filter:saturate(1.05);
+  }
 
-  /* la magia: i pannelli si dividono lo spazio e possono animare la "quota" */
-  flex:1 1 0;
-  transition:
-    flex-grow .55s cubic-bezier(.22,1,.36,1),
-    box-shadow .35s ease,
-    transform .55s cubic-bezier(.22,1,.36,1),
-    filter .35s ease;
-}
+  /* Riduci movimento per chi lo preferisce */
+  @media (prefers-reduced-motion: reduce){
+    .quad{ transition:none }
+  }
 
-/* stato di riposo: tutti uguali */
-.quadranti:hover .quad{ filter:saturate(.9); }
+  /* La card deve essere relativa per permettere il posizionamento assoluto dell'immagine */
+  .card {
+    position: relative;
+    overflow: hidden;
+  }
 
-/* pannello attivo: prende più spazio, gli altri si comprimono */
-.quadranti:hover .quad:hover{
-  flex-grow:1.8;            /* quanto si allarga il pannello attivo */
-  filter:saturate(1.05);
-  box-shadow:0 12px 40px rgba(0,0,0,.35);
-}
+  /* PNG sempre al bordo superiore destro della card */
+  .card .maschera-stratikey {
+    position: absolute;
+    top: -10px !important;
+    right: 0;      /* bordo destro */
+    width: 354px;  /* larghezza fissa */
+    height: 354px; /* altezza fissa */
+    object-fit: contain; 
+    pointer-events: none; /* non interferisce con hover o click */
+    transform: none !important; /* evita spostamenti da altre animazioni */
+    margin: 0 !important;
+    border: none !important;
+    z-index: 1;
+    object-position: top right; /* posiziona l'immagine in alto a destra */
+  }
 
-/* Testo hover specifico per le card */
-.quad:hover p {
-  opacity: 1 !important;
-}
+  /* Struttura base della card in colonna */
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
 
-/* Mantenere padding laterale durante l'espansione delle card */
-.quad .card-content {
-  padding-left: 30px;
-  padding-right: 30px;
-}
+  /* Hover effect per card Semplicità */
+  .semplicita-card .card-title {
+    transition: all 0.3s ease;
+  }
 
-.quad:hover .card-content {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-/* ===== Direzione dell'allargamento (solo feeling visivo) =====
-   Con flex il sinistro "cresce" a destra e il destro a sinistra per natura.
-   Aggiungo una micro–scala con origin diversi per enfatizzare. */
-.quad.left:hover   { transform-origin:left center;   transform:scale(1.01); }
-.quad.center:hover { transform-origin:center center; transform:scale(1.01); }
-.quad.right:hover  { transform-origin:right center;  transform:scale(1.01); }
+  .semplicita-card .card-subtitle {
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
 
-/* Accessibilità: anche con tastiera (focus dentro la card) */
-.quad:focus-within{
-  outline: none;
-  box-shadow:0 0 0 2px #ffffff22 inset, 0 12px 40px rgba(0,0,0,.35);
-}
-.quadranti:has(.quad:focus-within) .quad{
-  filter:saturate(.9);
-}
-.quadranti:has(.quad:focus-within) .quad:focus-within{
-  flex-grow:1.8;
-  filter:saturate(1.05);
-}
+  .semplicita-card:hover .card-title {
+    bottom: 185px !important;
+  }
 
-/* Riduci movimento per chi lo preferisce */
-@media (prefers-reduced-motion: reduce){
-  .quad{ transition:none }
-}
+  .semplicita-card:hover .card-subtitle {
+    opacity: 1;
+  }
 
-/* La card deve essere relativa per permettere il posizionamento assoluto dell'immagine */
-.card {
-  position: relative;
-  overflow: hidden;
-}
+  /* Hover effect per card Gestione */
+  .gestione-card .card-title {
+    transition: all 0.3s ease;
+  }
 
-/* PNG sempre al bordo superiore destro della card */
-.card .maschera-stratikey {
-  position: absolute;
-  top: -10px !important;
-  right: 0;      /* bordo destro */
-  width: 354px;  /* larghezza fissa */
-  height: 354px; /* altezza fissa */
-  object-fit: contain; 
-  pointer-events: none; /* non interferisce con hover o click */
-  transform: none !important; /* evita spostamenti da altre animazioni */
-  margin: 0 !important;
-  border: none !important;
-  z-index: 1;
-  object-position: top right; /* posiziona l'immagine in alto a destra */
-}
+  .gestione-card .card-subtitle {
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
 
-/* Struttura base della card in colonna */
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
+  .gestione-card:hover .card-title {
+    bottom: 154px !important;
+  }
 
-/* Hover effect per card Semplicità */
-.semplicita-card .card-title {
-  transition: all 0.3s ease;
-}
+  .gestione-card:hover .card-subtitle {
+    opacity: 1;
+  }
 
-.semplicita-card .card-subtitle {
-  opacity: 0;
-  transition: all 0.3s ease;
-}
+  /* Hover effect per card Efficienza */
+  .efficienza-card .card-title {
+    transition: all 0.3s ease;
+  }
 
-.semplicita-card:hover .card-title {
-  bottom: 185px !important;
-}
+  .efficienza-card .card-subtitle {
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
 
-.semplicita-card:hover .card-subtitle {
-  opacity: 1;
-}
+  .efficienza-card:hover .card-title {
+    bottom: 185px !important;
+  }
 
-/* Hover effect per card Gestione */
-.gestione-card .card-title {
-  transition: all 0.3s ease;
-}
-
-.gestione-card .card-subtitle {
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.gestione-card:hover .card-title {
-  bottom: 154px !important;
-}
-
-.gestione-card:hover .card-subtitle {
-  opacity: 1;
-}
-
-/* Hover effect per card Efficienza */
-.efficienza-card .card-title {
-  transition: all 0.3s ease;
-}
-
-.efficienza-card .card-subtitle {
-  opacity: 0;
-  transition: all 0.3s ease;
-}
-
-.efficienza-card:hover .card-title {
-  bottom: 185px !important;
-}
-
-.efficienza-card:hover .card-subtitle {
-  opacity: 1;
-}
+  .efficienza-card:hover .card-subtitle {
+    opacity: 1;
+  }
 
 /* ===========================
    responsive.css — SOLO adattamento a tutti gli schermi
