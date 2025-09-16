@@ -33,10 +33,15 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-start justify-center z-50 pt-4">
+    <div>
+      {/* Background Overlay */}
+      <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40"></div>
+      
+      {/* Modal that scrolls with page */}
       <div 
-        className="w-[95vw] h-[100vh] p-[2px] shadow-2xl"
+        className="absolute top-4 left-1/2 w-[95vw] h-[100vh] p-[2px] shadow-2xl z-50"
         style={{ 
+          transform: 'translateX(-50%)',
           borderRadius: '25px',
           background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
         }}
