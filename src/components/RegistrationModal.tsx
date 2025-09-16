@@ -44,7 +44,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-end justify-center z-50 p-1 pb-2">
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-start justify-center z-50 p-1 pt-2">
       <div 
         className="w-[95vw] h-[100vh] p-[2px] shadow-2xl"
         style={{ 
