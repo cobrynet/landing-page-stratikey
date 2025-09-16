@@ -241,8 +241,9 @@
 /* Responsive Scaling System - preserva la struttura originale ma scala proporzionalmente */
 .responsive-container {
   width: 100vw;
+  max-width: 1920px;
   height: 6893px;
-  transform-origin: top left;
+  transform-origin: top center;
   margin: 0;
   
   /* Desktop (1728px e oltre) - scala 1:1 */

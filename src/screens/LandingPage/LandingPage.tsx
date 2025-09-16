@@ -189,7 +189,7 @@ export const LandingPage = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-white w-screen overflow-x-hidden">
+    <div className="bg-white w-screen overflow-x-hidden flex justify-center">
       <div className="responsive-container bg-white overflow-hidden relative">
         <div className="absolute w-[4180px] h-[6571px] top-[-109px] left-[-1226px]">
           <div className="absolute w-[4180px] h-[6557px] top-0 left-0">
