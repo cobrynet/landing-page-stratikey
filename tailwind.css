@@ -1519,7 +1519,7 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; margin: 0; }
 
 .registration-modal__content {
   width: 90vw;
-  height: 90vh;
+  height: 95vh;
   border-radius: 25px;
   background: linear-gradient(45deg, #cd8fbe, #901d6b);
   padding: 2px;
