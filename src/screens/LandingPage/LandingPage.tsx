@@ -95,6 +95,32 @@ const footerContacts = [
   },
 ];
 
+// BackgroundCanvas component for scalable artboard
+const BackgroundCanvas = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      <div className="relative mx-auto" style={{
+        width: '1728px',
+        height: '6893px',
+        transform: 'scale(var(--artboard-scale, 1))',
+        transformOrigin: 'top center',
+        maxWidth: 'none'
+      }}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+// ContentContainer component for centered responsive content
+const ContentContainer = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
+      {children}
+    </div>
+  );
+};
+
 export const LandingPage = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
@@ -189,8 +215,11 @@ export const LandingPage = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-white grid justify-items-center [align-items:start] w-screen">
-      <div className="bg-white overflow-hidden w-[1728px] h-[6893px] relative">
+    <div className="bg-white relative min-h-screen" style={{
+      '--artboard-scale': 'clamp(0.3, calc(100vw / 1728), 1.5)'
+    } as React.CSSProperties}>
+      {/* Background Canvas - scalabile */}
+      <BackgroundCanvas>
         <div className="absolute w-[4180px] h-[6571px] top-[-109px] left-[-1226px]">
           <div className="absolute w-[4180px] h-[6557px] top-0 left-0">
             <div className="absolute w-[1728px] h-[3053px] top-[109px] left-[1226px] bg-[linear-gradient(180deg,rgba(57,0,53,1)_0%,rgba(144,29,107,1)_50%,rgba(255,255,255,1)_100%)]" />
@@ -584,10 +613,40 @@ export const LandingPage = (): JSX.Element => {
 
           </div>
         </div>
+      </BackgroundCanvas>
 
+      {/* Responsive Content Container */}
+      <ContentContainer>
+        {/* Hero section content - qui sposteremo il contenuto principale */}
+        <div className="relative pt-safe-top min-h-screen">
+          {/* CTA desktop - responsive positioning */}
+          <div className="hidden md:block fixed top-4 right-4 lg:top-6 lg:right-8 z-50" onClick={handleOpenModal}>
+            <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer px-6 py-3 rounded-full" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
+              <span className="font-outfit font-medium group-hover:font-semibold text-white text-lg tracking-[0] leading-[normal] antialiased">
+                Registrati ora
+              </span>
+              <svg className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* CTA mobile - sticky bottom */}
+          <div className="md:hidden fixed bottom-safe-bottom inset-x-0 p-4 z-50" onClick={handleOpenModal}>
+            <div className="glow-button w-full flex items-center justify-center gap-2 group cursor-pointer py-4 rounded-full" style={{ background: 'rgba(144, 29, 107, 0.8)' }}>
+              <span className="font-outfit font-medium text-white text-lg tracking-[0] leading-[normal] antialiased">
+                Registrati ora
+              </span>
+              <svg className="w-4 h-3 fill-white opacity-90 transition-transform group-hover:translate-x-0.5" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </ContentContainer>
 
-        <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
-      </div>
+      {/* Registration Modal */}
+      <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };
