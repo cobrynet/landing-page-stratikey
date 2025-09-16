@@ -577,7 +577,7 @@ export const LandingPage = (): JSX.Element => {
       </div>
       
       {/* Pulsante Registrati ora - FISSO al viewport (fuori dal responsive-container) */}
-      <div className="fixed w-[246px] h-[50px] top-[82px] left-1/2 transform -translate-x-1/2 z-[100]" onClick={handleOpenModal}>
+      <div className="fixed w-[246px] h-[50px] top-[82px] right-[560px] z-[100]" onClick={handleOpenModal}>
         <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
             <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
               Registrati ora
