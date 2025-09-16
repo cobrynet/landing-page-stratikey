@@ -1,0 +1,100 @@
+~/workspace$ # Backup del contenuto attuale
+cp -r . ../backup-progetto
+
+# Rimuovi configurazione Git corrotta
+rm -rf .git
+
+# Ricrea repository pulito
+git init
+git add .
+git commit -m "Versione finale - pulsante Registrati ora posizionato top-86px left-2048px"
+git branch -M main
+git remote add origin https://github.com/cobrynet/landing-page-stratikey.git
+git push -u --force origin main
+Initialized empty Git repository in /home/runner/workspace/.git/
+[main (root-commit) b37fe93] Versione finale - pulsante Registrati ora posizionato top-86px left-2048px
+ 73 files changed, 6594 insertions(+)
+ create mode 100644 .bolt/ignore
+ create mode 100644 .gitignore
+ create mode 100644 .replit
+ create mode 100644 README.md
+ create mode 100644 attached_assets/image_1758030212618.png
+ create mode 100644 attached_assets/image_1758030246448.png
+ create mode 100644 attached_assets/image_1758030286680.png
+ create mode 100644 attached_assets/image_1758030389057.png
+ create mode 100644 attached_assets/image_1758030821346.png
+ create mode 100644 attached_assets/image_1758031163806.png
+ create mode 100644 attached_assets/image_1758031282753.png
+ create mode 100644 attached_assets/image_1758031375752.png
+ create mode 100644 attached_assets/image_1758031536518.png
+ create mode 100644 attached_assets/image_1758031773425.png
+ create mode 100644 attached_assets/image_1758031930405.png
+ create mode 100644 attached_assets/image_1758032460018.png
+ create mode 100644 attached_assets/image_1758034044020.png
+ create mode 100644 attached_assets/targeted_element_1758030139462.png
+ create mode 100644 attached_assets/targeted_element_1758030728948.png
+ create mode 100644 attached_assets/targeted_element_1758031086336.png
+ create mode 100644 attached_assets/targeted_element_1758032311408.png
+ create mode 100644 attached_assets/targeted_element_1758032375296.png
+ create mode 100644 index.html
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+ create mode 100644 public/SIMBOLO copy.png
+ create mode 100644 public/SIMBOLO.png
+ create mode 100644 public/arrow-right-solid-full--1--1.png
+ create mode 100644 public/attiva h24.svg
+ create mode 100644 public/con-il-nostro-marketplace-interno-puoi-acquistare-applicativi-e-.svg
+ create mode 100644 public/connessione.svg
+ create mode 100644 public/disconnessione.svg
+ create mode 100644 public/ellipse-28.svg
+ create mode 100644 public/ellipse-30.svg
+ create mode 100644 public/ellipse-31.svg
+ create mode 100644 public/ellipse-32.svg
+ create mode 100644 public/ellipse-33.svg
+ create mode 100644 public/ellipse-34.svg
+ create mode 100644 public/form (1).svg
+ create mode 100644 public/form.svg
+ create mode 100644 public/forza commerciale.svg
+ create mode 100644 public/frame-15.svg
+ create mode 100644 public/frame-3.svg
+ create mode 100644 public/group-11.png
+ create mode 100644 public/group-13.png
+ create mode 100644 public/group-16.png
+ create mode 100644 public/illustrazione-connessione.png
+ create mode 100644 public/illustrazione-disconnessione.png
+ create mode 100644 public/image-4.png
+ create mode 100644 public/immagine-sito.jpg
+ create mode 100644 public/integrazione completa.svg
+ create mode 100644 public/linea-footer.svg
+ create mode 100644 public/luce-computer.svg
+ create mode 100644 public/luce.svg
+ create mode 100644 public/macbook-mockup.png
+ create mode 100644 public/maschera stratikey.svg
+ create mode 100644 public/maschera-stratikey.png
+ create mode 100644 public/mask-group.png
+ create mode 100644 public/stratikey-alto.png
+ create mode 100644 public/stratkey-basso.png
+ create mode 100644 replit.md
+ create mode 100644 src/components/RegistrationModal.tsx
+ create mode 100644 src/components/ui/button.tsx
+ create mode 100644 src/components/ui/card.tsx
+ create mode 100644 src/index.tsx
+ create mode 100644 src/lib/utils.ts
+ create mode 100644 src/screens/LandingPage/LandingPage.tsx
+ create mode 100644 tailwind.config.js
+ create mode 100644 tailwind.css
+ create mode 100644 tsconfig.app.json
+ create mode 100644 tsconfig.json
+ create mode 100644 tsconfig.node.json
+ create mode 100644 vite.config.ts
+Enumerating objects: 84, done.
+Counting objects: 100% (84/84), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (79/79), done.
+Writing objects: 100% (84/84), 6.85 MiB | 5.72 MiB/s, done.
+Total 84 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/cobrynet/landing-page-stratikey.git
+ + 5483d4d...b37fe93 main -> main (forced update)
+branch 'main' set up to track 'origin/main'.
+~/workspace$ 
