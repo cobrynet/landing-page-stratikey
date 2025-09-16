@@ -17,6 +17,9 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   // Lock/unlock body scroll when modal is open/closed
   useEffect(() => {
     if (isOpen) {
+      // Scroll to top to make modal visible
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Lock body scroll
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
