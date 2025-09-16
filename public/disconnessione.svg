@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="illustrazioni" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 215.82 314.79">
+  <!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #b15197;
+      }
+
+      .st1 {
+        fill: url(#Sfumatura_senza_nome_35);
+      }
+
+      .st2 {
+        fill: url(#Sfumatura_senza_nome_81);
+      }
+
+      .st3 {
+        stroke-width: 2.26px;
+      }
+
+      .st3, .st4 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .st4 {
+        stroke-width: 2.26px;
+      }
+
+      .st5 {
+        fill: url(#Sfumatura_senza_nome_8);
+      }
+    </style>
+    <linearGradient id="Sfumatura_senza_nome_35" data-name="Sfumatura senza nome 35" x1="90.7" y1="201.99" x2="62.27" y2="152.75" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d9abcf"/>
+      <stop offset=".42" stop-color="#d8a9cd"/>
+      <stop offset=".57" stop-color="#d4a2c8"/>
+      <stop offset=".68" stop-color="#ce96c0"/>
+      <stop offset=".76" stop-color="#c585b4"/>
+      <stop offset=".84" stop-color="#ba6fa5"/>
+      <stop offset=".91" stop-color="#ac5492"/>
+      <stop offset=".96" stop-color="#9c347b"/>
+      <stop offset="1" stop-color="#901d6b"/>
+    </linearGradient>
+    <linearGradient id="Sfumatura_senza_nome_8" data-name="Sfumatura senza nome 8" x1="2798.49" y1="1994.76" x2="2934.17" y2="1994.76" gradientTransform="translate(2945.51 2050.76) rotate(-110.31) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#901d6b"/>
+      <stop offset="1" stop-color="#390035"/>
+    </linearGradient>
+    <linearGradient id="Sfumatura_senza_nome_81" data-name="Sfumatura senza nome 8" x1="699.76" y1="-168.71" x2="799.53" y2="-168.71" gradientTransform="translate(-441.37 750.09) rotate(-27.25)" xlink:href="#Sfumatura_senza_nome_8"/>
+  </defs>
+  <path class="st1" d="M149.12,134.81c-7.84-13.37-25.02-17.86-38.4-10.03L13.88,181.54c-13.37,7.84-17.86,25.03-10.03,38.4,7.84,13.37,25.03,17.85,38.4,10.02l1.02-.6-1.79-10.17-4.12,2.41c-8.76,5.14-20.02,2.2-25.16-6.56-5.13-8.76-2.19-20.02,6.57-25.15l96.84-56.75c8.76-5.13,20.02-2.19,25.15,6.57,5.14,8.75,2.2,20.01-6.56,25.15l-51.78,30.35,8.25,6.39,48.43-28.38c13.37-7.84,17.85-25.03,10.02-38.4Z"/>
+  <path class="st5" d="M144.3,73.06L54.56,5.63C42.17-3.68,24.57-1.18,15.27,11.21c-9.32,12.39-6.82,29.98,5.57,39.29l65.18,48.97,7-6.86L26.67,42.76c-8.11-6.1-9.75-17.62-3.66-25.74,6.1-8.11,17.61-9.75,25.73-3.66l89.75,67.43c5.7,4.28,8.2,11.24,7.06,17.81l9.69.7c1.34-9.75-2.51-19.92-10.94-26.25Z"/>
+  <path class="st2" d="M205.74,265.19l-69.34-57.92-6.73,6.99,69.87,58.36c7.79,6.51,8.82,18.1,2.32,25.89-6.51,7.79-18.09,8.83-25.89,2.33l-86.15-71.96c-3.7-3.09-5.88-7.33-6.43-11.75l-9.79-4.01c-.51,8.57,2.92,17.26,10.02,23.19l86.15,71.96c11.89,9.94,29.59,8.35,39.53-3.54,9.93-11.9,8.35-29.59-3.55-39.53Z"/>
+  <polygon class="st0" points="161.3 98.62 161.65 96.56 176.95 98.45 176.36 101.92 161.3 98.62"/>
+  <polygon class="st0" points="161.69 93.71 160.91 91.78 174.93 85.36 176.25 88.63 161.69 93.71"/>
+  <polygon class="st0" points="160.21 89.43 158.56 88.14 167.45 75.54 170.23 77.7 160.21 89.43"/>
+  <polygon class="st0" points="75.3 194.51 73.3 196.11 60.81 181.95 64.17 179.25 75.3 194.51"/>
+  <polygon class="st0" points="70.96 198.69 70.1 201.1 52.04 195.59 53.48 191.54 70.96 198.69"/>
+  <polygon class="st0" points="68.83 203.82 69.31 206.33 50.93 210.68 50.13 206.44 68.83 203.82"/>
+  <polygon class="st0" points="135.98 205.11 136.25 203.56 147.81 205 147.36 207.62 135.98 205.11"/>
+  <polygon class="st0" points="136.28 201.41 135.69 199.94 146.29 195.11 147.28 197.57 136.28 201.41"/>
+  <polygon class="st0" points="135.17 198.17 133.92 197.2 140.64 187.68 142.74 189.31 135.17 198.17"/>
+  <polyline class="st3" points="31.62 87.74 52.31 94.43 43.22 100.25 54.58 105.86 51.35 112.22 57.96 116.1"/>
+  <polyline class="st3" points="174.93 182.29 173.29 164.54 184.14 173.42 196.53 159.3 208.46 170.8"/>
+  <polyline class="st4" points="52.75 255.27 59.27 264.29 48.48 265.31 51.21 270.58 44.8 272.53 47.59 278"/>
+</svg>

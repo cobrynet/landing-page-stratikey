@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="stratikey" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1119.91 1686.75">
+  <!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #b15197;
+      }
+
+      .st1, .st2 {
+        font-family: Outfit-Light, Outfit;
+        font-weight: 300;
+      }
+
+      .st1, .st2, .st3 {
+        font-size: 36px;
+      }
+
+      .st1, .st2, .st4 {
+        fill: #cd8fbe;
+      }
+
+      .st2 {
+        text-decoration: underline;
+      }
+
+      .st5 {
+        fill: #a53583;
+      }
+
+      .st6 {
+        fill: #d9abcf;
+      }
+
+      .st7 {
+        font-family: Outfit-Medium, Outfit;
+        font-size: 93.44px;
+        font-weight: 500;
+      }
+
+      .st7, .st3 {
+        fill: #fff;
+      }
+
+      .st8 {
+        stroke: #cd8fbe;
+        stroke-width: 2.83px;
+      }
+
+      .st8, .st9 {
+        fill: none;
+      }
+
+      .st8, .st9, .st10 {
+        stroke-miterlimit: 10;
+      }
+
+      .st3 {
+        font-family: Outfit-SemiBold, Outfit;
+        font-weight: 600;
+      }
+
+      .st9 {
+        stroke: url(#Sfumatura_senza_nome_53);
+        stroke-width: 1.1px;
+      }
+
+      .st11 {
+        fill: #bd6faa;
+      }
+
+      .st12 {
+        opacity: .9;
+      }
+
+      .st12, .st10 {
+        fill: #390035;
+      }
+
+      .st10 {
+        opacity: .5;
+        stroke: #dda6dc;
+      }
+
+      .st13 {
+        fill: #901d6b;
+      }
+    </style>
+    <linearGradient id="Sfumatura_senza_nome_53" data-name="Sfumatura senza nome 53" x1="-117.1" y1="1520.43" x2="1237.01" y2="166.32" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd8fbe"/>
+      <stop offset="1" stop-color="#901d6b"/>
+    </linearGradient>
+  </defs>
+  <rect class="st12" x=".55" y=".55" width="1118.82" height="1685.65" rx="83.46" ry="83.46"/>
+  <rect class="st9" x=".55" y=".55" width="1118.82" height="1685.65" rx="83.46" ry="83.46"/>
+  <text class="st7" transform="translate(268.19 460.05)"><tspan x="0" y="0">Registrati alla</tspan><tspan x="4.58" y="112.13">lista di attesa!</tspan></text>
+  <g>
+    <polygon class="st6" points="558.68 208 549.97 216.71 550.04 216.64 508.8 216.64 476.31 184.16 505.58 154.9 537.99 187.31 558.68 208"/>
+    <rect class="st4" x="537.99" y="141.53" width="41.38" height="75.1"/>
+    <polygon class="st11" points="550.04 216.64 550.05 216.64 549.97 216.71 550.04 216.64"/>
+    <polygon class="st11" points="641.05 184.16 579.37 245.83 579.37 216.64 550.05 216.64 558.68 208 579.37 187.31 611.79 154.9 641.05 184.16"/>
+    <rect class="st0" x="579.37" y="216.64" width="75.1" height="41.38"/>
+    <polygon class="st5" points="641.05 290.37 611.79 319.63 579.37 287.21 579.37 228.69 587.94 237.26 608.7 258.02 641.05 290.37"/>
+    <g>
+      <polygon class="st13" points="579.37 216.64 579.37 332.9 538.28 332.9 538.28 257.72 463.11 257.72 463.11 216.64 550.04 216.64 549.97 216.71 550.05 216.64 579.37 216.64"/>
+      <polygon class="st13" points="550.05 216.64 549.97 216.71 550.04 216.64 550.05 216.64"/>
+      <polygon class="st13" points="524.57 269.91 524.57 321.97 504.39 321.97 504.39 290.1 474.04 290.09 474.04 269.9 524.57 269.91"/>
+    </g>
+  </g>
+  <text class="st1" transform="translate(148.88 677.57)"><tspan x="0" y="0">Lascia i tuoi dati per ricevere l’ingresso in anteprima</tspan></text>
+  <g>
+    <rect class="st10" x="95.22" y="767.84" width="927.14" height="97.23" rx="48.62" ry="48.62"/>
+    <text class="st1" transform="translate(135.68 827.83)"><tspan x="0" y="0">Nome e Cognome</tspan></text>
+  </g>
+  <g>
+    <rect class="st10" x="95.22" y="904.65" width="927.14" height="97.23" rx="48.62" ry="48.62"/>
+    <text class="st1" transform="translate(135.68 964.65)"><tspan x="0" y="0">Azienda</tspan></text>
+  </g>
+  <g>
+    <rect class="st13" x="270.78" y="1463.79" width="576.01" height="97.23" rx="48.62" ry="48.62"/>
+    <text class="st3" transform="translate(493.27 1523.78)"><tspan x="0" y="0">ACCEDI</tspan></text>
+  </g>
+  <g>
+    <rect class="st10" x="95.22" y="1041.47" width="927.14" height="97.23" rx="48.62" ry="48.62"/>
+    <text class="st1" transform="translate(135.68 1101.47)"><tspan x="0" y="0">Telefono</tspan></text>
+  </g>
+  <g>
+    <rect class="st10" x="95.22" y="1178.29" width="927.14" height="97.23" rx="48.62" ry="48.62"/>
+    <text class="st1" transform="translate(135.68 1238.28)"><tspan x="0" y="0">Email</tspan></text>
+  </g>
+  <g>
+    <text class="st2" transform="translate(303.8 1393.74)"><tspan x="0" y="0">Accetta Termini e Condizioni</tspan></text>
+    <rect class="st8" x="776.86" y="1364.61" width="35.5" height="35.5" rx="8.87" ry="8.87"/>
+  </g>
+</svg>
