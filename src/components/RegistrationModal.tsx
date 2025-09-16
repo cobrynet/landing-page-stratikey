@@ -56,15 +56,16 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
         }
       `}</style>
       
-      {/* Modal Overlay - Sempre presente e centrato */}
-      <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-[9999] p-4">
+      {/* Modal Overlay */}
+      <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         
-        {/* Modal Container - Perfettamente centrato e sempre visibile */}
+        {/* Modal Container - Responsive */}
         <div 
-          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl max-h-[90vh] overflow-y-auto p-[2px] shadow-2xl"
+          className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl max-h-[95vh] overflow-y-auto p-[2px] shadow-2xl"
           style={{ 
             borderRadius: '25px',
-            background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
+            background: 'linear-gradient(45deg, #cd8fbe, #901d6b)',
+            transform: 'translateY(-25px)'
           }}
         >
           {/* Close Button - Responsive */}
