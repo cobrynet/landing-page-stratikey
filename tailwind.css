@@ -268,7 +268,14 @@
   overflow-x: hidden;
 }
 
-/* Container ora si adatta all'altezza naturale del contenuto */
+/* Assicura che il container abbia l'altezza corretta - finisce dopo copyright */
+.responsive-container::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: calc(6970 / 1728 * 100%);
+}
 
 /* ===== Layout container ===== */
 .quadranti{
