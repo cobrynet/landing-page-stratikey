@@ -33,11 +33,10 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-start justify-center z-50 pt-4">
       <div 
         className="w-[95vw] h-[100vh] p-[2px] shadow-2xl"
         style={{ 
-          transform: 'translateY(150px)',
           borderRadius: '25px',
           background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
         }}
