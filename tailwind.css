@@ -1503,5 +1503,32 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; margin: 0; }
   .efficienza-card:hover {
     background: radial-gradient(50% 50% at 50% 21%, rgba(255, 107, 157, 0.8) 0%, rgba(144, 29, 107, 1) 50%, rgba(57, 0, 53, 1) 100%);
   }
+}
 
+/* Modal CSS */
+.modal {
+  position: fixed; /* occupa sempre tutto lo schermo */
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center; /* centro verticale */
+  justify-content: center; /* centro orizzontale */
+}
+
+.modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 0, 20, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.modal__dialog {
+  position: relative; /* rimane centrato nel flex container */
+  background: linear-gradient(135deg, rgba(26, 0, 20, 0.95), rgba(45, 0, 33, 0.95));
+  border-radius: 20px;
+  padding: 40px;
+  width: min(600px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto; /* se il contenuto è lungo, scrolla dentro il modale */
+  z-index: 1001;
 }
