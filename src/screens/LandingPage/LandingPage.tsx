@@ -573,8 +573,10 @@ export const LandingPage = (): JSX.Element => {
         </div>
 
 
-        <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
       </div>
+      
+      {/* Modal di registrazione - FISSO al viewport (fuori dal responsive-container) */}
+      <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
       
       {/* Pulsante Registrati ora - FISSO al viewport (fuori dal responsive-container) */}
       <div className="fixed w-[246px] h-[50px] top-[82px] right-[560px] z-[100]" onClick={handleOpenModal}>
