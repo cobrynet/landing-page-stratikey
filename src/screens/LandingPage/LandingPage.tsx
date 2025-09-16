@@ -223,21 +223,6 @@ export const LandingPage = (): JSX.Element => {
               trattative più rapide, più contratti chiusi.
             </div>
 
-            {/* Pulsante Registrati ora - posizionato nello sfondo viola */}
-            <div className="fixed w-[246px] h-[50px] top-[82px] right-[60px] z-[100]" onClick={handleOpenModal}>
-              <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
-                  <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
-                    Registrati ora
-                  </span>
-                  <svg 
-                    className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
-                    viewBox="0 0 16 12" 
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
-                  </svg>
-              </div>
-            </div>
 
 
             <div className="absolute w-[276px] h-[50px] top-[716px] left-[1952px]">
@@ -589,6 +574,22 @@ export const LandingPage = (): JSX.Element => {
 
 
         <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
+      </div>
+      
+      {/* Pulsante Registrati ora - FISSO al viewport (fuori dal responsive-container) */}
+      <div className="fixed w-[246px] h-[50px] top-[82px] right-[60px] z-[100]" onClick={handleOpenModal}>
+        <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
+            <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
+              Registrati ora
+            </span>
+            <svg 
+              className="w-4 h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
+              viewBox="0 0 16 12" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
+            </svg>
+        </div>
       </div>
     </div>
   );
