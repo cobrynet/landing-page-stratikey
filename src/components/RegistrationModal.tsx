@@ -31,14 +31,13 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      
-      {/* Modal Container - GRANDE E CENTRATO */}
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div 
-        className="w-[95vw] h-[95vh] overflow-y-auto p-[2px] shadow-2xl"
+        className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl max-h-[95vh] overflow-y-auto p-[2px] shadow-2xl"
         style={{ 
           borderRadius: '25px',
-          background: 'linear-gradient(45deg, #cd8fbe, #901d6b)'
+          background: 'linear-gradient(45deg, #cd8fbe, #901d6b)',
+          transform: 'translateY(-25px)'
         }}
       >
         {/* Close Button */}
@@ -53,12 +52,10 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
 
         {/* Modal Content */}
         <div 
-          className="relative w-full h-full backdrop-blur-lg bg-[#390035] bg-opacity-90 overflow-hidden pb-8"
-          style={{ 
-            borderRadius: '23px'
-          }}
+          className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] backdrop-blur-lg bg-[#390035] bg-opacity-90 overflow-hidden pb-6 md:pb-8"
+          style={{ borderRadius: '23px' }}
         >
-          {/* Logo/Icon */}
+          {/* Logo */}
           <div className="flex justify-center pt-12 md:pt-16 lg:pt-20">
             <img 
               src="/SIMBOLO copy.png" 
