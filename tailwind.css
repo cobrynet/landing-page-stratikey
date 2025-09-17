@@ -238,67 +238,44 @@
   transform: translateY(0) scale(1);
 }
 
-/* ===== Base responsive universale (leggero) ===== */
+/* Responsive Scaling System - preserva la struttura originale ma scala proporzionalmente */
+.responsive-container {
+  width: 1728px;
+  transform-origin: top center;
+  position: relative;
+  left: 50%;
+  --scale: clamp(0.18, calc(100vw / 1728px), 1);
+  transform: translateX(-50%) scale(var(--scale));
+}
 
-/* 1) Box model coerente */
-*, *::before, *::after { box-sizing: border-box; }
+/* Large screens (1920px+) - permetti scala maggiore di 1 */
+@media (min-width: 1920px) {
+  .responsive-container {
+    --scale: 1.1;
+  }
+}
 
-/* 2) Tipografia fluida: non stravolge il design */
-html { font-size: clamp(14px, 1.1vw, 18px); }
-body { margin: 0; -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+/* Per dispositivi molto grandi, usa scala massima 1 */
+@media (min-width: 1728px) {
+  .responsive-container {
+    --scale: 1;
+  }
+}
 
-/* 3) Media responsivi */
-img, video, iframe, canvas { max-width: 100%; height: auto; display: block; }
+/* Wrapper per prevenire overflow orizzontale */
+.responsive-wrapper {
+  width: 100vw;
+  overflow-x: hidden;
+}
 
-/* 4) Contenitori principali: centrati e con respiro */
-.container, .wrapper {
+/* Assicura che il container abbia l'altezza corretta - finisce dopo copyright */
+.responsive-container::before {
+  content: '';
+  display: block;
   width: 100%;
-  max-width: 1320px;       /* desktop standard */
-  margin-inline: auto;
-  padding-inline: clamp(12px, 2vw, 24px);
+  height: 0;
+  padding-bottom: calc(6970 / 1728 * 100%);
 }
-
-/* 5) Griglie flessibili (opzionali) */
-.row { display: flex; flex-wrap: wrap; gap: clamp(12px, 2vw, 24px); }
-.col { flex: 1 1 0; min-width: 0; }
-
-/* ---------- Breakpoints pratici ---------- */
-
-/* Mobile-first: 0–768px (default) */
-/* Nulla di "rigido": il layout scala fluidamente. */
-
-/* Tablet / small desktop */
-@media (min-width: 768px) and (max-width: 1199.98px) {
-  .container, .wrapper { max-width: 1000px; }
-}
-
-/* Desktop ampio (>=1200px) */
-@media (min-width: 1200px) {
-  .container, .wrapper { max-width: 1320px; }
-}
-
-/* Ultrawide 21:9 e oltre: amplia ma resta leggibile */
-@media (min-aspect-ratio: 21/9) and (min-width: 1400px) {
-  .container, .wrapper { max-width: 1680px; }
-}
-
-/* Schermi molto alti (telefono in 9:19.5, 9:21 ecc.) */
-@media (max-aspect-ratio: 9/16) {
-  .hero, .full-vh { min-height: 100svh; } /* svh = viewport sicuro su mobile */
-}
-
-/* 6) Migliorie tocchi: aree clic più grandi su mobile */
-@media (max-width: 768px) {
-  :where(button, .btn, a.btn, input[type="submit"]) { min-height: 44px; }
-  .row { flex-direction: column; } /* colonne impilate, se usi .row/.col */
-}
-
-/* 7) Evita layout troppo larghi anche su 4K */
-@media (min-width: 1920px) and (max-aspect-ratio: 16/9) {
-  .container, .wrapper { max-width: 1440px; }
-}
-
-/* ===== FINE BASE RESPONSIVE UNIVERSALE ===== */
 
 /* ===== Layout container ===== */
 .quadranti{
@@ -400,40 +377,6 @@ img, video, iframe, canvas { max-width: 100%; height: auto; display: block; }
   object-position: top right; /* posiziona l'immagine in alto a destra */
 }
 
-/* Mobile responsive styles */
-@media (max-width: 767px) {
-  /* Stack quadranti vertically on mobile */
-  .quadranti {
-    flex-direction: column;
-    gap: 16px; /* Reduced gap for mobile */
-  }
-  
-  /* Ensure cards have proper height on mobile */
-  .quad {
-    min-height: 300px;
-    flex: none; /* Remove flex grow behavior on mobile */
-  }
-  
-  /* Scale down the maschera-stratikey image for mobile (50% of original size) */
-  .card .maschera-stratikey {
-    width: 177px !important;  /* 50% of 354px */
-    height: 177px !important; /* 50% of 354px */
-    max-width: 50%;           /* Ensure it doesn't exceed 50% of card width */
-  }
-  
-  /* Disable hover/focus expansion effects on mobile for better touch interaction */
-  .quadranti:hover .quad:hover,
-  .quadranti:has(.quad:focus-within) .quad:focus-within {
-    flex-grow: 1;
-    transform: none;
-  }
-  
-  /* Simplify mobile interactions by showing subtitles by default */
-  .quad .card-subtitle {
-    opacity: 0.8;
-  }
-}
-
 /* Struttura base della card in colonna */
 .card {
   position: relative;
@@ -494,36 +437,6 @@ img, video, iframe, canvas { max-width: 100%; height: auto; display: block; }
 .efficienza-card:hover .card-subtitle {
   opacity: 1;
 }
-
-/* Focus-within effects matching hover effects for accessibility */
-.semplicita-card:focus-within .card-title {
-  bottom: 185px !important;
-}
-
-.semplicita-card:focus-within .card-subtitle {
-  opacity: 1;
-}
-
-.gestione-card:focus-within .card-title {
-  bottom: 154px !important;
-}
-
-.gestione-card:focus-within .card-subtitle {
-  opacity: 1;
-}
-
-.efficienza-card:focus-within .card-title {
-  bottom: 185px !important;
-}
-
-.efficienza-card:focus-within .card-subtitle {
-  opacity: 1;
-}
-
-/* Additional focus-within effects for quad transformations */
-.quad.left:focus-within   { transform-origin:left center;   transform:scale(1.01); }
-.quad.center:focus-within { transform-origin:center center; transform:scale(1.01); }
-.quad.right:focus-within  { transform-origin:right center;  transform:scale(1.01); }
 
 /* ===========================
    responsive.css — SOLO adattamento a tutti gli schermi
