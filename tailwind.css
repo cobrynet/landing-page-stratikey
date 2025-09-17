@@ -238,211 +238,67 @@
   transform: translateY(0) scale(1);
 }
 
-/* Responsive Scaling System - preserva la struttura originale ma scala proporzionalmente */
-.responsive-container {
-  width: 1728px;
-  height: 6970px;
-  transform-origin: top center;
-  position: relative;
-  left: 50%;
-  --scale: calc(100vw / 1728px);
-  transform: translateX(-50%) scale(var(--scale));
+/* ===== Base responsive universale (leggero) ===== */
+
+/* 1) Box model coerente */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* 2) Tipografia fluida: non stravolge il design */
+html { font-size: clamp(14px, 1.1vw, 18px); }
+body { margin: 0; -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+
+/* 3) Media responsivi */
+img, video, iframe, canvas { max-width: 100%; height: auto; display: block; }
+
+/* 4) Contenitori principali: centrati e con respiro */
+.container, .wrapper {
+  width: 100%;
+  max-width: 1320px;       /* desktop standard */
+  margin-inline: auto;
+  padding-inline: clamp(12px, 2vw, 24px);
 }
 
-/* ===== SMARTPHONE RESPONSIVE - DIMENSIONI EQUILIBRATE ===== */
+/* 5) Griglie flessibili (opzionali) */
+.row { display: flex; flex-wrap: wrap; gap: clamp(12px, 2vw, 24px); }
+.col { flex: 1 1 0; min-width: 0; }
 
-/* Smartphone molto piccoli - dimensione bilanciata */
-@media (max-width: 280px) {
-  .responsive-container {
-    --scale: 0.48;
-    width: 100vw;
-    min-width: 100vw;
-  }
+/* ---------- Breakpoints pratici ---------- */
+
+/* Mobile-first: 0–768px (default) */
+/* Nulla di "rigido": il layout scala fluidamente. */
+
+/* Tablet / small desktop */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .container, .wrapper { max-width: 1000px; }
 }
 
-/* Smartphone piccoli (iPhone SE, piccoli Android) - ben leggibile */
-@media (min-width: 281px) and (max-width: 320px) {
-  .responsive-container {
-    --scale: 0.52;
-    width: 100vw;
-    min-width: 100vw;
-  }
+/* Desktop ampio (>=1200px) */
+@media (min-width: 1200px) {
+  .container, .wrapper { max-width: 1320px; }
 }
 
-/* Smartphone medi (iPhone 12 mini, Galaxy S) - equilibrato */
-@media (min-width: 321px) and (max-width: 375px) {
-  .responsive-container {
-    --scale: 0.56;
-    width: 100vw;
-    min-width: 100vw;
-  }
+/* Ultrawide 21:9 e oltre: amplia ma resta leggibile */
+@media (min-aspect-ratio: 21/9) and (min-width: 1400px) {
+  .container, .wrapper { max-width: 1680px; }
 }
 
-/* Smartphone grandi (iPhone 14, Pixel) - dimensione ottimale */
-@media (min-width: 376px) and (max-width: 414px) {
-  .responsive-container {
-    --scale: 0.60;
-    width: 100vw;
-    min-width: 100vw;
-  }
+/* Schermi molto alti (telefono in 9:19.5, 9:21 ecc.) */
+@media (max-aspect-ratio: 9/16) {
+  .hero, .full-vh { min-height: 100svh; } /* svh = viewport sicuro su mobile */
 }
 
-/* Smartphone extra large (iPhone Pro Max, grandi Android) - perfetto */
-@media (min-width: 415px) and (max-width: 480px) {
-  .responsive-container {
-    --scale: 0.64;
-    width: 100vw;
-    min-width: 100vw;
-  }
+/* 6) Migliorie tocchi: aree clic più grandi su mobile */
+@media (max-width: 768px) {
+  :where(button, .btn, a.btn, input[type="submit"]) { min-height: 44px; }
+  .row { flex-direction: column; } /* colonne impilate, se usi .row/.col */
 }
 
-/* Tablet portrait - dimensione equilibrata */
-@media (min-width: 481px) and (max-width: 768px) {
-  .responsive-container {
-    --scale: calc(100vw / 1728px * 0.85);
-  }
+/* 7) Evita layout troppo larghi anche su 4K */
+@media (min-width: 1920px) and (max-aspect-ratio: 16/9) {
+  .container, .wrapper { max-width: 1440px; }
 }
 
-/* Tablet landscape - dimensione bilanciata */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .responsive-container {
-    --scale: calc(100vw / 1728px * 0.90);
-  }
-}
-
-/* Desktop small - scala fluida */
-@media (min-width: 1025px) and (max-width: 1440px) {
-  .responsive-container {
-    --scale: calc(100vw / 1728px);
-  }
-}
-
-/* Desktop medium - scala fluida */
-@media (min-width: 1441px) and (max-width: 1920px) {
-  .responsive-container {
-    --scale: calc(100vw / 1728px);
-  }
-}
-
-/* Large desktop - scala maggiore per schermi molto grandi */
-@media (min-width: 1921px) {
-  .responsive-container {
-    --scale: calc(100vw / 1728px);
-  }
-}
-
-/* Ultra-wide displays */
-@media (min-width: 2560px) {
-  .responsive-container {
-    --scale: calc(100vw / 1728px);
-  }
-}
-
-/* Wrapper per prevenire overflow orizzontale */
-.responsive-wrapper {
-  width: 100vw;
-  overflow-x: hidden;
-}
-
-/* Pulsante fisso responsive - scala con lo stesso fattore della pagina */
-.fixed-button-responsive {
-  --button-scale: calc(100vw / 1728px);
-  transform: translateX(-50%) scale(var(--button-scale));
-  transform-origin: top center;
-}
-
-/* ===== PULSANTE FISSO - DIMENSIONI EQUILIBRATE ===== */
-
-/* Smartphone molto piccoli - ben proporzionato */
-@media (max-width: 280px) {
-  .fixed-button-responsive {
-    --button-scale: 0.48;
-  }
-}
-
-/* Smartphone piccoli - leggibile */
-@media (min-width: 281px) and (max-width: 320px) {
-  .fixed-button-responsive {
-    --button-scale: 0.52;
-  }
-}
-
-/* Smartphone medi - equilibrato */
-@media (min-width: 321px) and (max-width: 375px) {
-  .fixed-button-responsive {
-    --button-scale: 0.56;
-  }
-}
-
-/* Smartphone grandi - ottimale */
-@media (min-width: 376px) and (max-width: 414px) {
-  .fixed-button-responsive {
-    --button-scale: 0.60;
-  }
-}
-
-/* Smartphone extra large - perfetto */
-@media (min-width: 415px) and (max-width: 480px) {
-  .fixed-button-responsive {
-    --button-scale: 0.64;
-  }
-}
-
-/* ===== OTTIMIZZAZIONI SMARTPHONE ===== */
-
-/* Forza l'orientamento e il viewport su tutti i dispositivi mobili */
-@media screen and (max-width: 480px) {
-  .responsive-container {
-    /* Assicura che il contenuto sia sempre visibile */
-    min-width: 280px;
-    max-width: 100vw;
-    overflow-x: visible;
-    
-    /* Miglior rendering su dispositivi mobili */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    
-    /* Previeni problemi di zoom su iOS */
-    -webkit-text-size-adjust: none;
-    -moz-text-size-adjust: none;
-    text-size-adjust: none;
-  }
-  
-  /* Ottimizzazione per touch devices */
-  * {
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-  
-  /* Miglior gestione del testo su piccoli schermi */
-  .responsive-container [class*="text-"] {
-    font-kerning: optimizeSpeed;
-    text-rendering: optimizeSpeed;
-  }
-}
-
-/* Gestione landscape su smartphone - dimensione equilibrata */
-@media screen and (max-width: 480px) and (orientation: landscape) {
-  .responsive-container {
-    --scale: 0.38;
-    width: 100vw;
-    height: auto;
-    min-height: calc(6970px * 0.38);
-  }
-  
-  .fixed-button-responsive {
-    --button-scale: 0.38;
-  }
-}
-
-/* Fix per dispositivi con notch o barra di navigazione */
-@media screen and (max-width: 480px) {
-  .responsive-wrapper {
-    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
-  }
-}
-
-/* Container ha altezza fissa esatta - finisce dopo copyright */
+/* ===== FINE BASE RESPONSIVE UNIVERSALE ===== */
 
 /* ===== Layout container ===== */
 .quadranti{
