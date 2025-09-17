@@ -719,8 +719,8 @@ export const LandingPage = (): JSX.Element => {
             padding: '2.5rem',
             borderRadius: '24px',
             width: '90%',
-            maxWidth: '420px',
-            maxHeight: '90vh',
+            maxWidth: '500px',
+            height: '650px',
             overflowY: 'auto',
             position: 'relative',
             boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)'
