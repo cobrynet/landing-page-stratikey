@@ -366,6 +366,7 @@ export const LandingPage = (): JSX.Element => {
                       Piattaforma
                     </h4>
                     <button 
+                      onClick={handleOpenModal}
                       className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px] mt-[8px] cursor-pointer hover:text-[#901d6b] transition-colors duration-200 bg-transparent border-none p-0 text-left"
                     >
                       Registrati
