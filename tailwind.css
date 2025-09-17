@@ -1516,7 +1516,7 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; margin: 0; }
   display: flex;
   justify-content: center; /* centrato orizzontalmente */
   align-items: flex-start;     /* in cima alla pagina */
-  padding-top: 2rem;       /* spazio dall'alto */
+  padding-top: 232px;       /* spazio dall'alto */
   z-index: 1000;           /* sopra a tutto */
 }
 
