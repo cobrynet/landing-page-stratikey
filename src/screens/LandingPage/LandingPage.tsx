@@ -57,6 +57,8 @@ const ellipseImages = [
 
 export const LandingPage = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -146,14 +148,55 @@ export const LandingPage = (): JSX.Element => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setSuccessMessage('');
+    setIsSubmitting(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Mostra immediatamente il messaggio richiesto
+    setSuccessMessage('Grazie per esserti registrato alla lista di attesa! ti verrà inviata un email per confermare che la registrazione è andata a buon fine!');
+    
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData.entries());
     console.log('Form data:', data);
-    handleCloseModal();
+    
+    try {
+      // Invia i dati all'API per l'invio email
+      const response = await fetch('/api/send-registration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          company: data.company,
+          email: data.email,
+          phone: data.phone,
+          acceptTerms: true
+        })
+      });
+
+      const result = await response.json();
+      
+      if (!response.ok || !result.success) {
+        console.error('Error sending registration:', result.message);
+        // Mantiene il messaggio di successo anche se l'API fallisce
+      }
+      
+    } catch (error) {
+      console.error('Error during registration:', error);
+      // Mantiene il messaggio di successo anche se c'è un errore di rete
+    } finally {
+      setIsSubmitting(false);
+      
+      // Chiude il modal dopo 3 secondi
+      setTimeout(() => {
+        handleCloseModal();
+      }, 3000);
+    }
   };
 
   return (
@@ -575,6 +618,15 @@ export const LandingPage = (): JSX.Element => {
                 Registrati alla lista di attesa!
               </h2>
               
+              {/* Messaggio di successo in cima */}
+              {successMessage && (
+                <div className="mb-4 p-4 bg-green-600/20 border border-green-500/30 rounded-lg">
+                  <p className="text-green-200 text-center text-sm font-medium">
+                    {successMessage}
+                  </p>
+                </div>
+              )}
+              
               <p className="text-purple-200 text-center mb-6 text-sm">
                 Lascia i tuoi dati per ricevere l'ingresso in anteprima
               </p>
@@ -654,9 +706,10 @@ export const LandingPage = (): JSX.Element => {
                 <div className="pt-6">
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-pink-600 to-pink-500 text-white py-3 px-8 rounded-full hover:from-pink-700 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-purple-900 transition-all duration-200 font-medium text-lg"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-pink-600 to-pink-500 text-white py-3 px-8 rounded-full hover:from-pink-700 hover:to-pink-600 disabled:from-gray-600 disabled:to-gray-500 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-purple-900 transition-all duration-200 font-medium text-lg"
                   >
-                    ACCEDI
+                    {isSubmitting ? 'INVIO IN CORSO...' : 'ACCEDI'}
                   </button>
                 </div>
               </form>
