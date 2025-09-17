@@ -750,14 +750,15 @@ export const LandingPage = (): JSX.Element => {
           </button>
 
           {/* Stratikey Logo */}
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '1rem' }}>
             <img 
               src="/stratikey-logo.png" 
               alt="Stratikey Logo" 
               style={{ 
                 width: '80px', 
                 height: '80px', 
-                marginBottom: '1.5rem' 
+                display: 'block',
+                margin: '0 auto 1.5rem auto'
               }} 
             />
           </div>
