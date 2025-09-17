@@ -715,7 +715,10 @@ export const LandingPage = (): JSX.Element => {
         <div 
           className="modal-content"
           style={{
-            background: 'linear-gradient(135deg, #4a1a4a 0%, #7d2d6e 50%, #9e4186 100%)',
+            background: 'rgba(116, 58, 136, 0.25)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
             padding: '2.5rem',
             borderRadius: '24px',
             width: '90%',
@@ -723,7 +726,7 @@ export const LandingPage = (): JSX.Element => {
             height: '650px',
             overflow: 'visible',
             position: 'relative',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)'
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset'
           }}
         >
           {/* Close button */}
