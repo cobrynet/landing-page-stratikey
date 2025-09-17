@@ -61,8 +61,6 @@ export const LandingPage = (): JSX.Element => {
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   React.useEffect(() => {
-    const minAngle = -80;
-    const maxAngle = -27.98;
 
     const updateRotation = () => {
       const svg = disconnessioneSvgRef.current;
@@ -71,15 +69,11 @@ export const LandingPage = (): JSX.Element => {
       const rect = svg.getBoundingClientRect();
       const vh = window.innerHeight;
       
-      // Calcolo basato sul viewport invece che sull'altezza dell'elemento
-      const start = vh * 1.2;  // inizia ben prima che l'elemento entri
-      const end = vh * 0.1;    // finisce quando è ben visibile
-      // Usa il centro dell'elemento per calcoli più stabili 
-      const center = rect.top + rect.height / 2;
-      const progress = Math.min(Math.max((start - center) / (start - end), 0), 1);
+      // Calcolo SEMPLICE: progress da 0 (elemento entra) a 1 (elemento al top)
+      const progress = Math.min(Math.max((vh - rect.top) / vh, 0), 1);
 
-      // interpoliamo la rotazione
-      const angle = minAngle + (maxAngle - minAngle) * progress;
+      // interpoliamo la rotazione da -80° a -27.98°
+      const angle = -80 + (-27.98 + 80) * progress;
       svg.style.transform = `rotate(${angle}deg)`;
 
     };
@@ -91,17 +85,11 @@ export const LandingPage = (): JSX.Element => {
       const rect = svg.getBoundingClientRect();
       const vh = window.innerHeight;
       
-      // Calcolo basato sul viewport invece che sull'altezza dell'elemento  
-      const start = vh * 1.2;  // inizia ben prima che l'elemento entri
-      const end = vh * 0.1;    // finisce quando è ben visibile
-      // Usa il centro dell'elemento per calcoli più stabili 
-      const center = rect.top + rect.height / 2;
-      const progress = Math.min(Math.max((start - center) / (start - end), 0), 1);
+      // Calcolo SEMPLICE: progress da 0 (elemento entra) a 1 (elemento al top)
+      const progress = Math.min(Math.max((vh - rect.top) / vh, 0), 1);
 
-      // interpoliamo la rotazione in reverse con scaleX(-1)
-      const minAngleConn = -25.23;
-      const maxAngleConn = -77.25;
-      const angle = minAngleConn + (maxAngleConn - minAngleConn) * progress;
+      // interpoliamo la rotazione da -25.23° a -77.25° con scaleX(-1)
+      const angle = -25.23 + (-77.25 + 25.23) * progress;
       svg.style.transform = `rotate(${angle}deg) scaleX(-1)`;
 
     };
