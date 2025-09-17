@@ -13,6 +13,9 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
     phone: '',
     acceptTerms: false
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -22,10 +25,53 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    onClose();
+    setIsSubmitting(true);
+    setSubmitMessage('');
+    
+    try {
+      // Send registration data to backend API
+      const response = await fetch('/api/send-registration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          acceptTerms: formData.acceptTerms
+        })
+      });
+
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        setSubmitMessage(result.message || 'Registrazione completata con successo!');
+        
+        // Clear form after successful submission
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            company: '',
+            email: '',
+            phone: '',
+            acceptTerms: false
+          });
+          onClose();
+        }, 2000);
+      } else {
+        setSubmitMessage(result.message || 'Errore durante la registrazione. Riprova più tardi.');
+      }
+      
+    } catch (error) {
+      console.error('Errore invio registrazione:', error);
+      setSubmitMessage('Errore durante la registrazione. Riprova più tardi.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -200,13 +246,21 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                   </a>
                 </div>
 
+                {/* Status Message */}
+                {submitMessage && (
+                  <div className={`mb-4 text-center text-sm md:text-base ${submitMessage.includes('successo') ? 'text-green-400' : 'text-red-400'}`}>
+                    {submitMessage}
+                  </div>
+                )}
+
                 {/* Submit Button - Responsive */}
                 <button
                   type="submit"
-                  className="w-full h-12 md:h-14 bg-[#901d6b] hover:bg-[#b15197] text-white text-lg md:text-xl font-semibold rounded-full transition-colors"
+                  disabled={isSubmitting || !formData.acceptTerms}
+                  className="w-full h-12 md:h-14 bg-[#901d6b] hover:bg-[#b15197] disabled:bg-gray-600 disabled:cursor-not-allowed text-white text-lg md:text-xl font-semibold rounded-full transition-colors"
                   style={{ fontFamily: 'Outfit' }}
                 >
-                  ACCEDI
+                  {isSubmitting ? 'INVIO IN CORSO...' : 'ACCEDI'}
                 </button>
               </form>
             </div>
