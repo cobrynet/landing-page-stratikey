@@ -1518,8 +1518,8 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; margin: 0; }
 }
 
 .registration-modal__content {
-  width: 380px;
-  height: 530px;
+  width: 500px;
+  height: 650px;
   border-radius: 25px;
   background: linear-gradient(45deg, #cd8fbe, #901d6b);
   padding: 2px;
