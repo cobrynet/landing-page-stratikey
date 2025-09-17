@@ -61,7 +61,7 @@ app.use(express.json());
 // Rate limiting for registration endpoint
 const registrationLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 3, // limit each IP to 3 registrations per windowMs
+  max: 10, // limit each IP to 10 registrations per windowMs (increased for testing)
   message: {
     success: false,
     message: 'Troppe richieste di registrazione. Riprova tra qualche minuto.'
