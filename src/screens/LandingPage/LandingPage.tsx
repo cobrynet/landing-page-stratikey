@@ -179,6 +179,17 @@ export const LandingPage = (): JSX.Element => {
       if (registratiFooterBtn && registratiFooterBtn.textContent?.includes('Registrati')) {
         registratiFooterBtn.addEventListener('click', openModal);
       }
+
+      // Add listener for footer logo scroll to top
+      const footerLogo = document.querySelector('#footer-logo') as HTMLElement;
+      if (footerLogo) {
+        footerLogo.addEventListener('click', () => {
+          window.scrollTo({ 
+            top: 0, 
+            behavior: 'smooth' 
+          });
+        });
+      }
       
       if (closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
@@ -479,7 +490,7 @@ export const LandingPage = (): JSX.Element => {
                 {/* Prima colonna: Logo e tagline */}
                 <div className="flex flex-col min-w-[280px]">
                   <img
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    id="footer-logo"
                     className="w-[243px] h-[57px] mb-4 object-cover"
                     style={{ cursor: 'pointer' }}
                     alt="Stratkey basso"
