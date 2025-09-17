@@ -139,6 +139,149 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
+  React.useEffect(() => {
+    // Modal functionality setup
+    const setupModalFunctionality = () => {
+      const openModalBtn = document.getElementById('open-modal-btn');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const modalOverlay = document.getElementById('modal-overlay');
+      const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+
+      // Open modal
+      const openModal = () => {
+        if (modalOverlay) {
+          modalOverlay.style.display = 'flex';
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+      };
+
+      // Close modal
+      const closeModal = () => {
+        if (modalOverlay) {
+          modalOverlay.style.display = 'none';
+          document.body.style.overflow = 'auto'; // Restore background scrolling
+        }
+      };
+
+      // Event listeners
+      if (openModalBtn) {
+        openModalBtn.addEventListener('click', openModal);
+      }
+      
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+      }
+
+      // Close modal when clicking outside the content
+      const handleOverlayClick = (e: Event) => {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      };
+
+      if (modalOverlay) {
+        modalOverlay.addEventListener('click', handleOverlayClick);
+      }
+
+      // Handle form submission
+      const handleFormSubmit = (e: Event) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const data = {
+          name: formData.get('name') as string,
+          company: formData.get('company') as string,
+          phone: formData.get('phone') as string,
+          email: formData.get('email') as string,
+          terms: formData.get('terms') as string
+        };
+
+        // Form validation
+        let isValid = true;
+        let errorMessage = '';
+
+        // Check required fields
+        if (!data.name || data.name.trim() === '') {
+          isValid = false;
+          errorMessage = 'Nome e Cognome è obbligatorio.';
+        } else if (!data.company || data.company.trim() === '') {
+          isValid = false;
+          errorMessage = 'Azienda è obbligatoria.';
+        } else if (!data.phone || data.phone.trim() === '') {
+          isValid = false;
+          errorMessage = 'Telefono è obbligatorio.';
+        } else if (!data.email || data.email.trim() === '') {
+          isValid = false;
+          errorMessage = 'Email è obbligatoria.';
+        } else if (!data.terms) {
+          isValid = false;
+          errorMessage = 'Devi accettare i termini e condizioni.';
+        }
+
+        // Email validation
+        if (isValid && data.email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(data.email)) {
+            isValid = false;
+            errorMessage = 'Inserisci un indirizzo email valido.';
+          }
+        }
+
+        if (!isValid) {
+          alert(errorMessage);
+          return;
+        }
+
+        // Here you can handle the form data (send to API, etc.)
+        console.log('Form data:', data);
+        
+        // Show success message
+        alert('Grazie per averci contattato! Ti risponderemo al più presto.');
+        
+        // Reset form and close modal
+        contactForm.reset();
+        closeModal();
+      };
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', handleFormSubmit);
+      }
+
+      // Close modal on Escape key
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      };
+      
+      document.addEventListener('keydown', handleKeyDown);
+
+      // Cleanup function
+      return () => {
+        if (openModalBtn) {
+          openModalBtn.removeEventListener('click', openModal);
+        }
+        if (closeModalBtn) {
+          closeModalBtn.removeEventListener('click', closeModal);
+        }
+        if (modalOverlay) {
+          modalOverlay.removeEventListener('click', handleOverlayClick);
+        }
+        if (contactForm) {
+          contactForm.removeEventListener('submit', handleFormSubmit);
+        }
+        document.removeEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = 'auto';
+      };
+    };
+
+    // Setup modal functionality
+    const cleanup = setupModalFunctionality();
+    
+    return cleanup;
+  }, []);
+
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
@@ -528,11 +671,16 @@ export const LandingPage = (): JSX.Element => {
         </div>
       </div>
       
-      {/* Pulsante Registrati ora - FISSO al viewport (fuori dal responsive-container) */}
+      {/* Pulsante Apri form - FISSO al viewport (fuori dal responsive-container) */}
       <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]">
-        <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
+        <button 
+          id="open-modal-btn"
+          className="glow-button flex items-center justify-center gap-2 group cursor-pointer w-full h-full border-none" 
+          style={{ background: 'rgba(144, 29, 107, 0.3)' }}
+          aria-label="Apri form di contatto"
+        >
             <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-base sm:text-lg md:text-xl tracking-[0] leading-[normal] antialiased">
-              Registrati ora
+              Apri form
             </span>
             <svg 
               className="w-3 sm:w-3.5 md:w-4 h-2.5 sm:h-2.5 md:h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
@@ -541,6 +689,256 @@ export const LandingPage = (): JSX.Element => {
             >
               <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
             </svg>
+        </button>
+      </div>
+
+      {/* Modal */}
+      <div 
+        id="modal-overlay" 
+        className="modal-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        style={{
+          display: 'none',
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          zIndex: '1000',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <div 
+          className="modal-content"
+          style={{
+            backgroundColor: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            width: '90%',
+            maxWidth: '500px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            position: 'relative',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)'
+          }}
+        >
+          {/* Close button */}
+          <button 
+            id="close-modal-btn"
+            style={{
+              position: 'absolute',
+              top: '1rem',
+              right: '1rem',
+              background: 'none',
+              border: 'none',
+              fontSize: '1.5rem',
+              cursor: 'pointer',
+              color: '#666',
+              width: '30px',
+              height: '30px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            ×
+          </button>
+
+          {/* Form */}
+          <form id="contact-form" style={{ marginTop: '1rem' }}>
+            <h2 
+              id="modal-title"
+              style={{ 
+                fontFamily: "'Outfit', Helvetica", 
+                fontWeight: '600', 
+                color: '#901d6b', 
+                marginBottom: '1.5rem',
+                fontSize: '1.5rem'
+              }}
+            >
+              Contattaci
+            </h2>
+
+            {/* Nome e Cognome */}
+            <div style={{ marginBottom: '1rem' }}>
+              <label 
+                htmlFor="name" 
+                style={{ 
+                  display: 'block', 
+                  marginBottom: '0.5rem', 
+                  fontFamily: "'Outfit', Helvetica", 
+                  fontWeight: '500',
+                  color: '#333'
+                }}
+              >
+                Nome e Cognome *
+              </label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  border: '2px solid #e1e1e1',
+                  borderRadius: '6px',
+                  fontSize: '1rem',
+                  fontFamily: "'Outfit', Helvetica",
+                  transition: 'border-color 0.3s',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+
+            {/* Azienda */}
+            <div style={{ marginBottom: '1rem' }}>
+              <label 
+                htmlFor="company" 
+                style={{ 
+                  display: 'block', 
+                  marginBottom: '0.5rem', 
+                  fontFamily: "'Outfit', Helvetica", 
+                  fontWeight: '500',
+                  color: '#333'
+                }}
+              >
+                Azienda *
+              </label>
+              <input 
+                type="text" 
+                id="company" 
+                name="company" 
+                required
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  border: '2px solid #e1e1e1',
+                  borderRadius: '6px',
+                  fontSize: '1rem',
+                  fontFamily: "'Outfit', Helvetica",
+                  transition: 'border-color 0.3s',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+
+            {/* Telefono */}
+            <div style={{ marginBottom: '1rem' }}>
+              <label 
+                htmlFor="phone" 
+                style={{ 
+                  display: 'block', 
+                  marginBottom: '0.5rem', 
+                  fontFamily: "'Outfit', Helvetica", 
+                  fontWeight: '500',
+                  color: '#333'
+                }}
+              >
+                Telefono *
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                required
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  border: '2px solid #e1e1e1',
+                  borderRadius: '6px',
+                  fontSize: '1rem',
+                  fontFamily: "'Outfit', Helvetica",
+                  transition: 'border-color 0.3s',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+
+            {/* Email */}
+            <div style={{ marginBottom: '1rem' }}>
+              <label 
+                htmlFor="email" 
+                style={{ 
+                  display: 'block', 
+                  marginBottom: '0.5rem', 
+                  fontFamily: "'Outfit', Helvetica", 
+                  fontWeight: '500',
+                  color: '#333'
+                }}
+              >
+                Email *
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  border: '2px solid #e1e1e1',
+                  borderRadius: '6px',
+                  fontSize: '1rem',
+                  fontFamily: "'Outfit', Helvetica",
+                  transition: 'border-color 0.3s',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+
+            {/* Checkbox Terms */}
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label 
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'flex-start',
+                  gap: '0.5rem',
+                  fontFamily: "'Outfit', Helvetica", 
+                  fontSize: '0.9rem',
+                  color: '#333',
+                  cursor: 'pointer'
+                }}
+              >
+                <input 
+                  type="checkbox" 
+                  id="terms" 
+                  name="terms" 
+                  required
+                  style={{
+                    marginTop: '0.1rem'
+                  }}
+                />
+                <span>Accetto i termini e condizioni *</span>
+              </label>
+            </div>
+
+            {/* Submit Button */}
+            <button 
+              type="submit"
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                backgroundColor: '#901d6b',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                fontSize: '1rem',
+                fontFamily: "'Outfit', Helvetica",
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s'
+              }}
+              onMouseOver={(e) => e.target.style.backgroundColor = '#7a1858'}
+              onMouseOut={(e) => e.target.style.backgroundColor = '#901d6b'}
+            >
+              Invia
+            </button>
+          </form>
         </div>
       </div>
     </div>
