@@ -281,31 +281,53 @@ export const LandingPage = (): JSX.Element => {
           <section className="py-16 bg-white">
             <div className="container">
               <div className="quadranti w-full h-auto">
-                <article className="quad left card bg-[#390035] semplicita-card">
+                <article 
+                  className="quad left card bg-[#390035] semplicita-card"
+                  role="region"
+                  aria-labelledby="semplicita-title"
+                  tabIndex={0}
+                >
                   {/* PNG decorativo con classe specifica */}
                   <img 
                     className="maschera-stratikey" 
                     src="/maschera-stratikey.png" 
-                    alt="Maschera Stratikey"
+                    alt="" 
+                    role="presentation"
                   />
 
-                  {/* Contenuto normale */}
-                  <div className="absolute w-[490px] bottom-[71px] left-[30px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px] card-title">
-                    Semplicità
-                  </div>
-                  
-                  {/* Sottotitolo che appare in hover */}
-                  <div className="absolute w-[490px] bottom-[67px] left-[30px] [font-family:'Outfit',Helvetica] font-light text-white text-[32px] tracking-[0] leading-[36px] card-subtitle">
-                    Da processi complessi a<br />un'unica piattaforma<br />intuitiva
+                  {/* Contenuto responsive con flex per mobile */}
+                  <div className="absolute bottom-[71px] left-[30px] right-[30px] md:w-[490px] md:right-auto">
+                    <div id="semplicita-title" className="[font-family:'Outfit',Helvetica] font-medium text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0] leading-tight card-title">
+                      Semplicità
+                    </div>
+                    
+                    {/* Sottotitolo che appare in hover */}
+                    <div className="[font-family:'Outfit',Helvetica] font-light text-white text-lg sm:text-xl md:text-2xl lg:text-[32px] tracking-[0] leading-relaxed card-subtitle mt-1">
+                      Da processi complessi a<br />un'unica piattaforma<br />intuitiva
+                    </div>
+                    
+                    {/* CTA focusabile */}
+                    <button 
+                      className="mt-4 px-6 py-3 bg-white/20 hover:bg-white/30 focus:bg-white/30 text-white rounded-lg border border-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50"
+                      aria-label="Scopri di più sulla semplicità di Stratikey"
+                    >
+                      Scopri di più
+                    </button>
                   </div>
                 </article>
 
-                <article className="quad center card bg-[#390035] gestione-card">
+                <article 
+                  className="quad center card bg-[#390035] gestione-card"
+                  role="region"
+                  aria-labelledby="gestione-title"
+                  tabIndex={0}
+                >
                   {/* Immagine di sfondo che scala con hover */}
                   <div className="absolute inset-0 opacity-100 transition-all duration-500">
                     <img
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                      alt="Gestione background"
+                      alt=""
+                      role="presentation"
                       src="/immagine-sito.jpg"
                     />
                   </div>
@@ -318,26 +340,51 @@ export const LandingPage = (): JSX.Element => {
                     <div className="line line-4" style={{'--rotation': '-45deg'} as React.CSSProperties}></div>
                   </div>
                   
-                  {/* Contenuto normale */}
-                  <div className="absolute w-[490px] bottom-[71px] left-[30px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px] card-title z-10">
-                    Gestione<br />più rapida
-                  </div>
-                  
-                  {/* Sottotitolo che appare in hover */}
-                  <div className="absolute w-[490px] bottom-[63px] left-[30px] [font-family:'Outfit',Helvetica] font-light text-white text-[32px] tracking-[0] leading-[36px] card-subtitle z-10">
-                    Meno tempo sprecato,<br />più opportunità colte
+                  {/* Contenuto responsive */}
+                  <div className="absolute bottom-[71px] left-[30px] right-[30px] md:w-[490px] md:right-auto z-10">
+                    <div id="gestione-title" className="[font-family:'Outfit',Helvetica] font-medium text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0] leading-tight card-title">
+                      Gestione<br />più rapida
+                    </div>
+                    
+                    {/* Sottotitolo che appare in hover */}
+                    <div className="[font-family:'Outfit',Helvetica] font-light text-white text-lg sm:text-xl md:text-2xl lg:text-[32px] tracking-[0] leading-relaxed card-subtitle mt-1">
+                      Meno tempo sprecato,<br />più opportunità colte
+                    </div>
+                    
+                    {/* CTA focusabile */}
+                    <button 
+                      className="mt-4 px-6 py-3 bg-white/20 hover:bg-white/30 focus:bg-white/30 text-white rounded-lg border border-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50"
+                      aria-label="Scopri di più sulla gestione rapida con Stratikey"
+                    >
+                      Scopri di più
+                    </button>
                   </div>
                 </article>
 
-                <article className="quad right card bg-[radial-gradient(50%_50%_at_50%_21%,rgba(144,29,107,1)_0%,rgba(57,0,53,1)_100%)] efficienza-card">
-                  {/* Contenuto normale */}
-                  <div className="absolute w-[490px] bottom-[71px] left-[30px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px] card-title">
-                    Efficenza
-                  </div>
-                  
-                  {/* Sottotitolo che appare in hover */}
-                  <div className="absolute w-[490px] bottom-[67px] left-[30px] [font-family:'Outfit',Helvetica] font-light text-white text-[32px] tracking-[0] leading-[36px] card-subtitle">
-                    Ogni attività, dal marketing<br />al commerciale, gestite in<br />un solo ecosistema
+                <article 
+                  className="quad right card bg-[radial-gradient(50%_50%_at_50%_21%,rgba(144,29,107,1)_0%,rgba(57,0,53,1)_100%)] efficienza-card"
+                  role="region"
+                  aria-labelledby="efficienza-title"
+                  tabIndex={0}
+                >
+                  {/* Contenuto responsive */}
+                  <div className="absolute bottom-[71px] left-[30px] right-[30px] md:w-[490px] md:right-auto">
+                    <div id="efficienza-title" className="[font-family:'Outfit',Helvetica] font-medium text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0] leading-tight card-title">
+                      Efficienza
+                    </div>
+                    
+                    {/* Sottotitolo che appare in hover */}
+                    <div className="[font-family:'Outfit',Helvetica] font-light text-white text-lg sm:text-xl md:text-2xl lg:text-[32px] tracking-[0] leading-relaxed card-subtitle mt-1">
+                      Ogni attività, dal marketing<br />al commerciale, gestite in<br />un solo ecosistema
+                    </div>
+                    
+                    {/* CTA focusabile */}
+                    <button 
+                      className="mt-4 px-6 py-3 bg-white/20 hover:bg-white/30 focus:bg-white/30 text-white rounded-lg border border-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50"
+                      aria-label="Scopri di più sull'efficienza di Stratikey"
+                    >
+                      Scopri di più
+                    </button>
                   </div>
                 </article>
               </div>

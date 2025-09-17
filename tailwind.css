@@ -400,6 +400,40 @@ img, video, iframe, canvas { max-width: 100%; height: auto; display: block; }
   object-position: top right; /* posiziona l'immagine in alto a destra */
 }
 
+/* Mobile responsive styles */
+@media (max-width: 767px) {
+  /* Stack quadranti vertically on mobile */
+  .quadranti {
+    flex-direction: column;
+    gap: 16px; /* Reduced gap for mobile */
+  }
+  
+  /* Ensure cards have proper height on mobile */
+  .quad {
+    min-height: 300px;
+    flex: none; /* Remove flex grow behavior on mobile */
+  }
+  
+  /* Scale down the maschera-stratikey image for mobile (50% of original size) */
+  .card .maschera-stratikey {
+    width: 177px !important;  /* 50% of 354px */
+    height: 177px !important; /* 50% of 354px */
+    max-width: 50%;           /* Ensure it doesn't exceed 50% of card width */
+  }
+  
+  /* Disable hover/focus expansion effects on mobile for better touch interaction */
+  .quadranti:hover .quad:hover,
+  .quadranti:has(.quad:focus-within) .quad:focus-within {
+    flex-grow: 1;
+    transform: none;
+  }
+  
+  /* Simplify mobile interactions by showing subtitles by default */
+  .quad .card-subtitle {
+    opacity: 0.8;
+  }
+}
+
 /* Struttura base della card in colonna */
 .card {
   position: relative;
@@ -460,6 +494,36 @@ img, video, iframe, canvas { max-width: 100%; height: auto; display: block; }
 .efficienza-card:hover .card-subtitle {
   opacity: 1;
 }
+
+/* Focus-within effects matching hover effects for accessibility */
+.semplicita-card:focus-within .card-title {
+  bottom: 185px !important;
+}
+
+.semplicita-card:focus-within .card-subtitle {
+  opacity: 1;
+}
+
+.gestione-card:focus-within .card-title {
+  bottom: 154px !important;
+}
+
+.gestione-card:focus-within .card-subtitle {
+  opacity: 1;
+}
+
+.efficienza-card:focus-within .card-title {
+  bottom: 185px !important;
+}
+
+.efficienza-card:focus-within .card-subtitle {
+  opacity: 1;
+}
+
+/* Additional focus-within effects for quad transformations */
+.quad.left:focus-within   { transform-origin:left center;   transform:scale(1.01); }
+.quad.center:focus-within { transform-origin:center center; transform:scale(1.01); }
+.quad.right:focus-within  { transform-origin:right center;  transform:scale(1.01); }
 
 /* ===========================
    responsive.css — SOLO adattamento a tutti gli schermi
