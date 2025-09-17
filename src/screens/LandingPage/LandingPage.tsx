@@ -61,6 +61,8 @@ export const LandingPage = (): JSX.Element => {
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   React.useEffect(() => {
+    const minAngle = -80;
+    const maxAngle = -27.98;
 
     const updateRotation = () => {
       const svg = disconnessioneSvgRef.current;
@@ -69,13 +71,15 @@ export const LandingPage = (): JSX.Element => {
       const rect = svg.getBoundingClientRect();
       const vh = window.innerHeight;
       
-      // Calcolo SEMPLICE: progress da 0 (elemento entra) a 1 (elemento al top)
-      const progress = Math.min(Math.max((vh - rect.top) / vh, 0), 1);
+      // Calcolo basato sul viewport invece che sull'altezza dell'elemento
+      const start = vh * 0.9;  // inizia a ruotare quando è vicino al bottom del viewport
+      const end = vh * 0.3;    // finisce quando è più in alto nel viewport
+      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
 
-      // interpoliamo la rotazione da -80° a -27.98°
-      const angle = -80 + (-27.98 + 80) * progress;
+      // interpoliamo la rotazione
+      const angle = minAngle + (maxAngle - minAngle) * progress;
       svg.style.transform = `rotate(${angle}deg)`;
-
+      svg.style.willChange = 'transform';
     };
 
     const updateConnessioneRotation = () => {
@@ -85,13 +89,17 @@ export const LandingPage = (): JSX.Element => {
       const rect = svg.getBoundingClientRect();
       const vh = window.innerHeight;
       
-      // Calcolo SEMPLICE: progress da 0 (elemento entra) a 1 (elemento al top)
-      const progress = Math.min(Math.max((vh - rect.top) / vh, 0), 1);
+      // Calcolo basato sul viewport invece che sull'altezza dell'elemento
+      const start = vh * 0.9;
+      const end = vh * 0.3;
+      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
 
-      // interpoliamo la rotazione da -25.23° a -77.25° con scaleX(-1)
-      const angle = -25.23 + (-77.25 + 25.23) * progress;
+      // interpoliamo la rotazione in reverse con scaleX(-1)
+      const minAngleConn = -25.23;
+      const maxAngleConn = -77.25;
+      const angle = minAngleConn + (maxAngleConn - minAngleConn) * progress;
       svg.style.transform = `rotate(${angle}deg) scaleX(-1)`;
-
+      svg.style.willChange = 'transform';
     };
 
     let ticking = false;
@@ -111,12 +119,6 @@ export const LandingPage = (): JSX.Element => {
       updateConnessioneRotation();
     };
 
-    // Imposta willChange UNA SOLA VOLTA all'inizio per performance
-    const disconnessione = disconnessioneSvgRef.current;
-    const connessione = connessioneSvgRef.current;
-    if (disconnessione) disconnessione.style.willChange = 'transform';
-    if (connessione) connessione.style.willChange = 'transform';
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
     updateRotation(); // inizializza disconnessione
@@ -125,9 +127,6 @@ export const LandingPage = (): JSX.Element => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
-      // Pulisci le ottimizzazioni
-      if (disconnessione) disconnessione.style.willChange = 'auto';
-      if (connessione) connessione.style.willChange = 'auto';
     };
   }, []);
 
@@ -399,6 +398,7 @@ export const LandingPage = (): JSX.Element => {
                     <img
                      ref={disconnessioneSvgRef}
                      className="w-[328.9px] h-[479.54px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
+                     style={{ transition: 'transform 0.1s linear' }}
                       alt="Illustrazione disconnessione"
                       src="/disconnessione.svg"
                     />
@@ -422,6 +422,7 @@ export const LandingPage = (): JSX.Element => {
                   <img
                    ref={connessioneSvgRef}
                    className="w-[380px] h-[530px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
+                    style={{ transition: 'transform 0.1s linear' }}
                     alt="Illustrazione connessione"
                     src="/connessione.svg"
                   />
