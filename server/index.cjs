@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
 
 // Gmail SMTP transporter configuration
 const createGmailTransporter = () => {
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.GMAIL_USER, // Your Gmail address
@@ -105,6 +105,13 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Validate required environment variables on startup
+if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+  console.error('ERROR: Missing required Gmail credentials (GMAIL_USER, GMAIL_APP_PASSWORD)');
+  process.exit(1);
+}
+
 app.listen(port, '0.0.0.0', () => {
   console.log(`Registration API server running on port ${port}`);
+  console.log('Gmail SMTP configured successfully');
 });
