@@ -721,7 +721,7 @@ export const LandingPage = (): JSX.Element => {
             width: '90%',
             maxWidth: '500px',
             height: '650px',
-            overflowY: 'auto',
+            overflow: 'visible',
             position: 'relative',
             boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)'
           }}
