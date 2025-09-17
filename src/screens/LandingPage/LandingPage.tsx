@@ -56,8 +56,66 @@ const ellipseImages = [
 
 
 export const LandingPage = (): JSX.Element => {
+  const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
+  const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
 
+  React.useEffect(() => {
+    const minAngle = -80;
+    const maxAngle = -27.98;
+
+    const updateRotation = () => {
+      const svg = disconnessioneSvgRef.current;
+      if (!svg) return;
+
+      const rect = svg.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // calcoliamo la progressione: 0 quando entra, 1 quando è tutto visibile
+      const progress = Math.min(Math.max((windowHeight - rect.top) / rect.height, 0), 1);
+
+      // interpoliamo la rotazione
+      const angle = minAngle + (maxAngle - minAngle) * progress;
+      svg.style.transform = `rotate(${angle}deg)`;
+    };
+
+    const updateConnessioneRotation = () => {
+      const svg = connessioneSvgRef.current;
+      if (!svg) return;
+
+      const rect = svg.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // calcoliamo la progressione: 0 quando entra, 1 quando è tutto visibile
+      const progress = Math.min(Math.max((windowHeight - rect.top) / rect.height, 0), 1);
+
+      // interpoliamo la rotazione in reverse (da -93.23deg a -78.23deg)
+      const minAngleConn = -25.23;
+      const maxAngleConn = -77.25;
+      const angle = minAngleConn + (maxAngleConn - minAngleConn) * progress;
+      svg.style.transform = `rotate(${angle}deg) scaleX(-1)`;
+    };
+
+    const handleScroll = () => {
+      updateRotation();
+      updateConnessioneRotation();
+    };
+
+    const handleResize = () => {
+      updateRotation();
+      updateConnessioneRotation();
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+    updateRotation(); // inizializza disconnessione
+    updateConnessioneRotation(); // inizializza connessione
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -302,11 +360,15 @@ export const LandingPage = (): JSX.Element => {
             <Card className="left-[1493px] bg-white absolute w-[582px] h-[785px] top-[1842px] rounded-[50px] border-0">
               <CardContent className="p-0">
                 <div className="absolute w-[547px] h-[610px] top-[175px] left-[17px]">
-                  <img
-                    className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(205,143,190,0.6)]"
-                    alt="Illustrazione disconnessione"
-                    src="/illustrazione-disconnessione.svg"
-                  />
+                  <div className="absolute top-[74px]">
+                    <img
+                     ref={disconnessioneSvgRef}
+                     className="w-[328.9px] h-[479.54px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
+                     style={{ transition: 'transform 0.1s linear', transform: 'rotate(-27.98deg)' }}
+                      alt="Illustrazione disconnessione"
+                      src="/disconnessione.svg"
+                    />
+                  </div>
                 </div>
                 <div className="absolute w-[490px] top-[51px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-[#901d6b] text-5xl tracking-[0] leading-[39.8px]">
                   La connessione si
@@ -322,6 +384,15 @@ export const LandingPage = (): JSX.Element => {
 
             <Card className="left-[2105px] bg-[#390035] absolute w-[582px] h-[785px] top-[1842px] rounded-[50px] border-0">
               <CardContent className="p-0">
+                <div className="absolute w-[380px] h-[530px] top-[235px] left-[177px]">
+                  <img
+                   ref={connessioneSvgRef}
+                   className="w-[380px] h-[530px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
+                    style={{ transition: 'transform 0.1s linear', transform: 'rotate(-93.23deg) scaleX(-1)' }}
+                    alt="Illustrazione connessione"
+                    src="/connessione.svg"
+                  />
+                </div>
                 <div className="absolute w-[490px] top-[51px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px]">
                   È il momento di ritrovarla.
                 </div>
@@ -349,7 +420,7 @@ export const LandingPage = (): JSX.Element => {
               Intelligenza Artificiale per l&apos;Industria
             </div>
 
-            <div className="absolute w-[510px] top-[4680px] left-[1493px] bg-[linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(205,143,190,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-light text-transparent text-[32px] tracking-[0] leading-[normal]">
+            <div className="absolute w-[510px] top-[4601px] left-[1493px] bg-[linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(205,143,190,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-light text-transparent text-[32px] tracking-[0] leading-[normal]">
               L&apos;intelligenza artificiale di Stratikey è progettata e
               istruita specificamente per il settore industriale: comprende
               dinamiche, tempi e complessità delle vendite B2B, supportando il
@@ -621,7 +692,7 @@ export const LandingPage = (): JSX.Element => {
           aria-label="Apri form di contatto"
         >
             <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-base sm:text-lg md:text-xl tracking-[0] leading-[normal] antialiased">
-              registrati ora
+              Apri form
             </span>
             <svg 
               className="w-3 sm:w-3.5 md:w-4 h-2.5 sm:h-2.5 md:h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
