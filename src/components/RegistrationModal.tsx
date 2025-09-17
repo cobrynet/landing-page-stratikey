@@ -27,6 +27,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('React form submit - formData:', formData);
     setIsSubmitting(true);
     setSubmitMessage('');
     
