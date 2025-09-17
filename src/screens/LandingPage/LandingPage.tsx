@@ -751,14 +751,15 @@ export const LandingPage = (): JSX.Element => {
 
           {/* Stratikey Logo */}
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <svg width="80" height="80" viewBox="0 0 100 100" style={{ marginBottom: '1.5rem' }}>
-              <g transform="translate(50,50)">
-                {/* Star/flower shape similar to Stratikey logo */}
-                <path d="M0,-30 L8,-8 L30,-8 L15,6 L22,28 L0,16 L-22,28 L-15,6 L-30,-8 L-8,-8 Z" 
-                      fill="#b85aa3" stroke="#d16bb7" strokeWidth="1"/>
-                <circle cx="0" cy="0" r="12" fill="#b85aa3"/>
-              </g>
-            </svg>
+            <img 
+              src="/stratikey-logo.png" 
+              alt="Stratikey Logo" 
+              style={{ 
+                width: '80px', 
+                height: '80px', 
+                marginBottom: '1.5rem' 
+              }} 
+            />
           </div>
 
           {/* Form */}
