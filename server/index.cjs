@@ -1,54 +1,43 @@
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
-// Use the new ReplitMail integration correctly
-const { z } = require('zod');
+// Use Gmail SMTP with nodemailer
+const nodemailer = require('nodemailer');
 
-// Copy the sendEmail function from ReplitMail integration for CommonJS
-function getAuthToken() {
-  const xReplitToken = process.env.REPL_IDENTITY
-    ? "repl " + process.env.REPL_IDENTITY
-    : process.env.WEB_REPL_RENEWAL
-      ? "depl " + process.env.WEB_REPL_RENEWAL
-      : null;
-
-  if (!xReplitToken) {
-    throw new Error(
-      "No authentication token found. Please set REPL_IDENTITY or ensure you're running in Replit environment."
-    );
-  }
-
-  return xReplitToken;
-}
-
-async function sendEmail(message) {
-  const authToken = getAuthToken();
-
-  const response = await fetch(
-    "https://connectors.replit.com/api/v2/mailer/send",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X_REPLIT_TOKEN": authToken,
-      },
-      body: JSON.stringify({
-        to: message.to,
-        cc: message.cc,
-        subject: message.subject,
-        text: message.text,
-        html: message.html,
-        attachments: message.attachments,
-      }),
+// Gmail SMTP transporter configuration
+const createGmailTransporter = () => {
+  return nodemailer.createTransporter({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER, // Your Gmail address
+      pass: process.env.GMAIL_APP_PASSWORD // Your Gmail App Password
     }
-  );
+  });
+};
 
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || "Failed to send email");
+async function sendEmail(options) {
+  const transporter = createGmailTransporter();
+  
+  const mailOptions = {
+    from: process.env.GMAIL_USER,
+    to: options.to,
+    subject: options.subject,
+    text: options.text,
+    html: options.html
+  };
+
+  try {
+    const result = await transporter.sendMail(mailOptions);
+    return {
+      accepted: [options.to],
+      rejected: [],
+      messageId: result.messageId,
+      response: 'Email sent successfully with Gmail'
+    };
+  } catch (error) {
+    console.error('Gmail sending error:', error);
+    throw new Error(`Failed to send email: ${error.message}`);
   }
-
-  return await response.json();
 }
 
 const app = express();
