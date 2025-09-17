@@ -1505,25 +1505,22 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; margin: 0; }
   }
 }
 
-/* overlay scuro dietro al modal */
+/* overlay che oscura la pagina */
 .modal-overlay {
-  position: fixed;       /* fisso rispetto al viewport */
+  position: fixed;   /* resta fisso sul viewport */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* sfondo trasparente */
   display: flex;
-  justify-content: center; /* centrato orizzontalmente */
-  align-items: flex-start;     /* in cima alla pagina */
-  padding-top: 232px;       /* spazio dall'alto (200px in più) */
+  justify-content: center; /* centra orizzontalmente */
+  align-items: center;     /* centra verticalmente */
   z-index: 9998;
-  overflow: hidden;        /* blocca scroll interni */
 }
 
-/* contenitore del modal */
+/* finestra del modal */
 .modal {
-  position: relative;
+  position: relative; /* resta centrato nell'overlay */
   background: linear-gradient(45deg, #cd8fbe, #901d6b);
   border-radius: 25px;
   max-width: 600px;
