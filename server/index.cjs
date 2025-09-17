@@ -47,6 +47,9 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Trust proxy for correct IP address handling behind reverse proxy
+app.set('trust proxy', 1);
+
 // Rate limiting for registration endpoint
 const registrationLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -73,18 +76,41 @@ app.post('/api/send-registration', registrationLimiter, async (req, res) => {
     }
     
     // Build email content for user confirmation
-    const emailContent = `
+    const userEmailContent = `
 GRAZIE PER ESSERTI REGISTRATO ALLA LISTA D'ATTESA, VERRAI RICONTATTATO A BREVE
     `.trim();
 
+    // Build email content for admin notification
+    const adminEmailContent = `
+NUOVA REGISTRAZIONE ALLA LISTA D'ATTESA
+
+Dettagli del nuovo utente:
+- Nome: ${name}
+- Azienda: ${company || 'Non specificata'}  
+- Email: ${email}
+- Telefono: ${phone || 'Non specificato'}
+- Data registrazione: ${new Date().toLocaleString('it-IT')}
+
+L'utente ha ricevuto automaticamente l'email di conferma.
+    `.trim();
+
     // Send confirmation email to the user
-    const result = await sendEmail({
+    const userResult = await sendEmail({
       to: email,
       subject: 'Conferma registrazione - Stratikey',
-      text: emailContent
+      text: userEmailContent
     });
 
-    console.log('Email sent successfully:', result);
+    console.log('User confirmation email sent successfully:', userResult);
+
+    // Send notification email to admin
+    const adminResult = await sendEmail({
+      to: 'stratikey@gmail.com',
+      subject: `Nuova registrazione: ${name}`,
+      text: adminEmailContent
+    });
+
+    console.log('Admin notification email sent successfully:', adminResult);
     
     res.json({
       success: true,
