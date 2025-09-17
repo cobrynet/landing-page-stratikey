@@ -167,6 +167,18 @@ export const LandingPage = (): JSX.Element => {
       if (openModalBtn) {
         openModalBtn.addEventListener('click', openModal);
       }
+
+      // Add listeners for "Registrati adesso" button
+      const registratiAdessoBtn = document.querySelector('.glass-button') as HTMLElement;
+      if (registratiAdessoBtn) {
+        registratiAdessoBtn.addEventListener('click', openModal);
+      }
+
+      // Add listener for "Registrati" button in footer
+      const registratiFooterBtn = document.querySelector('button[class*="cursor-pointer"][class*="hover:text-"]') as HTMLElement;
+      if (registratiFooterBtn && registratiFooterBtn.textContent?.includes('Registrati')) {
+        registratiFooterBtn.addEventListener('click', openModal);
+      }
       
       if (closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
