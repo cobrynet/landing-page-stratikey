@@ -61,8 +61,8 @@ export const LandingPage = (): JSX.Element => {
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   React.useEffect(() => {
-    const minAngle = -80;
-    const maxAngle = -27.98;
+    const minAngle = -180;
+    const maxAngle = 180;
 
     const updateRotation = () => {
       const svg = disconnessioneSvgRef.current;
@@ -76,6 +76,7 @@ export const LandingPage = (): JSX.Element => {
 
       // interpoliamo la rotazione
       const angle = minAngle + (maxAngle - minAngle) * progress;
+      console.log(`Disconnessione - Progress: ${progress.toFixed(2)}, Angle: ${angle.toFixed(2)}deg`);
       svg.style.transform = `rotate(${angle}deg)`;
       svg.style.transition = 'transform 0.1s linear';
     };
@@ -90,10 +91,11 @@ export const LandingPage = (): JSX.Element => {
       // calcoliamo la progressione: 0 quando entra, 1 quando è tutto visibile
       const progress = Math.min(Math.max((windowHeight - rect.top) / rect.height, 0), 1);
 
-      // interpoliamo la rotazione in reverse (da -25.23deg a -77.25deg)
-      const minAngleConn = -25.23;
-      const maxAngleConn = -77.25;
+      // interpoliamo la rotazione in reverse (angoli più evidenti)
+      const minAngleConn = 180;
+      const maxAngleConn = -180;
       const angle = minAngleConn + (maxAngleConn - minAngleConn) * progress;
+      console.log(`Connessione - Progress: ${progress.toFixed(2)}, Angle: ${angle.toFixed(2)}deg`);
       svg.style.transform = `rotate(${angle}deg) scaleX(-1)`;
       svg.style.transition = 'transform 0.1s linear';
     };
@@ -366,7 +368,7 @@ export const LandingPage = (): JSX.Element => {
                     <img
                      ref={disconnessioneSvgRef}
                      className="w-[328.9px] h-[479.54px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
-                     style={{ transition: 'transform 0.1s linear', transform: 'rotate(-27.98deg)' }}
+                     style={{ transition: 'transform 0.1s linear' }}
                       alt="Illustrazione disconnessione"
                       src="/disconnessione.svg"
                     />
@@ -390,7 +392,7 @@ export const LandingPage = (): JSX.Element => {
                   <img
                    ref={connessioneSvgRef}
                    className="w-[380px] h-[530px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
-                    style={{ transition: 'transform 0.1s linear', transform: 'rotate(-93.23deg) scaleX(-1)' }}
+                    style={{ transition: 'transform 0.1s linear' }}
                     alt="Illustrazione connessione"
                     src="/connessione.svg"
                   />
