@@ -61,9 +61,8 @@ export const LandingPage = (): JSX.Element => {
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   React.useEffect(() => {
-    // Angoli più drammatici per l'animazione di disconnessione
-    const minAngle = -120;
-    const maxAngle = 45;
+    const minAngle = -80;
+    const maxAngle = -27.98;
 
     const updateRotation = () => {
       const svg = disconnessioneSvgRef.current;
@@ -72,28 +71,13 @@ export const LandingPage = (): JSX.Element => {
       const rect = svg.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      const elementTop = rect.top;
-      const elementHeight = rect.height;
+      // calcoliamo la progressione: 0 quando entra, 1 quando è tutto visibile
+      const progress = Math.min(Math.max((windowHeight - rect.top) / rect.height, 0), 1);
 
-      // Calcoliamo il progresso basato su quando l'elemento entra nel viewport
-      let progress = 0;
-      if (elementTop < windowHeight && elementTop + elementHeight > 0) {
-        // L'elemento è visibile
-        if (elementTop > 0) {
-          // L'elemento sta entrando dal basso
-          progress = (windowHeight - elementTop) / windowHeight;
-        } else {
-          // L'elemento sta uscendo dall'alto
-          progress = Math.max(0, (elementHeight + elementTop) / elementHeight);
-        }
-        progress = Math.min(1, Math.max(0, progress));
-      }
-
-      // Interpoliamo la rotazione con easing
-      const easedProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      const angle = minAngle + (maxAngle - minAngle) * easedProgress;
+      // interpoliamo la rotazione
+      const angle = minAngle + (maxAngle - minAngle) * progress;
       svg.style.transform = `rotate(${angle}deg)`;
-      svg.style.transition = 'transform 0.1s ease-out';
+      svg.style.transition = 'transform 0.1s linear';
     };
 
     const updateConnessioneRotation = () => {
@@ -103,32 +87,15 @@ export const LandingPage = (): JSX.Element => {
       const rect = svg.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      const elementTop = rect.top;
-      const elementHeight = rect.height;
+      // calcoliamo la progressione: 0 quando entra, 1 quando è tutto visibile
+      const progress = Math.min(Math.max((windowHeight - rect.top) / rect.height, 0), 1);
 
-      // Calcoliamo il progresso basato su quando l'elemento entra nel viewport
-      let progress = 0;
-      if (elementTop < windowHeight && elementTop + elementHeight > 0) {
-        // L'elemento è visibile
-        if (elementTop > 0) {
-          // L'elemento sta entrando dal basso
-          progress = (windowHeight - elementTop) / windowHeight;
-        } else {
-          // L'elemento sta uscendo dall'alto
-          progress = Math.max(0, (elementHeight + elementTop) / elementHeight);
-        }
-        progress = Math.min(1, Math.max(0, progress));
-      }
-
-      // Angoli più drammatici per l'animazione di connessione (rotazione opposta)
-      const minAngleConn = 120;
-      const maxAngleConn = -45;
-      
-      // Interpoliamo la rotazione con easing
-      const easedProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      const angle = minAngleConn + (maxAngleConn - minAngleConn) * easedProgress;
+      // interpoliamo la rotazione in reverse (da -25.23deg a -77.25deg)
+      const minAngleConn = -25.23;
+      const maxAngleConn = -77.25;
+      const angle = minAngleConn + (maxAngleConn - minAngleConn) * progress;
       svg.style.transform = `rotate(${angle}deg) scaleX(-1)`;
-      svg.style.transition = 'transform 0.1s ease-out';
+      svg.style.transition = 'transform 0.1s linear';
     };
 
     const handleScroll = () => {
