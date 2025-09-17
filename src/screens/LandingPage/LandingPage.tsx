@@ -422,7 +422,7 @@ export const LandingPage = (): JSX.Element => {
               Intelligenza Artificiale per l&apos;Industria
             </div>
 
-            <div className="absolute w-[510px] top-[4601px] left-[1493px] bg-[linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(205,143,190,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-light text-transparent text-[32px] tracking-[0] leading-[normal]">
+            <div className="absolute w-[510px] top-[4680px] left-[1493px] bg-[linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(205,143,190,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-light text-transparent text-[32px] tracking-[0] leading-[normal]">
               L&apos;intelligenza artificiale di Stratikey è progettata e
               istruita specificamente per il settore industriale: comprende
               dinamiche, tempi e complessità delle vendite B2B, supportando il
