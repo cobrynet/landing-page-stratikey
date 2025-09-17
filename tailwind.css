@@ -244,21 +244,57 @@
   transform-origin: top center;
   position: relative;
   left: 50%;
-  --scale: clamp(0.18, calc(100vw / 1728px), 1);
+  --scale: calc(100vw / 1728px);
   transform: translateX(-50%) scale(var(--scale));
+  min-height: calc(6970px * var(--scale));
 }
 
-/* Large screens (1920px+) - permetti scala maggiore di 1 */
-@media (min-width: 1920px) {
+/* Mobile devices - minimo scala per evitare contenuto troppo piccolo */
+@media (max-width: 320px) {
   .responsive-container {
-    --scale: 1.1;
+    --scale: calc(320px / 1728px);
   }
 }
 
-/* Per dispositivi molto grandi, usa scala massima 1 */
-@media (min-width: 1728px) {
+/* Tablet portrait - scala fluida */
+@media (min-width: 321px) and (max-width: 768px) {
   .responsive-container {
-    --scale: 1;
+    --scale: calc(100vw / 1728px);
+  }
+}
+
+/* Tablet landscape - scala fluida */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .responsive-container {
+    --scale: calc(100vw / 1728px);
+  }
+}
+
+/* Desktop small - scala fluida */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .responsive-container {
+    --scale: calc(100vw / 1728px);
+  }
+}
+
+/* Desktop medium - scala fluida */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .responsive-container {
+    --scale: calc(100vw / 1728px);
+  }
+}
+
+/* Large desktop - scala maggiore per schermi molto grandi */
+@media (min-width: 1921px) {
+  .responsive-container {
+    --scale: calc(100vw / 1728px);
+  }
+}
+
+/* Ultra-wide displays */
+@media (min-width: 2560px) {
+  .responsive-container {
+    --scale: calc(100vw / 1728px);
   }
 }
 
@@ -266,6 +302,20 @@
 .responsive-wrapper {
   width: 100vw;
   overflow-x: hidden;
+}
+
+/* Pulsante fisso responsive - scala con lo stesso fattore della pagina */
+.fixed-button-responsive {
+  --button-scale: calc(100vw / 1728px);
+  transform: translateX(-50%) scale(var(--button-scale));
+  transform-origin: top center;
+}
+
+/* Assicura minima leggibilità su mobile */
+@media (max-width: 320px) {
+  .fixed-button-responsive {
+    --button-scale: calc(320px / 1728px);
+  }
 }
 
 /* Assicura che il container abbia l'altezza corretta - finisce dopo copyright */
