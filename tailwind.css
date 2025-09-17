@@ -264,106 +264,43 @@ footer {
   transform: translateY(0) scale(1);
 }
 
-/* Sistema Responsive Scaling per Landing Page - Mantiene struttura originale scalando proporzionalmente */
-:root {
-  --scale-factor: 0.25; /* Mobile default */
-  --container-height: calc(6571px * var(--scale-factor)); /* Altezza proporzionale */
+/* Responsive Scaling System - preserva la struttura originale ma scala proporzionalmente */
+.responsive-container {
+  width: 1728px;
+  transform-origin: top center;
+  position: relative;
+  left: 50%;
+  --scale: clamp(0.18, calc(100vw / 1728px), 1);
+  transform: translateX(-50%) scale(var(--scale));
 }
 
-/* Mobile First - Schermi piccoli (320px - 479px) */
-@media (max-width: 479px) {
-  :root {
-    --scale-factor: 0.2;
-  }
-}
-
-/* Mobile (480px - 767px) */
-@media (min-width: 480px) and (max-width: 767px) {
-  :root {
-    --scale-factor: 0.28;
-  }
-}
-
-/* Tablet Portrait (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-  :root {
-    --scale-factor: 0.45;
-  }
-}
-
-/* Tablet Landscape / Desktop Small (1024px - 1365px) */
-@media (min-width: 1024px) and (max-width: 1365px) {
-  :root {
-    --scale-factor: 0.65;
-  }
-}
-
-/* Desktop Medium (1366px - 1599px) */
-@media (min-width: 1366px) and (max-width: 1599px) {
-  :root {
-    --scale-factor: 0.8;
-  }
-}
-
-/* Desktop Large (1600px - 1919px) */
-@media (min-width: 1600px) and (max-width: 1919px) {
-  :root {
-    --scale-factor: 0.95;
-  }
-}
-
-/* Desktop Extra Large (1920px+) */
+/* Large screens (1920px+) - permetti scala maggiore di 1 */
 @media (min-width: 1920px) {
-  :root {
-    --scale-factor: 1.0;
+  .responsive-container {
+    --scale: 1.1;
   }
 }
 
-/* Schermi Ultra Wide (2560px+) */
-@media (min-width: 2560px) {
-  :root {
-    --scale-factor: 1.2;
+/* Per dispositivi molto grandi, usa scala massima 1 */
+@media (min-width: 1728px) {
+  .responsive-container {
+    --scale: 1;
   }
 }
 
-/* Container principale responsive */
-.responsive-landing-container {
+/* Wrapper per prevenire overflow orizzontale */
+.responsive-wrapper {
+  width: 100vw;
   overflow-x: hidden;
+}
+
+/* Assicura che il container abbia l'altezza corretta - finisce dopo copyright */
+.responsive-container::before {
+  content: '';
+  display: block;
   width: 100%;
-  height: var(--container-height);
-  margin-bottom: 2rem;
-}
-
-/* Pulsante "registrati ora" responsive */
-.responsive-register-button {
-  position: fixed !important;
-  z-index: 100 !important;
-}
-
-/* Mobile - pulsante centrato in alto */
-@media (max-width: 767px) {
-  .responsive-register-button {
-    top: 20px !important;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) !important;
-    width: 180px !important;
-  }
-}
-
-/* Tablet - posizione intermedia */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .responsive-register-button {
-    right: 50px !important;
-    top: 30px !important;
-  }
-}
-
-/* Desktop - posizione originale scalata */
-@media (min-width: 1024px) {
-  .responsive-register-button {
-    right: calc(700px * var(--scale-factor)) !important;
-  }
+  height: 0;
+  padding-bottom: calc(6950 / 1728 * 100%);
 }
 
 /* ===== Layout container ===== */
