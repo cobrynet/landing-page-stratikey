@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Card, CardContent } from "../../components/ui/card";
 
 const featureBadges = [
@@ -715,15 +715,15 @@ export const LandingPage = (): JSX.Element => {
         <div 
           className="modal-content"
           style={{
-            backgroundColor: 'white',
-            padding: '2rem',
-            borderRadius: '12px',
+            background: 'linear-gradient(135deg, #4a1a4a 0%, #7d2d6e 50%, #9e4186 100%)',
+            padding: '2.5rem',
+            borderRadius: '24px',
             width: '90%',
-            maxWidth: '500px',
+            maxWidth: '420px',
             maxHeight: '90vh',
             overflowY: 'auto',
             position: 'relative',
-            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)'
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)'
           }}
         >
           {/* Close button */}
@@ -737,170 +737,170 @@ export const LandingPage = (): JSX.Element => {
               border: 'none',
               fontSize: '1.5rem',
               cursor: 'pointer',
-              color: '#666',
+              color: '#fff',
               width: '30px',
               height: '30px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              opacity: '0.8'
             }}
           >
             ×
           </button>
 
+          {/* Stratikey Logo */}
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <svg width="80" height="80" viewBox="0 0 100 100" style={{ marginBottom: '1.5rem' }}>
+              <g transform="translate(50,50)">
+                {/* Star/flower shape similar to Stratikey logo */}
+                <path d="M0,-30 L8,-8 L30,-8 L15,6 L22,28 L0,16 L-22,28 L-15,6 L-30,-8 L-8,-8 Z" 
+                      fill="#b85aa3" stroke="#d16bb7" strokeWidth="1"/>
+                <circle cx="0" cy="0" r="12" fill="#b85aa3"/>
+              </g>
+            </svg>
+          </div>
+
           {/* Form */}
-          <form id="contact-form" style={{ marginTop: '1rem' }}>
+          <form id="contact-form" style={{ textAlign: 'center' }}>
             <h2 
               id="modal-title"
               style={{ 
                 fontFamily: "'Outfit', Helvetica", 
                 fontWeight: '600', 
-                color: '#901d6b', 
-                marginBottom: '1.5rem',
-                fontSize: '1.5rem'
+                color: '#ffffff', 
+                marginBottom: '0.5rem',
+                fontSize: '1.75rem',
+                textAlign: 'center'
               }}
             >
-              Contattaci
+              Registrati alla
             </h2>
+            <h2 
+              style={{ 
+                fontFamily: "'Outfit', Helvetica", 
+                fontWeight: '600', 
+                color: '#ffffff', 
+                marginBottom: '1rem',
+                fontSize: '1.75rem',
+                textAlign: 'center'
+              }}
+            >
+              lista di attesa!
+            </h2>
+            <p style={{
+              fontFamily: "'Outfit', Helvetica",
+              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: '0.9rem',
+              marginBottom: '2rem',
+              textAlign: 'center'
+            }}>
+              Lascia i tuoi dati per ricevere l'ingresso in anteprima
+            </p>
 
             {/* Nome e Cognome */}
             <div style={{ marginBottom: '1rem' }}>
-              <label 
-                htmlFor="name" 
-                style={{ 
-                  display: 'block', 
-                  marginBottom: '0.5rem', 
-                  fontFamily: "'Outfit', Helvetica", 
-                  fontWeight: '500',
-                  color: '#333'
-                }}
-              >
-                Nome e Cognome *
-              </label>
               <input 
                 type="text" 
                 id="name" 
                 name="name" 
+                placeholder="Nome e Cognome"
                 required
                 style={{
                   width: '100%',
-                  padding: '0.75rem',
-                  border: '2px solid #e1e1e1',
-                  borderRadius: '6px',
+                  padding: '1rem',
+                  background: 'rgba(0, 0, 0, 0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '25px',
                   fontSize: '1rem',
                   fontFamily: "'Outfit', Helvetica",
-                  transition: 'border-color 0.3s',
-                  boxSizing: 'border-box'
+                  color: '#ffffff',
+                  boxSizing: 'border-box',
+                  outline: 'none'
                 }}
               />
             </div>
 
             {/* Azienda */}
             <div style={{ marginBottom: '1rem' }}>
-              <label 
-                htmlFor="company" 
-                style={{ 
-                  display: 'block', 
-                  marginBottom: '0.5rem', 
-                  fontFamily: "'Outfit', Helvetica", 
-                  fontWeight: '500',
-                  color: '#333'
-                }}
-              >
-                Azienda *
-              </label>
               <input 
                 type="text" 
                 id="company" 
                 name="company" 
+                placeholder="Azienda"
                 required
                 style={{
                   width: '100%',
-                  padding: '0.75rem',
-                  border: '2px solid #e1e1e1',
-                  borderRadius: '6px',
+                  padding: '1rem',
+                  background: 'rgba(0, 0, 0, 0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '25px',
                   fontSize: '1rem',
                   fontFamily: "'Outfit', Helvetica",
-                  transition: 'border-color 0.3s',
-                  boxSizing: 'border-box'
+                  color: '#ffffff',
+                  boxSizing: 'border-box',
+                  outline: 'none'
                 }}
               />
             </div>
 
             {/* Telefono */}
             <div style={{ marginBottom: '1rem' }}>
-              <label 
-                htmlFor="phone" 
-                style={{ 
-                  display: 'block', 
-                  marginBottom: '0.5rem', 
-                  fontFamily: "'Outfit', Helvetica", 
-                  fontWeight: '500',
-                  color: '#333'
-                }}
-              >
-                Telefono *
-              </label>
               <input 
                 type="tel" 
                 id="phone" 
                 name="phone" 
+                placeholder="Telefono"
                 required
                 style={{
                   width: '100%',
-                  padding: '0.75rem',
-                  border: '2px solid #e1e1e1',
-                  borderRadius: '6px',
+                  padding: '1rem',
+                  background: 'rgba(0, 0, 0, 0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '25px',
                   fontSize: '1rem',
                   fontFamily: "'Outfit', Helvetica",
-                  transition: 'border-color 0.3s',
-                  boxSizing: 'border-box'
+                  color: '#ffffff',
+                  boxSizing: 'border-box',
+                  outline: 'none'
                 }}
               />
             </div>
 
             {/* Email */}
-            <div style={{ marginBottom: '1rem' }}>
-              <label 
-                htmlFor="email" 
-                style={{ 
-                  display: 'block', 
-                  marginBottom: '0.5rem', 
-                  fontFamily: "'Outfit', Helvetica", 
-                  fontWeight: '500',
-                  color: '#333'
-                }}
-              >
-                Email *
-              </label>
+            <div style={{ marginBottom: '1.5rem' }}>
               <input 
                 type="email" 
                 id="email" 
                 name="email" 
+                placeholder="Email"
                 required
                 style={{
                   width: '100%',
-                  padding: '0.75rem',
-                  border: '2px solid #e1e1e1',
-                  borderRadius: '6px',
+                  padding: '1rem',
+                  background: 'rgba(0, 0, 0, 0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '25px',
                   fontSize: '1rem',
                   fontFamily: "'Outfit', Helvetica",
-                  transition: 'border-color 0.3s',
-                  boxSizing: 'border-box'
+                  color: '#ffffff',
+                  boxSizing: 'border-box',
+                  outline: 'none'
                 }}
               />
             </div>
 
             {/* Checkbox Terms */}
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
               <label 
                 style={{ 
                   display: 'flex', 
-                  alignItems: 'flex-start',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   gap: '0.5rem',
                   fontFamily: "'Outfit', Helvetica", 
                   fontSize: '0.9rem',
-                  color: '#333',
+                  color: 'rgba(255, 255, 255, 0.8)',
                   cursor: 'pointer'
                 }}
               >
@@ -910,10 +910,11 @@ export const LandingPage = (): JSX.Element => {
                   name="terms" 
                   required
                   style={{
-                    marginTop: '0.1rem'
+                    accentColor: '#b85aa3',
+                    transform: 'scale(1.2)'
                   }}
                 />
-                <span>Accetto i termini e condizioni *</span>
+                <span>Accetta Termini e Condizioni</span>
               </label>
             </div>
 
@@ -922,21 +923,29 @@ export const LandingPage = (): JSX.Element => {
               type="submit"
               style={{
                 width: '100%',
-                padding: '0.75rem',
-                backgroundColor: '#901d6b',
+                padding: '1rem 2rem',
+                background: 'linear-gradient(45deg, #b85aa3 0%, #d16bb7 100%)',
                 color: 'white',
                 border: 'none',
-                borderRadius: '6px',
-                fontSize: '1rem',
+                borderRadius: '25px',
+                fontSize: '1.1rem',
                 fontFamily: "'Outfit', Helvetica",
-                fontWeight: '500',
+                fontWeight: '600',
                 cursor: 'pointer',
-                transition: 'background-color 0.3s'
+                transition: 'transform 0.2s, box-shadow 0.2s',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px'
               }}
-              onMouseOver={(e) => e.target.style.backgroundColor = '#7a1858'}
-              onMouseOut={(e) => e.target.style.backgroundColor = '#901d6b'}
+              onMouseOver={(e) => {
+                (e.target as HTMLButtonElement).style.transform = 'translateY(-2px)';
+                (e.target as HTMLButtonElement).style.boxShadow = '0 8px 20px rgba(184, 90, 163, 0.4)';
+              }}
+              onMouseOut={(e) => {
+                (e.target as HTMLButtonElement).style.transform = 'translateY(0)';
+                (e.target as HTMLButtonElement).style.boxShadow = 'none';
+              }}
             >
-              Invia
+              ACCEDI
             </button>
           </form>
         </div>
