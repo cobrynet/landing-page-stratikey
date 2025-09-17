@@ -692,7 +692,7 @@ export const LandingPage = (): JSX.Element => {
           aria-label="Apri form di contatto"
         >
             <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-base sm:text-lg md:text-xl tracking-[0] leading-[normal] antialiased">
-              Apri form
+              registrati ora
             </span>
             <svg 
               className="w-3 sm:w-3.5 md:w-4 h-2.5 sm:h-2.5 md:h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
