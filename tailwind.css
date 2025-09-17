@@ -243,8 +243,9 @@
   width: 100vw;
   transform-origin: top center;
   position: relative;
+  left: 50%;
   --scale: clamp(0.18, calc(100vw / 1728px), 1);
-  transform: scale(var(--scale));
+  transform: translateX(-50%) scale(var(--scale));
 }
 
 /* Large screens (1920px+) - permetti scala maggiore di 1 */
