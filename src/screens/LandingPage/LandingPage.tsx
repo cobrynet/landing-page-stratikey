@@ -187,19 +187,6 @@ export const LandingPage = (): JSX.Element => {
 
 
 
-            <div className="absolute w-[276px] h-[50px] top-[716px] left-[1952px]">
-              <div className="glass-button w-full h-full cursor-pointer" onClick={handleOpenModal}>
-                <div className="glass-surface">
-                  <div className="glass-highlight"></div>
-                  <div className="glass-refraction"></div>
-                  <div className="glass-content">
-                    <span className="[font-family:'Outfit',Helvetica] font-medium text-white text-2xl text-center tracking-[-0.02em] leading-[1.2] select-none antialiased">
-                      Registrati adesso
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {featureBadges.map((badge, index) => (
               <img
