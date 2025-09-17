@@ -76,7 +76,6 @@ export const LandingPage = (): JSX.Element => {
 
       // interpoliamo la rotazione
       const angle = minAngle + (maxAngle - minAngle) * progress;
-      console.log(`Disconnessione - Progress: ${progress.toFixed(2)}, Angle: ${angle.toFixed(2)}deg`);
       svg.style.transform = `rotate(${angle}deg)`;
       svg.style.transition = 'transform 0.1s linear';
     };
@@ -95,7 +94,6 @@ export const LandingPage = (): JSX.Element => {
       const minAngleConn = 180;
       const maxAngleConn = -180;
       const angle = minAngleConn + (maxAngleConn - minAngleConn) * progress;
-      console.log(`Connessione - Progress: ${progress.toFixed(2)}, Angle: ${angle.toFixed(2)}deg`);
       svg.style.transform = `rotate(${angle}deg) scaleX(-1)`;
       svg.style.transition = 'transform 0.1s linear';
     };

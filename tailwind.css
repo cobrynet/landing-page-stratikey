@@ -1,6 +1,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ----- Layout fluido universale ----- */
+
+/* imposta box-sizing universale */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* tipografia fluida */
+html {
+  font-size: clamp(14px, 1.2vw, 18px); /* minimo 14px, massimo 18px */
+}
+
+/* immagini e media responsivi */
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* contenitori principali */
+.container,
+.wrapper {
+  max-width: 1400px; /* limite leggibile anche su ultrawide */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* griglie e colonne si riducono automaticamente */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* elementi in colonna su schermi piccoli */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+/* ultrawide: centratura e massimo respiro */
+@media (min-aspect-ratio: 21/9) {
+  .container,
+  .wrapper {
+    max-width: 1800px;
+  }
+}
+
 /* Reset e layout base */
 html, body {
   margin: 0;
