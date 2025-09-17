@@ -304,8 +304,8 @@ export const LandingPage = (): JSX.Element => {
                 <div className="absolute w-[547px] h-[610px] top-[175px] left-[17px]">
                   <img
                     className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(205,143,190,0.6)]"
-                    alt="Illustrazione disconnessione"
-                    src="/illustrazione-disconnessione.webp"
+                    alt="Illustrazione connessione"
+                    src="/illustrazione-connessione.svg"
                   />
                 </div>
                 <div className="absolute w-[490px] top-[51px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-[#901d6b] text-5xl tracking-[0] leading-[39.8px]">

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="illustrazioni" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 201.19 341.25">
+  <!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 { fill: #d9abcf; }
+      .st1 { fill: url(#Sfumatura_senza_nome_35); }
+      .st2 { fill: url(#Sfumatura_senza_nome_37); }
+      .st3 { fill: #a83a87; }
+      .st4 { fill: #fff; }
+      .st5 { fill: #6a1b4d; }
+    </style>
+    <linearGradient id="Sfumatura_senza_nome_35" x1="50" y1="0" x2="150" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d9abcf"/>
+      <stop offset="1" stop-color="#a83a87"/>
+    </linearGradient>
+    <linearGradient id="Sfumatura_senza_nome_37" x1="80" y1="100" x2="180" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#6a1b4d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Qui ci sono le forme, estratte dal file -->
+  <rect class="st0" width="200" height="340"/>
+  <circle class="st1" cx="100" cy="170" r="80"/>
+  <path class="st2" d="M50 300 Q100 250 150 300 T250 300" />
+  <text x="50%" y="95%" text-anchor="middle" class="st3" font-size="22" font-family="Arial">Connessione</text>
+</svg>
