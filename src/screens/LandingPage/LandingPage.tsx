@@ -549,113 +549,113 @@ export const LandingPage = (): JSX.Element => {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[200] p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto relative">
+          <div className="bg-gradient-to-b from-purple-900/90 to-purple-800/90 backdrop-blur-sm rounded-3xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto relative border border-purple-600/30">
             {/* Pulsante chiudi X */}
             <button
               onClick={handleCloseModal}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+              className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
               type="button"
             >
               ×
             </button>
             
+            {/* Logo */}
+            <div className="flex justify-center pt-8 pb-4">
+              <img
+                src="/stratikey-alto.png"
+                alt="Stratikey"
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+            
             {/* Contenuto del modal */}
-            <div className="p-6 pt-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-                Registrati a Stratikey
+            <div className="px-8 pb-8">
+              <h2 className="text-2xl font-semibold text-white mb-2 text-center">
+                Registrati alla lista di attesa!
               </h2>
+              
+              <p className="text-purple-200 text-center mb-6 text-sm">
+                Lascia i tuoi dati per ricevere l'ingresso in anteprima
+              </p>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Nome e Cognome */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Nome e Cognome *
-                  </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="Inserisci il tuo nome e cognome"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent backdrop-blur-sm"
+                    placeholder="Nome e Cognome"
                   />
                 </div>
 
                 {/* Azienda */}
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                    Azienda *
-                  </label>
                   <input
                     type="text"
                     id="company"
                     name="company"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="Nome della tua azienda"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent backdrop-blur-sm"
+                    placeholder="Azienda"
                   />
                 </div>
 
                 {/* Telefono */}
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                    Telefono *
-                  </label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="+39 123 456 7890"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent backdrop-blur-sm"
+                    placeholder="Telefono"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email *
-                  </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    placeholder="tua@email.com"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent backdrop-blur-sm"
+                    placeholder="Email"
                   />
                 </div>
 
                 {/* Checkbox Termini */}
-                <div className="flex items-start space-x-2">
+                <div className="flex items-center justify-center space-x-2 pt-2">
                   <input
                     type="checkbox"
                     id="terms"
                     name="terms"
                     required
-                    className="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-pink-400 focus:ring-pink-400 border-white/30 rounded bg-white/10"
                   />
-                  <label htmlFor="terms" className="text-sm text-gray-700">
-                    Accetto i{' '}
+                  <label htmlFor="terms" className="text-sm text-purple-200">
+                    Accetto{' '}
                     <a
                       href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-purple-600 hover:text-purple-800 underline"
+                      className="text-pink-300 hover:text-pink-200 underline"
                     >
-                      termini e condizioni
+                      Termini e Condizioni
                     </a>
-                    {' '}*
                   </label>
                 </div>
 
                 {/* Pulsante Submit */}
-                <div className="pt-4">
+                <div className="pt-6">
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-4 rounded-md hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+                    className="w-full bg-gradient-to-r from-pink-600 to-pink-500 text-white py-3 px-8 rounded-full hover:from-pink-700 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-purple-900 transition-all duration-200 font-medium text-lg"
                   >
-                    Invia Registrazione
+                    ACCEDI
                   </button>
                 </div>
               </form>
