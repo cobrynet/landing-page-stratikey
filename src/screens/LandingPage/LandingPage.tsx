@@ -1,7 +1,6 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Card, CardContent } from "../../components/ui/card";
-import { RegistrationModal } from "../../components/RegistrationModal";
 
 const featureBadges = [
   {
@@ -57,7 +56,6 @@ const ellipseImages = [
 
 
 export const LandingPage = (): JSX.Element => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -141,13 +139,6 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
@@ -359,7 +350,6 @@ export const LandingPage = (): JSX.Element => {
                       Piattaforma
                     </h4>
                     <button 
-                      onClick={handleOpenModal}
                       className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px] mt-[8px] cursor-pointer hover:text-[#901d6b] transition-colors duration-200 bg-transparent border-none p-0 text-left"
                     >
                       Registrati
@@ -522,25 +512,10 @@ export const LandingPage = (): JSX.Element => {
         </div>
 
 
-          <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
         </div>
       </div>
       
       {/* Pulsante Registrati ora - FISSO al viewport (fuori dal responsive-container) */}
-      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]" onClick={handleOpenModal}>
-        <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
-            <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-base sm:text-lg md:text-xl tracking-[0] leading-[normal] antialiased">
-              Registrati ora
-            </span>
-            <svg 
-              className="w-3 sm:w-3.5 md:w-4 h-2.5 sm:h-2.5 md:h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
-              viewBox="0 0 16 12" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
-            </svg>
-        </div>
-      </div>
     </div>
   );
 };
