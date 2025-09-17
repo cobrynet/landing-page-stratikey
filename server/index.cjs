@@ -35,23 +35,15 @@ app.post('/api/send-registration', registrationLimiter, async (req, res) => {
       });
     }
     
-    // Build email content
+    // Build email content for user confirmation
     const emailContent = `
-Nuova registrazione ricevuta dal sito Stratikey:
-
-Nome e Cognome: ${name}
-Azienda: ${company || 'Non specificata'}
-Email: ${email}
-Telefono: ${phone || 'Non specificato'}
-Termini accettati: ${acceptTerms ? 'Sì' : 'No'}
-
-Data registrazione: ${new Date().toLocaleDateString('it-IT')} alle ${new Date().toLocaleTimeString('it-IT')}
+GRAZIE PER ESSERTI REGISTRATO ALLA LISTA D'ATTESA, VERRAI RICONTATTATO A BREVE
     `.trim();
 
-    // Send email using Replit Mail integration
+    // Send confirmation email to the user
     const result = await sendEmail({
-      to: 'info@stratikey.com',
-      subject: `Nuova registrazione - ${name}`,
+      to: email,
+      subject: 'Conferma registrazione - Stratikey',
       text: emailContent
     });
 
