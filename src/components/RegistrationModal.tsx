@@ -31,9 +31,9 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal">
-        <div className="modal-inner relative"
+    <div className="registration-modal">
+      <div className="registration-modal__content">
+        <div className="registration-modal__inner relative"
         >
             {/* Close Button */}
             <button
