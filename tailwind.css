@@ -249,40 +249,50 @@
   transform: translateX(-50%) scale(var(--scale));
 }
 
-/* ===== SMARTPHONE RESPONSIVE OTTIMIZZATO - DIMENSIONI PERFETTE ===== */
+/* ===== SMARTPHONE RESPONSIVE - SCHERMO COMPLETO ===== */
 
-/* Smartphone molto piccoli - dimensione leggibile */
+/* Smartphone molto piccoli - riempi lo schermo */
 @media (max-width: 280px) {
   .responsive-container {
-    --scale: 0.35;
+    --scale: 0.65;
+    width: 100vw;
+    min-width: 100vw;
   }
 }
 
-/* Smartphone piccoli (iPhone SE, piccoli Android) - scala ottimale */
+/* Smartphone piccoli (iPhone SE, piccoli Android) - usa tutta la larghezza */
 @media (min-width: 281px) and (max-width: 320px) {
   .responsive-container {
-    --scale: 0.40;
+    --scale: 0.75;
+    width: 100vw;
+    min-width: 100vw;
   }
 }
 
-/* Smartphone medi (iPhone 12 mini, Galaxy S) - visione comoda */
+/* Smartphone medi (iPhone 12 mini, Galaxy S) - schermo completo */
 @media (min-width: 321px) and (max-width: 375px) {
   .responsive-container {
-    --scale: 0.45;
+    --scale: 0.85;
+    width: 100vw;
+    min-width: 100vw;
   }
 }
 
-/* Smartphone grandi (iPhone 14, Pixel) - dimensione ideale */
+/* Smartphone grandi (iPhone 14, Pixel) - massima larghezza */
 @media (min-width: 376px) and (max-width: 414px) {
   .responsive-container {
-    --scale: 0.50;
+    --scale: 0.95;
+    width: 100vw;
+    min-width: 100vw;
   }
 }
 
-/* Smartphone extra large (iPhone Pro Max, grandi Android) - massimo comfort */
+/* Smartphone extra large (iPhone Pro Max, grandi Android) - riempi completamente */
 @media (min-width: 415px) and (max-width: 480px) {
   .responsive-container {
-    --scale: 0.55;
+    --scale: 1.05;
+    width: 100vw;
+    min-width: 100vw;
   }
 }
 
@@ -342,40 +352,40 @@
   transform-origin: top center;
 }
 
-/* ===== PULSANTE FISSO RESPONSIVE - DIMENSIONI OTTIMALI ===== */
+/* ===== PULSANTE FISSO - PROPORZIONATO AL NUOVO SISTEMA ===== */
 
-/* Smartphone molto piccoli - pulsante ben visibile */
+/* Smartphone molto piccoli - proporzionato */
 @media (max-width: 280px) {
   .fixed-button-responsive {
-    --button-scale: 0.35;
+    --button-scale: 0.65;
   }
 }
 
-/* Smartphone piccoli - dimensione ottimale */
+/* Smartphone piccoli - ben visibile */
 @media (min-width: 281px) and (max-width: 320px) {
   .fixed-button-responsive {
-    --button-scale: 0.40;
+    --button-scale: 0.75;
   }
 }
 
-/* Smartphone medi - visione comoda */
+/* Smartphone medi - dimensione perfetta */
 @media (min-width: 321px) and (max-width: 375px) {
   .fixed-button-responsive {
-    --button-scale: 0.45;
+    --button-scale: 0.85;
   }
 }
 
-/* Smartphone grandi - dimensione ideale */
+/* Smartphone grandi - ottimizzato */
 @media (min-width: 376px) and (max-width: 414px) {
   .fixed-button-responsive {
-    --button-scale: 0.50;
+    --button-scale: 0.95;
   }
 }
 
-/* Smartphone extra large - massimo comfort */
+/* Smartphone extra large - proporzionale */
 @media (min-width: 415px) and (max-width: 480px) {
   .fixed-button-responsive {
-    --button-scale: 0.55;
+    --button-scale: 1.05;
   }
 }
 
@@ -412,16 +422,17 @@
   }
 }
 
-/* Gestione landscape su smartphone - dimensioni leggibili */
+/* Gestione landscape su smartphone - riempi schermo */
 @media screen and (max-width: 480px) and (orientation: landscape) {
   .responsive-container {
-    --scale: 0.28;
+    --scale: 0.45;
+    width: 100vw;
     height: auto;
-    min-height: calc(6970px * 0.28);
+    min-height: calc(6970px * 0.45);
   }
   
   .fixed-button-responsive {
-    --button-scale: 0.28;
+    --button-scale: 0.45;
   }
 }
 
