@@ -241,12 +241,12 @@
 /* Responsive Scaling System - preserva la struttura originale ma scala proporzionalmente */
 .responsive-container {
   width: 1728px;
+  height: 6970px;
   transform-origin: top center;
   position: relative;
   left: 50%;
   --scale: calc(100vw / 1728px);
   transform: translateX(-50%) scale(var(--scale));
-  min-height: calc(6970px * var(--scale));
 }
 
 /* Mobile devices - minimo scala per evitare contenuto troppo piccolo */
@@ -318,14 +318,7 @@
   }
 }
 
-/* Assicura che il container abbia l'altezza corretta - finisce dopo copyright */
-.responsive-container::before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 0;
-  padding-bottom: calc(6970 / 1728 * 100%);
-}
+/* Container ha altezza fissa esatta - finisce dopo copyright */
 
 /* ===== Layout container ===== */
 .quadranti{
