@@ -56,68 +56,8 @@ const ellipseImages = [
 
 
 export const LandingPage = (): JSX.Element => {
-  const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
-  const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
 
-  React.useEffect(() => {
-    const minAngle = -180;
-    const maxAngle = 180;
-
-    const updateRotation = () => {
-      const svg = disconnessioneSvgRef.current;
-      if (!svg) return;
-
-      const rect = svg.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // calcoliamo la progressione: 0 quando entra, 1 quando è tutto visibile
-      const progress = Math.min(Math.max((windowHeight - rect.top) / rect.height, 0), 1);
-
-      // interpoliamo la rotazione
-      const angle = minAngle + (maxAngle - minAngle) * progress;
-      svg.style.transform = `rotate(${angle}deg)`;
-      svg.style.transition = 'transform 0.1s linear';
-    };
-
-    const updateConnessioneRotation = () => {
-      const svg = connessioneSvgRef.current;
-      if (!svg) return;
-
-      const rect = svg.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // calcoliamo la progressione: 0 quando entra, 1 quando è tutto visibile
-      const progress = Math.min(Math.max((windowHeight - rect.top) / rect.height, 0), 1);
-
-      // interpoliamo la rotazione in reverse (angoli più evidenti)
-      const minAngleConn = 180;
-      const maxAngleConn = -180;
-      const angle = minAngleConn + (maxAngleConn - minAngleConn) * progress;
-      svg.style.transform = `rotate(${angle}deg) scaleX(-1)`;
-      svg.style.transition = 'transform 0.1s linear';
-    };
-
-    const handleScroll = () => {
-      updateRotation();
-      updateConnessioneRotation();
-    };
-
-    const handleResize = () => {
-      updateRotation();
-      updateConnessioneRotation();
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-    updateRotation(); // inizializza disconnessione
-    updateConnessioneRotation(); // inizializza connessione
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -362,15 +302,6 @@ export const LandingPage = (): JSX.Element => {
             <Card className="left-[1493px] bg-white absolute w-[582px] h-[785px] top-[1842px] rounded-[50px] border-0">
               <CardContent className="p-0">
                 <div className="absolute w-[547px] h-[610px] top-[175px] left-[17px]">
-                  <div className="absolute top-[74px]">
-                    <img
-                     ref={disconnessioneSvgRef}
-                     className="w-[328.9px] h-[479.54px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
-                     style={{ transition: 'transform 0.1s linear' }}
-                      alt="Illustrazione disconnessione"
-                      src="/disconnessione.svg"
-                    />
-                  </div>
                 </div>
                 <div className="absolute w-[490px] top-[51px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-[#901d6b] text-5xl tracking-[0] leading-[39.8px]">
                   La connessione si
@@ -386,15 +317,6 @@ export const LandingPage = (): JSX.Element => {
 
             <Card className="left-[2105px] bg-[#390035] absolute w-[582px] h-[785px] top-[1842px] rounded-[50px] border-0">
               <CardContent className="p-0">
-                <div className="absolute w-[380px] h-[530px] top-[235px] left-[177px]">
-                  <img
-                   ref={connessioneSvgRef}
-                   className="w-[380px] h-[530px] object-contain drop-shadow-[0_0_10px_rgba(205,143,190,0.5)]"
-                    style={{ transition: 'transform 0.1s linear' }}
-                    alt="Illustrazione connessione"
-                    src="/connessione.svg"
-                  />
-                </div>
                 <div className="absolute w-[490px] top-[51px] left-[59px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px]">
                   È il momento di ritrovarla.
                 </div>
