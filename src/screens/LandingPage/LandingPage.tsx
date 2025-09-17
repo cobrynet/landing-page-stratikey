@@ -162,7 +162,7 @@ export const LandingPage = (): JSX.Element => {
         <div className="responsive-container bg-white overflow-hidden relative">
         <div className="absolute w-[4180px] h-[6571px] top-[-109px] left-[-1226px]">
           <div className="absolute w-[4180px] h-[6557px] top-0 left-0">
-            <div className="absolute w-[100vw] h-[3200px] top-0 left-0 bg-[linear-gradient(180deg,rgba(57,0,53,1)_0%,rgba(144,29,107,1)_50%,rgba(255,255,255,1)_100%)]" />
+            <div className="absolute w-[1728px] h-[3053px] top-[109px] left-[1226px] bg-[linear-gradient(180deg,rgba(57,0,53,1)_0%,rgba(144,29,107,1)_50%,rgba(255,255,255,1)_100%)]" />
 
             <img
               className="absolute w-[1400px] h-[1340px] top-[750px] left-[1390px] object-cover drop-shadow-[0_20px_35px_rgba(205,143,190,0.5)] transition-transform duration-300 hover:scale-110 cursor-pointer"

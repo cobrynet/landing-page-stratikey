@@ -238,14 +238,14 @@
   transform: translateY(0) scale(1);
 }
 
-/* Responsive Scaling System - estende i bordi a tutto schermo mantenendo il contenuto centrale */
+/* Responsive Scaling System - preserva la struttura originale ma scala proporzionalmente */
 .responsive-container {
   width: 1728px;
-  margin-inline: auto;
   transform-origin: top center;
   position: relative;
+  left: 50%;
   --scale: clamp(0.18, calc(100vw / 1728px), 1);
-  transform: scale(var(--scale));
+  transform: translateX(-50%) scale(var(--scale));
 }
 
 /* Large screens (1920px+) - permetti scala maggiore di 1 */
@@ -267,7 +267,6 @@
   width: 100vw;
   overflow-x: hidden;
 }
-
 
 /* Assicura che il container abbia l'altezza corretta - finisce dopo copyright */
 .responsive-container::before {
