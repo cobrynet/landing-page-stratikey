@@ -249,17 +249,48 @@
   transform: translateX(-50%) scale(var(--scale));
 }
 
-/* Mobile devices - minimo scala per evitare contenuto troppo piccolo */
-@media (max-width: 320px) {
+/* ===== SMARTPHONE RESPONSIVE OTTIMIZZATO ===== */
+
+/* Smartphone molto piccoli - minimo 280px larghezza */
+@media (max-width: 280px) {
   .responsive-container {
-    --scale: calc(320px / 1728px);
+    --scale: 0.22;
   }
 }
 
-/* Tablet portrait - scala fluida */
-@media (min-width: 321px) and (max-width: 768px) {
+/* Smartphone piccoli (iPhone SE, piccoli Android) */
+@media (min-width: 281px) and (max-width: 320px) {
+  .responsive-container {
+    --scale: 0.24;
+  }
+}
+
+/* Smartphone medi (iPhone 12 mini, Galaxy S) */
+@media (min-width: 321px) and (max-width: 375px) {
+  .responsive-container {
+    --scale: 0.26;
+  }
+}
+
+/* Smartphone grandi (iPhone 14, Pixel) */
+@media (min-width: 376px) and (max-width: 414px) {
+  .responsive-container {
+    --scale: 0.28;
+  }
+}
+
+/* Smartphone extra large (iPhone Pro Max, grandi Android) */
+@media (min-width: 415px) and (max-width: 480px) {
+  .responsive-container {
+    --scale: 0.30;
+  }
+}
+
+/* Tablet portrait - scala fluida ottimizzata */
+@media (min-width: 481px) and (max-width: 768px) {
   .responsive-container {
     --scale: calc(100vw / 1728px);
+    min-scale: 0.32;
   }
 }
 
@@ -311,10 +342,93 @@
   transform-origin: top center;
 }
 
-/* Assicura minima leggibilità su mobile */
-@media (max-width: 320px) {
+/* ===== PULSANTE FISSO RESPONSIVE SMARTPHONE ===== */
+
+/* Smartphone molto piccoli */
+@media (max-width: 280px) {
   .fixed-button-responsive {
-    --button-scale: calc(320px / 1728px);
+    --button-scale: 0.22;
+  }
+}
+
+/* Smartphone piccoli */
+@media (min-width: 281px) and (max-width: 320px) {
+  .fixed-button-responsive {
+    --button-scale: 0.24;
+  }
+}
+
+/* Smartphone medi */
+@media (min-width: 321px) and (max-width: 375px) {
+  .fixed-button-responsive {
+    --button-scale: 0.26;
+  }
+}
+
+/* Smartphone grandi */
+@media (min-width: 376px) and (max-width: 414px) {
+  .fixed-button-responsive {
+    --button-scale: 0.28;
+  }
+}
+
+/* Smartphone extra large */
+@media (min-width: 415px) and (max-width: 480px) {
+  .fixed-button-responsive {
+    --button-scale: 0.30;
+  }
+}
+
+/* ===== OTTIMIZZAZIONI SMARTPHONE ===== */
+
+/* Forza l'orientamento e il viewport su tutti i dispositivi mobili */
+@media screen and (max-width: 480px) {
+  .responsive-container {
+    /* Assicura che il contenuto sia sempre visibile */
+    min-width: 280px;
+    max-width: 100vw;
+    overflow-x: visible;
+    
+    /* Miglior rendering su dispositivi mobili */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Previeni problemi di zoom su iOS */
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+  
+  /* Ottimizzazione per touch devices */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Miglior gestione del testo su piccoli schermi */
+  .responsive-container [class*="text-"] {
+    font-kerning: optimizeSpeed;
+    text-rendering: optimizeSpeed;
+  }
+}
+
+/* Gestione landscape su smartphone */
+@media screen and (max-width: 480px) and (orientation: landscape) {
+  .responsive-container {
+    --scale: 0.18;
+    height: auto;
+    min-height: calc(6970px * 0.18);
+  }
+  
+  .fixed-button-responsive {
+    --button-scale: 0.18;
+  }
+}
+
+/* Fix per dispositivi con notch o barra di navigazione */
+@media screen and (max-width: 480px) {
+  .responsive-wrapper {
+    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
   }
 }
 
