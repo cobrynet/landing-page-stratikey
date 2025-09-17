@@ -684,7 +684,7 @@ export const LandingPage = (): JSX.Element => {
       </div>
       
       {/* Pulsante Apri form - FISSO al viewport (fuori dal responsive-container) */}
-      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] right-[600px] z-[100]">
+      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] right-[700px] z-[100]">
         <button 
           id="open-modal-btn"
           className="glow-button flex items-center justify-center gap-2 group cursor-pointer w-full h-full border-none" 
