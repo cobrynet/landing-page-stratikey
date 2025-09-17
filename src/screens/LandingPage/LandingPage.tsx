@@ -1,6 +1,7 @@
 import React from "react";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { Card, CardContent } from "../../components/ui/card";
+import { RegistrationModal } from "../../components/RegistrationModal";
 
 const featureBadges = [
   {
@@ -56,6 +57,7 @@ const ellipseImages = [
 
 
 export const LandingPage = (): JSX.Element => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -139,161 +141,13 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
-  React.useEffect(() => {
-    // Modal functionality setup
-    const setupModalFunctionality = () => {
-      const openModalBtn = document.getElementById('open-modal-btn');
-      const closeModalBtn = document.getElementById('close-modal-btn');
-      const modalOverlay = document.getElementById('modal-overlay');
-      const contactForm = document.getElementById('contact-form') as HTMLFormElement;
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
 
-      // Open modal
-      const openModal = () => {
-        if (modalOverlay) {
-          modalOverlay.style.display = 'flex';
-          document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
-      };
-
-      // Close modal
-      const closeModal = () => {
-        if (modalOverlay) {
-          modalOverlay.style.display = 'none';
-          document.body.style.overflow = 'auto'; // Restore background scrolling
-        }
-      };
-
-      // Event listeners
-      if (openModalBtn) {
-        openModalBtn.addEventListener('click', openModal);
-      }
-
-      // Add listeners for "Registrati adesso" button
-      const registratiAdessoBtn = document.querySelector('.glass-button') as HTMLElement;
-      if (registratiAdessoBtn) {
-        registratiAdessoBtn.addEventListener('click', openModal);
-      }
-
-      // Add listener for "Registrati" button in footer
-      const registratiFooterBtn = document.querySelector('button[class*="cursor-pointer"][class*="hover:text-"]') as HTMLElement;
-      if (registratiFooterBtn && registratiFooterBtn.textContent?.includes('Registrati')) {
-        registratiFooterBtn.addEventListener('click', openModal);
-      }
-      
-      if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeModal);
-      }
-
-      // Close modal when clicking outside the content
-      const handleOverlayClick = (e: Event) => {
-        if (e.target === modalOverlay) {
-          closeModal();
-        }
-      };
-
-      if (modalOverlay) {
-        modalOverlay.addEventListener('click', handleOverlayClick);
-      }
-
-      // Handle form submission
-      const handleFormSubmit = (e: Event) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = {
-          name: formData.get('name') as string,
-          company: formData.get('company') as string,
-          phone: formData.get('phone') as string,
-          email: formData.get('email') as string,
-          terms: formData.get('terms') as string
-        };
-
-        // Form validation
-        let isValid = true;
-        let errorMessage = '';
-
-        // Check required fields
-        if (!data.name || data.name.trim() === '') {
-          isValid = false;
-          errorMessage = 'Nome e Cognome è obbligatorio.';
-        } else if (!data.company || data.company.trim() === '') {
-          isValid = false;
-          errorMessage = 'Azienda è obbligatoria.';
-        } else if (!data.phone || data.phone.trim() === '') {
-          isValid = false;
-          errorMessage = 'Telefono è obbligatorio.';
-        } else if (!data.email || data.email.trim() === '') {
-          isValid = false;
-          errorMessage = 'Email è obbligatoria.';
-        } else if (!data.terms) {
-          isValid = false;
-          errorMessage = 'Devi accettare i termini e condizioni.';
-        }
-
-        // Email validation
-        if (isValid && data.email) {
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(data.email)) {
-            isValid = false;
-            errorMessage = 'Inserisci un indirizzo email valido.';
-          }
-        }
-
-        if (!isValid) {
-          alert(errorMessage);
-          return;
-        }
-
-        // Here you can handle the form data (send to API, etc.)
-        console.log('Form data:', data);
-        
-        // Show success message
-        alert('Grazie per averci contattato! Ti risponderemo al più presto.');
-        
-        // Reset form and close modal
-        contactForm.reset();
-        closeModal();
-      };
-
-      if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmit);
-      }
-
-      // Close modal on Escape key
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          closeModal();
-        }
-      };
-      
-      document.addEventListener('keydown', handleKeyDown);
-
-      // Cleanup function
-      return () => {
-        if (openModalBtn) {
-          openModalBtn.removeEventListener('click', openModal);
-        }
-        if (closeModalBtn) {
-          closeModalBtn.removeEventListener('click', closeModal);
-        }
-        if (modalOverlay) {
-          modalOverlay.removeEventListener('click', handleOverlayClick);
-        }
-        if (contactForm) {
-          contactForm.removeEventListener('submit', handleFormSubmit);
-        }
-        document.removeEventListener('keydown', handleKeyDown);
-        document.body.style.overflow = 'auto';
-      };
-    };
-
-    // Setup modal functionality
-    const cleanup = setupModalFunctionality();
-    
-    return cleanup;
-  }, []);
-
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
@@ -334,7 +188,7 @@ export const LandingPage = (): JSX.Element => {
 
 
             <div className="absolute w-[276px] h-[50px] top-[716px] left-[1952px]">
-              <div className="glass-button w-full h-full cursor-pointer">
+              <div className="glass-button w-full h-full cursor-pointer" onClick={handleOpenModal}>
                 <div className="glass-surface">
                   <div className="glass-highlight"></div>
                   <div className="glass-refraction"></div>
@@ -518,6 +372,7 @@ export const LandingPage = (): JSX.Element => {
                       Piattaforma
                     </h4>
                     <button 
+                      onClick={handleOpenModal}
                       className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px] mt-[8px] cursor-pointer hover:text-[#901d6b] transition-colors duration-200 bg-transparent border-none p-0 text-left"
                     >
                       Registrati
@@ -680,19 +535,15 @@ export const LandingPage = (): JSX.Element => {
         </div>
 
 
+          <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
         </div>
       </div>
       
-      {/* Pulsante Apri form - FISSO al viewport (fuori dal responsive-container) */}
-      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]">
-        <button 
-          id="open-modal-btn"
-          className="glow-button flex items-center justify-center gap-2 group cursor-pointer w-full h-full border-none" 
-          style={{ background: 'rgba(144, 29, 107, 0.3)' }}
-          aria-label="Apri form di contatto"
-        >
+      {/* Pulsante Registrati ora - FISSO al viewport (fuori dal responsive-container) */}
+      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]" onClick={handleOpenModal}>
+        <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
             <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-base sm:text-lg md:text-xl tracking-[0] leading-[normal] antialiased">
-              Apri form
+              Registrati ora
             </span>
             <svg 
               className="w-3 sm:w-3.5 md:w-4 h-2.5 sm:h-2.5 md:h-3 fill-white opacity-90 mt-0.5 transition-transform group-hover:translate-x-0.5" 
@@ -701,284 +552,6 @@ export const LandingPage = (): JSX.Element => {
             >
               <path d="M15.707 6.707a1 1 0 0 0 0-1.414L10.343.929A1 1 0 0 0 8.929 2.343L12.586 6 8.929 9.657a1 1 0 1 0 1.414 1.414l4.364-4.364zM0 7h15V5H0v2z"/>
             </svg>
-        </button>
-      </div>
-
-      {/* Modal */}
-      <div 
-        id="modal-overlay" 
-        className="modal-overlay"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-title"
-        style={{
-          display: 'none',
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.7)',
-          zIndex: '1000',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <div 
-          className="modal-content"
-          style={{
-            background: 'rgba(116, 58, 136, 0.25)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            padding: '2.5rem',
-            borderRadius: '24px',
-            width: '90%',
-            maxWidth: '500px',
-            height: '650px',
-            overflow: 'visible',
-            position: 'relative',
-            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset'
-          }}
-        >
-          {/* Close button */}
-          <button 
-            id="close-modal-btn"
-            style={{
-              position: 'absolute',
-              top: '1rem',
-              right: '1rem',
-              background: 'none',
-              border: 'none',
-              fontSize: '1.5rem',
-              cursor: 'pointer',
-              color: '#fff',
-              width: '30px',
-              height: '30px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              opacity: '0.8'
-            }}
-          >
-            ×
-          </button>
-
-          {/* Stratikey Logo */}
-          <div style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '1rem' }}>
-            <img 
-              src="/stratikey-logo.png" 
-              alt="Stratikey Logo" 
-              style={{ 
-                width: '80px', 
-                height: '80px', 
-                display: 'block',
-                margin: '0 auto 1.5rem auto'
-              }} 
-            />
-          </div>
-
-          {/* Form */}
-          <form id="contact-form" style={{ textAlign: 'center' }}>
-            <h2 
-              id="modal-title"
-              style={{ 
-                fontFamily: "'Outfit', Helvetica", 
-                fontWeight: '600', 
-                color: '#ffffff', 
-                marginBottom: '0.5rem',
-                fontSize: '1.75rem',
-                textAlign: 'center'
-              }}
-            >
-              Registrati alla
-            </h2>
-            <h2 
-              style={{ 
-                fontFamily: "'Outfit', Helvetica", 
-                fontWeight: '600', 
-                color: '#ffffff', 
-                marginBottom: '1rem',
-                fontSize: '1.75rem',
-                textAlign: 'center'
-              }}
-            >
-              lista di attesa!
-            </h2>
-            <p style={{
-              fontFamily: "'Outfit', Helvetica",
-              color: 'rgba(255, 255, 255, 0.8)',
-              fontSize: '0.9rem',
-              marginBottom: '2rem',
-              textAlign: 'center'
-            }}>
-              Lascia i tuoi dati per ricevere l'ingresso in anteprima
-            </p>
-
-            {/* Nome e Cognome */}
-            <div style={{ marginBottom: '1rem' }}>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                placeholder="Nome e Cognome"
-                required
-                style={{
-                  width: '100%',
-                  padding: '1rem',
-                  background: 'rgba(0, 0, 0, 0.3)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '25px',
-                  fontSize: '1rem',
-                  fontFamily: "'Outfit', Helvetica",
-                  color: '#ffffff',
-                  boxSizing: 'border-box',
-                  outline: 'none'
-                }}
-              />
-            </div>
-
-            {/* Azienda */}
-            <div style={{ marginBottom: '1rem' }}>
-              <input 
-                type="text" 
-                id="company" 
-                name="company" 
-                placeholder="Azienda"
-                required
-                style={{
-                  width: '100%',
-                  padding: '1rem',
-                  background: 'rgba(0, 0, 0, 0.3)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '25px',
-                  fontSize: '1rem',
-                  fontFamily: "'Outfit', Helvetica",
-                  color: '#ffffff',
-                  boxSizing: 'border-box',
-                  outline: 'none'
-                }}
-              />
-            </div>
-
-            {/* Telefono */}
-            <div style={{ marginBottom: '1rem' }}>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                placeholder="Telefono"
-                required
-                style={{
-                  width: '100%',
-                  padding: '1rem',
-                  background: 'rgba(0, 0, 0, 0.3)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '25px',
-                  fontSize: '1rem',
-                  fontFamily: "'Outfit', Helvetica",
-                  color: '#ffffff',
-                  boxSizing: 'border-box',
-                  outline: 'none'
-                }}
-              />
-            </div>
-
-            {/* Email */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                placeholder="Email"
-                required
-                style={{
-                  width: '100%',
-                  padding: '1rem',
-                  background: 'rgba(0, 0, 0, 0.3)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '25px',
-                  fontSize: '1rem',
-                  fontFamily: "'Outfit', Helvetica",
-                  color: '#ffffff',
-                  boxSizing: 'border-box',
-                  outline: 'none'
-                }}
-              />
-            </div>
-
-            {/* Checkbox Terms */}
-            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-              <label 
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  fontFamily: "'Outfit', Helvetica", 
-                  fontSize: '0.9rem',
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  cursor: 'pointer'
-                }}
-              >
-                <input 
-                  type="checkbox" 
-                  id="terms" 
-                  name="terms" 
-                  required
-                  style={{
-                    accentColor: '#b85aa3',
-                    transform: 'scale(1.2)'
-                  }}
-                />
-                <span>Accetta 
-                  <a 
-                    href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    style={{
-                      color: '#d16bb7',
-                      textDecoration: 'underline',
-                      marginLeft: '0.2rem',
-                      marginRight: '0.2rem'
-                    }}
-                  >
-                    Termini e Condizioni
-                  </a>
-                </span>
-              </label>
-            </div>
-
-            {/* Submit Button */}
-            <button 
-              type="submit"
-              style={{
-                width: '100%',
-                padding: '1rem 2rem',
-                background: 'linear-gradient(45deg, #b85aa3 0%, #d16bb7 100%)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '25px',
-                fontSize: '1.1rem',
-                fontFamily: "'Outfit', Helvetica",
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
-              }}
-              onMouseOver={(e) => {
-                (e.target as HTMLButtonElement).style.transform = 'translateY(-2px)';
-                (e.target as HTMLButtonElement).style.boxShadow = '0 8px 20px rgba(184, 90, 163, 0.4)';
-              }}
-              onMouseOut={(e) => {
-                (e.target as HTMLButtonElement).style.transform = 'translateY(0)';
-                (e.target as HTMLButtonElement).style.boxShadow = 'none';
-              }}
-            >
-              ACCEDI
-            </button>
-          </form>
         </div>
       </div>
     </div>
