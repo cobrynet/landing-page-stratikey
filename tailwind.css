@@ -268,6 +268,43 @@
   overflow-x: hidden;
 }
 
+/* sicurezza generale */
+html, body { height: 100%; }
+body { margin: 0; overflow-x: hidden; }
+
+/* >>> Rendi tutte le sezioni full-bleed quando il body ha .bleed-all <<< */
+.bleed-all :where(section, header, footer, .section, .hero, .banner, .strip, .block) {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100vw;              /* sfondo/gradient/immagini a tutta larghezza */
+}
+
+/* I contenuti interni restano centrati e con max-width */
+:where(section, header, footer, .section, .hero, .banner, .strip, .block)
+  > :where(.container, .wrapper, .inner, .content) {
+  width: 100%;
+  max-width: 1320px;         /* usa il tuo valore */
+  margin-inline: auto;
+  padding-inline: clamp(16px, 2vw, 32px);
+}
+
+/* Media responsiva semplice (non cambia il design) */
+@media (min-aspect-ratio: 21/9) and (min-width: 1400px) {
+  :where(section, header, footer, .section, .hero, .banner, .strip, .block)
+    > :where(.container, .wrapper, .inner, .content) {
+    max-width: 1680px;       /* un po' più largo su ultrawide */
+  }
+}
+
+/* Se esiste un wrapper globale che "stringe" tutto il sito, neutralizzalo */
+:where(.site, .page, #page, .layout, .site-wrap) {
+  max-width: none !important;
+  width: 100% !important;
+}
+
 /* Assicura che il container abbia l'altezza corretta - finisce dopo copyright */
 .responsive-container::before {
   content: '';
