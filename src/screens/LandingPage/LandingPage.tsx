@@ -931,7 +931,21 @@ export const LandingPage = (): JSX.Element => {
                     transform: 'scale(1.2)'
                   }}
                 />
-                <span>Accetta Termini e Condizioni</span>
+                <span>Accetta 
+                  <a 
+                    href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{
+                      color: '#d16bb7',
+                      textDecoration: 'underline',
+                      marginLeft: '0.2rem',
+                      marginRight: '0.2rem'
+                    }}
+                  >
+                    Termini e Condizioni
+                  </a>
+                </span>
               </label>
             </div>
 
