@@ -50,7 +50,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
       const result = await response.json();
       
       if (response.ok && result.success) {
-        setSubmitMessage(result.message || 'Registrazione completata con successo!');
+        setSubmitMessage('GRAZIE PER ESSERTI REGISTRATO');
         
         // Clear form after successful submission
         setTimeout(() => {
