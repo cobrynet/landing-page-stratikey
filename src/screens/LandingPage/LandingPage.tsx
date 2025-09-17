@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { Card, CardContent } from "../../components/ui/card";
-import { RegistrationModal } from "../../components/RegistrationModal";
 
 const featureBadges = [
   {
@@ -57,7 +56,6 @@ const ellipseImages = [
 
 
 export const LandingPage = (): JSX.Element => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -141,13 +139,6 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
@@ -188,7 +179,7 @@ export const LandingPage = (): JSX.Element => {
 
 
             <div className="absolute w-[276px] h-[50px] top-[716px] left-[1952px]">
-              <div className="glass-button w-full h-full cursor-pointer" onClick={handleOpenModal}>
+              <div className="glass-button w-full h-full cursor-pointer">
                 <div className="glass-surface">
                   <div className="glass-highlight"></div>
                   <div className="glass-refraction"></div>
@@ -372,7 +363,6 @@ export const LandingPage = (): JSX.Element => {
                       Piattaforma
                     </h4>
                     <button 
-                      onClick={handleOpenModal}
                       className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px] mt-[8px] cursor-pointer hover:text-[#901d6b] transition-colors duration-200 bg-transparent border-none p-0 text-left"
                     >
                       Registrati
@@ -535,12 +525,11 @@ export const LandingPage = (): JSX.Element => {
         </div>
 
 
-          <RegistrationModal isOpen={isModalOpen} onClose={handleCloseModal} />
         </div>
       </div>
       
       {/* Pulsante Registrati ora - FISSO al viewport (fuori dal responsive-container) */}
-      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]" onClick={handleOpenModal}>
+      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]">
         <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
             <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-base sm:text-lg md:text-xl tracking-[0] leading-[normal] antialiased">
               Registrati ora
