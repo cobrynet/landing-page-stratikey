@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { Card, CardContent } from "../../components/ui/card";
 
 const featureBadges = [
@@ -56,6 +56,7 @@ const ellipseImages = [
 
 
 export const LandingPage = (): JSX.Element => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -139,6 +140,21 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData.entries());
+    console.log('Form data:', data);
+    handleCloseModal();
+  };
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
@@ -515,7 +531,7 @@ export const LandingPage = (): JSX.Element => {
       </div>
       
       {/* Pulsante Registrati ora - FISSO al viewport */}
-      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]">
+      <div className="fixed w-[200px] sm:w-[220px] md:w-[240px] lg:w-[246px] h-[44px] sm:h-[48px] md:h-[50px] top-[70px] sm:top-[78px] md:top-[82px] left-1/2 transform -translate-x-1/2 z-[100]" onClick={handleOpenModal}>
         <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
             <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-base sm:text-lg md:text-xl tracking-[0] leading-[normal] antialiased">
               Registrati ora
@@ -529,6 +545,124 @@ export const LandingPage = (): JSX.Element => {
             </svg>
         </div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[200] p-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto relative">
+            {/* Pulsante chiudi X */}
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+              type="button"
+            >
+              ×
+            </button>
+            
+            {/* Contenuto del modal */}
+            <div className="p-6 pt-8">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                Registrati a Stratikey
+              </h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Nome e Cognome */}
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Nome e Cognome *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Inserisci il tuo nome e cognome"
+                  />
+                </div>
+
+                {/* Azienda */}
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                    Azienda *
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Nome della tua azienda"
+                  />
+                </div>
+
+                {/* Telefono */}
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    Telefono *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="+39 123 456 7890"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="tua@email.com"
+                  />
+                </div>
+
+                {/* Checkbox Termini */}
+                <div className="flex items-start space-x-2">
+                  <input
+                    type="checkbox"
+                    id="terms"
+                    name="terms"
+                    required
+                    className="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="terms" className="text-sm text-gray-700">
+                    Accetto i{' '}
+                    <a
+                      href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-purple-600 hover:text-purple-800 underline"
+                    >
+                      termini e condizioni
+                    </a>
+                    {' '}*
+                  </label>
+                </div>
+
+                {/* Pulsante Submit */}
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-4 rounded-md hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 font-medium"
+                  >
+                    Invia Registrazione
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
