@@ -241,16 +241,17 @@
 /* Responsive Scaling System - SICURO e corretto per tutti gli schermi */
 .responsive-container {
   width: 1728px;
-  transform-origin: top center;
   position: relative;
   left: 50%;
   /* Fallback per browser senza supporto calc() con divisione */
   --scale: clamp(0.18, 1, 1.6);
-  transform: translateX(-50%) scale(var(--scale));
+  /* Usa zoom invece di transform per non interferire con animazioni */
+  zoom: var(--scale);
+  transform: translateX(-50%);
 }
 
 /* Supporto calc() con divisione per browser moderni */
-@supports (transform: scale(calc(100vw / 1728px))) {
+@supports (zoom: calc(100vw / 1728px)) {
   .responsive-container {
     /* Scala fluida sicura usando larghezza design corretta */
     --scale: clamp(0.18, calc(100vw / 1728px), 1.8);
