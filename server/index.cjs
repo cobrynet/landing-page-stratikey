@@ -36,8 +36,8 @@ const getEmailTemplate = (templateName, variables = {}) => {
   }
 };
 
-// Path to Stratikey logo
-const logoPath = path.resolve(__dirname, '..', 'attached_assets', 'SIMBOLO FACEBOOK_1758177896292.png');
+// Path to Stratikey logo (in production-safe location)
+const logoPath = path.resolve(__dirname, 'assets', 'stratikey-logo.png');
 
 async function sendEmail(options) {
   const transporter = createGmailTransporter();
@@ -143,19 +143,30 @@ Dettagli del nuovo utente:
 L'utente ha ricevuto automaticamente l'email di conferma HTML.
     `.trim();
 
+    // Prepare email attachments
+    let attachments = [];
+    try {
+      // Check if logo file exists before attaching
+      if (fs.existsSync(logoPath)) {
+        attachments.push({
+          filename: 'stratikey-logo.png',
+          path: logoPath,
+          cid: 'stratikey-logo@inline'
+        });
+      } else {
+        console.warn('Logo file not found, sending email without logo attachment');
+      }
+    } catch (error) {
+      console.error('Error checking logo file:', error);
+    }
+
     // Send confirmation email to the user (HTML + text fallback)
     const userResult = await sendEmail({
       to: email,
       subject: 'Grazie per esserti registrato - Stratikey',
       text: userEmailText,
       html: userEmailHtml,
-      attachments: [
-        {
-          filename: 'stratikey-logo.png',
-          path: logoPath,
-          cid: 'stratikey-logo@inline'
-        }
-      ]
+      attachments: attachments
     });
 
     console.log('User confirmation email sent successfully:', userResult);

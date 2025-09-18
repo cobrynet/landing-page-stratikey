@@ -63,6 +63,10 @@ localPort = 33159
 externalPort = 3000
 
 [[ports]]
+localPort = 37571
+externalPort = 4200
+
+[[ports]]
 localPort = 41403
 externalPort = 3001
 
@@ -75,6 +79,6 @@ localPort = 46085
 externalPort = 3003
 
 [deployment]
-deploymentTarget = "autoscale"
-run = ["bash", "-c", "npx vite preview --host 0.0.0.0 --port $PORT"]
+deploymentTarget = "vm"
+run = ["bash", "-c", "npm run backend & npm run dev"]
 build = ["npm", "run", "build"]
