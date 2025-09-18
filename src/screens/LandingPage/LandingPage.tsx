@@ -477,7 +477,7 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             {/* Copyright */}
-            <div className="absolute w-[1194px] top-[6950px] left-[1493px] text-center">
+            <div className="absolute w-[1194px] top-[6850px] left-[1493px] text-center">
               <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
                 © 2025 Cobrynet – Tutti i diritti riservati.
               </div>
