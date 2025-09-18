@@ -236,7 +236,7 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             {/* Pulsante Registrati Ora sotto il testo hero */}
-            <div className="absolute top-[680px] left-[1891px] w-[246px] h-[50px]" onClick={handleOpenModal}>
+            <div className="absolute top-[680px] left-[1941px] w-[246px] h-[50px]" onClick={handleOpenModal}>
               <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
                   <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
                     Registrati ora
