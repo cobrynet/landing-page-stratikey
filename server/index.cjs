@@ -3,51 +3,16 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
 const path = require('path');
-// Use ReplitMail for email sending - inline implementation
-function getAuthToken() {
-  const xReplitToken = process.env.REPL_IDENTITY
-    ? "repl " + process.env.REPL_IDENTITY
-    : process.env.WEB_REPL_RENEWAL
-      ? "depl " + process.env.WEB_REPL_RENEWAL
-      : null;
+// Use Resend for email sending
+const { Resend } = require('resend');
 
-  if (!xReplitToken) {
-    throw new Error(
-      "No authentication token found. Please set REPL_IDENTITY or ensure you're running in Replit environment."
-    );
-  }
+// Initialize Resend with API key
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-  return xReplitToken;
-}
-
-async function sendReplitEmail(message) {
-  const authToken = getAuthToken();
-
-  const response = await fetch(
-    "https://connectors.replit.com/api/v2/mailer/send",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X_REPLIT_TOKEN": authToken,
-      },
-      body: JSON.stringify({
-        to: message.to,
-        cc: message.cc,
-        subject: message.subject,
-        text: message.text,
-        html: message.html,
-        attachments: message.attachments,
-      }),
-    }
-  );
-
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || "Failed to send email");
-  }
-
-  return await response.json();
+// Validate required environment variables on startup
+if (!process.env.RESEND_API_KEY) {
+  console.error('ERROR: Missing required Resend API key (RESEND_API_KEY)');
+  process.exit(1);
 }
 
 // Load and process HTML email template
@@ -73,23 +38,51 @@ const getEmailTemplate = (templateName, variables = {}) => {
 const logoPath = path.resolve(__dirname, 'assets', 'stratikey-logo.png');
 
 async function sendEmail(options) {
-  const msg = {
-    to: options.to,
-    subject: options.subject,
-    text: options.text,
-    html: options.html
-  };
-
   try {
-    const result = await sendReplitEmail(msg);
+    // Prepare attachments for Resend format
+    let resendAttachments = [];
+    if (options.attachments && options.attachments.length > 0) {
+      for (const attachment of options.attachments) {
+        if (fs.existsSync(attachment.path)) {
+          const fileContent = fs.readFileSync(attachment.path);
+          resendAttachments.push({
+            filename: attachment.filename,
+            content: fileContent.toString('base64'),
+            contentType: 'image/png',
+            contentId: attachment.cid
+          });
+        }
+      }
+    }
+
+    const emailData = {
+      from: 'Stratikey <onboarding@resend.dev>',
+      to: [options.to],
+      subject: options.subject,
+      text: options.text,
+      html: options.html,
+    };
+
+    // Add attachments only if they exist
+    if (resendAttachments.length > 0) {
+      emailData.attachments = resendAttachments;
+    }
+
+    const { data, error } = await resend.emails.send(emailData);
+
+    if (error) {
+      console.error('Resend API error:', error);
+      throw new Error(`Resend API error: ${error.message}`);
+    }
+
     return {
-      accepted: result.accepted || [options.to],
-      rejected: result.rejected || [],
-      messageId: result.messageId,
-      response: 'Email sent successfully with ReplitMail'
+      accepted: [options.to],
+      rejected: [],
+      messageId: data.id,
+      response: 'Email sent successfully with Resend'
     };
   } catch (error) {
-    console.error('ReplitMail sending error:', error);
+    console.error('Resend sending error:', error);
     throw new Error(`Failed to send email: ${error.message}`);
   }
 }
@@ -231,9 +224,8 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// ReplitMail uses Replit's internal authentication - no API keys needed
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Registration API server running on port ${port}`);
-  console.log('ReplitMail configured successfully');
+  console.log('Resend configured successfully');
 });
