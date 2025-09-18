@@ -7,20 +7,20 @@ export default async function handler(req, res) {
   // Accept only POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ 
-      ok: false, 
-      error: 'Method Not Allowed' 
+      success: false, 
+      message: 'Metodo non consentito' 
     });
   }
 
   try {
-    // Extract fields from request body
-    const { to, name } = req.body;
+    // Extract fields from request body (compatible with frontend)
+    const { email, name, company, phone, acceptTerms } = req.body;
 
     // Validate required fields
-    if (!to) {
+    if (!email) {
       return res.status(400).json({ 
-        ok: false, 
-        error: 'Missing required field: to' 
+        success: false, 
+        message: 'Campo email obbligatorio mancante' 
       });
     }
 
@@ -28,15 +28,15 @@ export default async function handler(req, res) {
     if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY environment variable is not set');
       return res.status(500).json({ 
-        ok: false, 
-        error: 'Email service not configured properly' 
+        success: false, 
+        message: 'Servizio email non configurato correttamente' 
       });
     }
 
     // Send email with Resend
     const { data, error } = await resend.emails.send({
       from: 'Stratikey <info@stratikey.com>',
-      to: to,
+      to: email,
       subject: 'Grazie per esserti registrato!',
       html: welcomeEmail(name || 'utente')
     });
@@ -44,16 +44,17 @@ export default async function handler(req, res) {
     if (error) {
       console.error('Resend email error:', error);
       return res.status(500).json({ 
-        ok: false, 
-        error: error.message || 'Failed to send email'
+        success: false,
+        message: error.message || 'Errore durante l\'invio dell\'email'
       });
     }
 
     console.log('Registration email sent successfully with Resend:', data.id);
 
-    // Return success response matching expected format
+    // Return success response matching frontend expectations
     return res.status(200).json({ 
-      ok: true,
+      success: true,
+      message: 'Registrazione completata con successo!',
       id: data.id
     });
 
@@ -61,8 +62,8 @@ export default async function handler(req, res) {
     console.error('Email sending error:', error);
     
     return res.status(500).json({ 
-      ok: false, 
-      error: error.message || 'Failed to send email'
+      success: false, 
+      message: error.message || 'Errore durante la registrazione'
     });
   }
 }
