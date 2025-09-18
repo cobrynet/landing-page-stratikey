@@ -35,7 +35,7 @@ export default async function handler(req, res) {
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'Stratikey <onboarding@resend.dev>',
+      from: 'Stratikey <info@stratikey.com>',
       to: to,
       subject: 'Grazie per esserti registrato!',
       html: welcomeEmail(name),
