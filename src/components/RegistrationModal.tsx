@@ -249,7 +249,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
 
                 {/* Status Message */}
                 {submitMessage && (
-                  <div className={`mb-4 text-center text-sm md:text-base ${submitMessage === 'GRAZIE PER ESSERTI REGISTRATO' ? 'text-green-400' : 'text-red-400'}`}>
+                  <div className={`mb-4 text-center text-sm md:text-base ${submitMessage === 'GRAZIE PER ESSERTI REGISTRATO' ? 'text-green-400' : 'text-red-400'}`} style={{ fontFamily: 'Outfit' }}>
                     {submitMessage}
                   </div>
                 )}
