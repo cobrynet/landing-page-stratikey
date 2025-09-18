@@ -1,10 +1,18 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,js,ts,jsx,tsx}",
-    "app/**/*.{ts,tsx}",
-    "components/**/*.{ts,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",     // 32px ai lati
+      screens: {
+        sm:  "640px",
+        md:  "768px",
+        lg:  "1024px",
+        xl:  "1280px",
+        "2xl": "1400px",   // custom max
+      },
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -66,6 +74,9 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "rotate-ellipses": "rotate-ellipses 15s linear infinite",
+        "rotate-ellipses-slow": "rotate-ellipses-slow 25s linear infinite",
+        "rotate-ellipses-fast": "rotate-ellipses-fast 10s linear infinite",
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -75,7 +86,6 @@ module.exports = {
         "rotate-ellipses-fast": "rotate-ellipses-fast 10s linear infinite",
       },
     },
-    container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
   },
   plugins: [],
   darkMode: ["class"],

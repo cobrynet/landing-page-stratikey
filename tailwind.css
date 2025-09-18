@@ -639,6 +639,9 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; margin: 0; }
 }
 
 @layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video { max-width: 100%; height: auto; display: block; }
+
   * {
     @apply border-border;
   }
@@ -1478,4 +1481,11 @@ h3 { font-size: var(--fs-h3); line-height: 1.2; margin: 0; }
     background: radial-gradient(50% 50% at 50% 21%, rgba(255, 107, 157, 0.8) 0%, rgba(144, 29, 107, 1) 50%, rgba(57, 0, 53, 1) 100%);
   }
 
+}
+
+@layer utilities {
+  /* Titolo e lead reattivi senza rompere il design */
+  .fluid-h1   { font-size: clamp(28px, 4.2vw + 8px, 56px); line-height: 1.15; }
+  .fluid-lead { font-size: clamp(16px, 1.2vw + 10px, 20px); line-height: 1.6; }
+  .section-y  { padding-top: clamp(32px, 6vw, 96px); padding-bottom: clamp(32px, 6vw, 96px); }
 }
