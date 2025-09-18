@@ -36,6 +36,9 @@ const getEmailTemplate = (templateName, variables = {}) => {
   }
 };
 
+// Path to Stratikey logo
+const logoPath = path.resolve(__dirname, '..', 'attached_assets', 'LOGOTIPO BIANCOpng_1758176751278.png');
+
 async function sendEmail(options) {
   const transporter = createGmailTransporter();
   
@@ -44,7 +47,8 @@ async function sendEmail(options) {
     to: options.to,
     subject: options.subject,
     text: options.text,
-    html: options.html
+    html: options.html,
+    attachments: options.attachments || []
   };
 
   try {
@@ -144,7 +148,14 @@ L'utente ha ricevuto automaticamente l'email di conferma HTML.
       to: email,
       subject: 'Grazie per esserti registrato - Stratikey',
       text: userEmailText,
-      html: userEmailHtml
+      html: userEmailHtml,
+      attachments: [
+        {
+          filename: 'stratikey-logo.png',
+          path: logoPath,
+          cid: 'stratikey-logo@inline'
+        }
+      ]
     });
 
     console.log('User confirmation email sent successfully:', userResult);
