@@ -86,6 +86,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
           -webkit-text-fill-color: #ffffff !important;
           color-scheme: dark;
           caret-color: #ffffff;
+          font-family: 'Outfit', Helvetica, sans-serif !important;
         }
         input.modal-input:-webkit-autofill,
         input.modal-input:-webkit-autofill:hover,
@@ -127,9 +128,10 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
 
           {/* Modal Content - Responsive */}
           <div 
-            className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] backdrop-blur-lg bg-[#390035] bg-opacity-90 overflow-hidden pb-6 md:pb-8"
+            className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] overflow-hidden pb-6 md:pb-8"
             style={{ 
-              borderRadius: '23px'
+              borderRadius: '23px',
+              backgroundColor: '#390035'
             }}
           >
             {/* Logo/Icon - Responsive */}
@@ -143,17 +145,17 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
 
             {/* Title - Responsive */}
             <div className="text-center mt-6 md:mt-8 lg:mt-10 px-4">
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-2 md:mb-4" style={{ fontFamily: 'Outfit' }}>
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-2 md:mb-4" style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}>
                 Registrati alla
               </h2>
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium" style={{ fontFamily: 'Outfit' }}>
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium" style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}>
                 lista di attesa!
               </h2>
             </div>
 
             {/* Subtitle - Responsive */}
             <div className="text-center mt-4 md:mt-6 lg:mt-8 px-4">
-              <p className="text-[#cd8fbe] text-sm sm:text-base md:text-lg font-light" style={{ fontFamily: 'Outfit' }}>
+              <p className="text-[#cd8fbe] text-sm sm:text-base md:text-lg font-light" style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}>
                 Lascia i tuoi dati per ricevere l'ingresso in anteprima
               </p>
             </div>
@@ -170,7 +172,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     value={formData.name}
                     onChange={handleInputChange}
                     className="modal-input w-full h-12 md:h-14 px-4 md:px-6 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-base md:text-lg placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
-                    style={{ fontFamily: 'Outfit', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
+                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
                     placeholder="Nome e Cognome"
                     required
                   />
@@ -184,7 +186,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     value={formData.company}
                     onChange={handleInputChange}
                     className="modal-input w-full h-12 md:h-14 px-4 md:px-6 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-base md:text-lg placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
-                    style={{ fontFamily: 'Outfit', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
+                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
                     placeholder="Azienda"
                     required
                   />
@@ -198,7 +200,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="modal-input w-full h-12 md:h-14 px-4 md:px-6 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-base md:text-lg placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
-                    style={{ fontFamily: 'Outfit', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
+                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
                     placeholder="Telefono"
                   />
                 </div>
@@ -211,7 +213,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     value={formData.email}
                     onChange={handleInputChange}
                     className="modal-input w-full h-12 md:h-14 px-4 md:px-6 bg-transparent border-2 border-[#dda6dc] border-opacity-50 rounded-full text-white text-base md:text-lg placeholder-[#cd8fbe] focus:outline-none focus:border-[#cd8fbe] transition-colors"
-                    style={{ fontFamily: 'Outfit', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
+                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
                     placeholder="Email"
                     required
                   />
@@ -241,7 +243,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ml-3 text-[#cd8fbe] underline hover:text-[#901d6b] transition-colors cursor-pointer text-sm md:text-base leading-relaxed"
-                    style={{ fontFamily: 'Outfit', fontWeight: '300' }}
+                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300' }}
                   >
                     Accetta Termini e Condizioni
                   </a>
@@ -249,7 +251,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
 
                 {/* Status Message */}
                 {submitMessage && (
-                  <div className={`mb-4 text-center text-sm md:text-base ${submitMessage === 'GRAZIE PER ESSERTI REGISTRATO' ? 'text-green-400' : 'text-red-400'}`} style={{ fontFamily: 'Outfit' }}>
+                  <div className={`mb-4 text-center text-sm md:text-base ${submitMessage === 'GRAZIE PER ESSERTI REGISTRATO' ? 'text-green-400' : 'text-red-400'}`} style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}>
                     {submitMessage}
                   </div>
                 )}
@@ -259,7 +261,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                   type="submit"
                   disabled={isSubmitting || !formData.acceptTerms}
                   className="w-full h-12 md:h-14 bg-[#901d6b] hover:bg-[#b15197] disabled:bg-gray-600 disabled:cursor-not-allowed text-white text-lg md:text-xl font-semibold rounded-full transition-colors"
-                  style={{ fontFamily: 'Outfit' }}
+                  style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}
                 >
                   {isSubmitting ? 'INVIO IN CORSO...' : 'ACCEDI'}
                 </button>
