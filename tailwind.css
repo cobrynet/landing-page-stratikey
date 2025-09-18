@@ -284,6 +284,54 @@
   overflow-x: hidden;
 }
 
+/* ===== OTTIMIZZAZIONI MOBILE ===== */
+
+/* Miglioramento touch targets per mobile - pulsanti più grandi */
+@media (max-width: 768px) {
+  /* Pulsante registrazione più accessibile su mobile */
+  .glow-button {
+    min-height: 48px !important;
+    min-width: 200px !important;
+    padding: 12px 20px !important;
+  }
+  
+  /* Modal più centrato e accessibile su mobile */
+  .fixed.inset-0 {
+    padding: 16px !important;
+  }
+  
+  /* Riduzione animazioni per performance mobile */
+  .animate-spiral-interweave,
+  .animate-spiral-flip, 
+  .animate-spiral-weave {
+    animation-duration: 30s !important; /* Più lente per risparmiare batteria */
+  }
+  
+  /* Miglioramento leggibilità testi su schermi piccoli */
+  .responsive-container {
+    /* Scale più generosa per mobile */
+    --scale: clamp(0.22, calc(100vw / 1728px), 1.2) !important;
+  }
+}
+
+/* Ottimizzazioni per touch gestures */
+@media (hover: none) and (pointer: coarse) {
+  /* Rimuovi hover effects su dispositivi touch */
+  .card:hover, 
+  .quad:hover {
+    transform: none !important;
+    filter: none !important;
+    box-shadow: initial !important;
+  }
+  
+  /* Card touch-friendly con tap effects */
+  .card:active,
+  .quad:active {
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
+  }
+}
+
 /* Assicura che il container abbia l'altezza corretta - finisce dopo copyright */
 .responsive-container::before {
   content: '';
