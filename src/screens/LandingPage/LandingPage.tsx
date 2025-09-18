@@ -56,9 +56,6 @@ const ellipseImages = [
 
 
 export const LandingPage = (): JSX.Element => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -142,62 +139,6 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSuccessMessage('');
-    setIsSubmitting(false);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Mostra immediatamente il messaggio richiesto
-    setSuccessMessage('Grazie per esserti registrato alla lista di attesa! ti verrà inviata un email per confermare che la registrazione è andata a buon fine!');
-    
-    const formData = new FormData(e.target as HTMLFormElement);
-    const data = Object.fromEntries(formData.entries());
-    console.log('Form data:', data);
-    
-    try {
-      // Invia i dati all'API per l'invio email
-      const response = await fetch('/api/send-registration', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: data.name,
-          company: data.company,
-          email: data.email,
-          phone: data.phone,
-          acceptTerms: true
-        })
-      });
-
-      const result = await response.json();
-      
-      if (!response.ok || !result.success) {
-        console.error('Error sending registration:', result.message);
-        // Mantiene il messaggio di successo anche se l'API fallisce
-      }
-      
-    } catch (error) {
-      console.error('Error during registration:', error);
-      // Mantiene il messaggio di successo anche se c'è un errore di rete
-    } finally {
-      setIsSubmitting(false);
-      
-      // Chiude il modal dopo 3 secondi
-      setTimeout(() => {
-        handleCloseModal();
-      }, 3000);
-    }
-  };
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
@@ -236,7 +177,7 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             {/* Pulsante Registrati Ora sotto il testo hero */}
-            <div className="absolute top-[720px] left-[1961px] w-[246px] h-[50px]" onClick={handleOpenModal}>
+            <div className="absolute top-[720px] left-[1961px] w-[246px] h-[50px]">
               <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
                   <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
                     Registrati ora
@@ -425,7 +366,6 @@ export const LandingPage = (): JSX.Element => {
                       Piattaforma
                     </h4>
                     <button 
-                      onClick={handleOpenModal}
                       className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px] mt-[8px] cursor-pointer hover:text-[#901d6b] transition-colors duration-200 bg-transparent border-none p-0 text-left"
                     >
                       Registrati
@@ -591,133 +531,6 @@ export const LandingPage = (): JSX.Element => {
       </div>
       
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[200] p-4">
-          <div className="bg-gradient-to-b from-purple-900/90 to-purple-800/90 backdrop-blur-sm rounded-3xl shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto relative border border-purple-600/30">
-            {/* Pulsante chiudi X */}
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-              type="button"
-            >
-              ×
-            </button>
-            
-            {/* Logo */}
-            <div className="flex justify-center pt-8 pb-4">
-              <img
-                src="/stratikey-alto.png"
-                alt="Stratikey"
-                className="h-12 w-auto object-contain"
-              />
-            </div>
-            
-            {/* Contenuto del modal */}
-            <div className="px-8 pb-8">
-              <h2 className="text-2xl font-semibold text-white mb-2 text-center">
-                Registrati alla lista di attesa!
-              </h2>
-              
-              {/* Messaggio di successo in cima */}
-              {successMessage && (
-                <div className="mb-4 p-4 bg-green-600/20 border border-green-500/30 rounded-lg">
-                  <p className="text-green-200 text-center text-sm font-medium">
-                    {successMessage}
-                  </p>
-                </div>
-              )}
-              
-              <p className="text-purple-200 text-center mb-6 text-sm">
-                Lascia i tuoi dati per ricevere l'ingresso in anteprima
-              </p>
-              
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Nome e Cognome */}
-                <div>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent backdrop-blur-sm"
-                    placeholder="Nome e Cognome"
-                  />
-                </div>
-
-                {/* Azienda */}
-                <div>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent backdrop-blur-sm"
-                    placeholder="Azienda"
-                  />
-                </div>
-
-                {/* Telefono */}
-                <div>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent backdrop-blur-sm"
-                    placeholder="Telefono"
-                  />
-                </div>
-
-                {/* Email */}
-                <div>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-full text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent backdrop-blur-sm"
-                    placeholder="Email"
-                  />
-                </div>
-
-                {/* Checkbox Termini */}
-                <div className="flex items-center justify-center space-x-2 pt-2">
-                  <input
-                    type="checkbox"
-                    id="terms"
-                    name="terms"
-                    required
-                    className="h-4 w-4 text-pink-400 focus:ring-pink-400 border-white/30 rounded bg-white/10"
-                  />
-                  <label htmlFor="terms" className="text-sm text-purple-200">
-                    Accetto{' '}
-                    <a
-                      href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-pink-300 hover:text-pink-200 underline"
-                    >
-                      Termini e Condizioni
-                    </a>
-                  </label>
-                </div>
-
-                {/* Pulsante Submit */}
-                <div className="pt-6">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-pink-600 to-pink-500 text-white py-3 px-8 rounded-full hover:from-pink-700 hover:to-pink-600 disabled:from-gray-600 disabled:to-gray-500 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-purple-900 transition-all duration-200 font-medium text-lg"
-                  >
-                    {isSubmitting ? 'INVIO IN CORSO...' : 'ACCEDI'}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
