@@ -34,8 +34,9 @@ const getEmailTemplate = (templateName, variables = {}) => {
   }
 };
 
-// Path to Stratikey logo (in production-safe location)
+// Path to Stratikey logos (in production-safe location)
 const logoPath = path.resolve(__dirname, 'assets', 'stratikey-logo.png');
+const logoWhitePath = path.resolve(__dirname, 'assets', 'stratikey-logo-white.png');
 
 async function sendEmail(options) {
   try {
@@ -49,7 +50,8 @@ async function sendEmail(options) {
             filename: attachment.filename,
             content: fileContent.toString('base64'),
             contentType: 'image/png',
-            contentId: attachment.cid
+            contentId: attachment.cid,
+            disposition: 'inline'
           });
         }
       }
@@ -154,8 +156,17 @@ Grazie per essere con noi!
 Team Stratikey
     `.trim();
 
-    // Build email content for admin notification
-    const adminEmailContent = `
+    // Build email content for admin notification using HTML template
+    const adminEmailHtml = getEmailTemplate('admin-notification', {
+      name: name,
+      company: company || 'Non specificata',
+      email: email,
+      phone: phone || 'Non specificato',
+      registrationDate: new Date().toLocaleString('it-IT')
+    });
+
+    // Fallback text content for admin
+    const adminEmailText = `
 NUOVA REGISTRAZIONE ALLA LISTA D'ATTESA
 
 Dettagli del nuovo utente:
@@ -168,21 +179,21 @@ Dettagli del nuovo utente:
 L'utente ha ricevuto automaticamente l'email di conferma HTML.
     `.trim();
 
-    // Prepare email attachments
+    // Prepare email attachments with white logo
     let attachments = [];
     try {
-      // Check if logo file exists before attaching
-      if (fs.existsSync(logoPath)) {
+      // Check if white logo file exists before attaching
+      if (fs.existsSync(logoWhitePath)) {
         attachments.push({
-          filename: 'stratikey-logo.png',
-          path: logoPath,
-          cid: 'stratikey-logo@inline'
+          filename: 'stratikey-logo-white.png',
+          path: logoWhitePath,
+          cid: 'stratikey-logo-white@inline'
         });
       } else {
-        console.warn('Logo file not found, sending email without logo attachment');
+        console.warn('White logo file not found, sending email without logo attachment');
       }
     } catch (error) {
-      console.error('Error checking logo file:', error);
+      console.error('Error checking white logo file:', error);
     }
 
     // Send confirmation email to the user (HTML + text fallback)
@@ -196,11 +207,13 @@ L'utente ha ricevuto automaticamente l'email di conferma HTML.
 
     console.log('User confirmation email sent successfully:', userResult);
 
-    // Send notification email to admin
+    // Send notification email to admin with same design
     const adminResult = await sendEmail({
       to: 'info@stratikey.com',
       subject: `Nuova registrazione: ${name}`,
-      text: adminEmailContent
+      text: adminEmailText,
+      html: adminEmailHtml,
+      attachments: attachments
     });
 
     console.log('Admin notification email sent successfully:', adminResult);

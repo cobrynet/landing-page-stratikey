@@ -63,6 +63,15 @@ export default async function handler(req, res) {
       firstName: firstName
     });
 
+    // Build email content for admin notification using HTML template
+    const adminEmailHtml = getEmailTemplate('admin-notification', {
+      name: name,
+      company: company || 'Non specificata',
+      email: email,
+      phone: phone || 'Non specificato',
+      registrationDate: new Date().toLocaleString('it-IT')
+    });
+
     // Fallback text email content
     const userEmailText = `
 Ciao ${firstName},
@@ -84,8 +93,8 @@ Grazie per essere con noi!
 Team Stratikey
     `.trim();
 
-    // Build email content for admin notification
-    const adminEmailContent = `
+    // Fallback text content for admin
+    const adminEmailText = `
 NUOVA REGISTRAZIONE ALLA LISTA D'ATTESA
 
 Dettagli del nuovo utente:
@@ -98,14 +107,39 @@ Dettagli del nuovo utente:
 L'utente ha ricevuto automaticamente l'email di conferma HTML.
     `.trim();
 
+    // Prepare white logo attachment for both emails
+    let logoAttachment = null;
+    try {
+      const logoWhitePath = path.resolve(process.cwd(), 'server', 'assets', 'stratikey-logo-white.png');
+      if (fs.existsSync(logoWhitePath)) {
+        const fileContent = fs.readFileSync(logoWhitePath);
+        logoAttachment = {
+          filename: 'stratikey-logo-white.png',
+          content: fileContent.toString('base64'),
+          contentType: 'image/png',
+          contentId: 'stratikey-logo-white@inline',
+          disposition: 'inline'
+        };
+      }
+    } catch (error) {
+      console.error('Error loading white logo for attachments:', error);
+    }
+
     // Send confirmation email to the user
-    const { data: userData, error: userError } = await resend.emails.send({
+    const userEmailData = {
       from: 'Stratikey <info@stratikey.com>',
       to: [email],
       subject: 'Grazie per esserti registrato - Stratikey',
       text: userEmailText,
       html: userEmailHtml || userEmailText, // Fallback to text if HTML fails
-    });
+    };
+
+    // Add logo attachment if available
+    if (logoAttachment) {
+      userEmailData.attachments = [logoAttachment];
+    }
+
+    const { data: userData, error: userError } = await resend.emails.send(userEmailData);
 
     if (userError) {
       console.error('Resend user email error:', userError);
@@ -117,13 +151,21 @@ L'utente ha ricevuto automaticamente l'email di conferma HTML.
 
     console.log('User confirmation email sent successfully:', userData.id);
 
-    // Send notification email to admin
-    const { data: adminData, error: adminError } = await resend.emails.send({
+    // Send notification email to admin with same design
+    const adminEmailData = {
       from: 'Stratikey <info@stratikey.com>',
       to: ['info@stratikey.com'],
       subject: `Nuova registrazione: ${name}`,
-      text: adminEmailContent
-    });
+      text: adminEmailText,
+      html: adminEmailHtml || adminEmailText, // Fallback to text if HTML fails
+    };
+
+    // Add logo attachment if available
+    if (logoAttachment) {
+      adminEmailData.attachments = [logoAttachment];
+    }
+
+    const { data: adminData, error: adminError } = await resend.emails.send(adminEmailData);
 
     if (adminError) {
       console.error('Resend admin email error:', adminError);
