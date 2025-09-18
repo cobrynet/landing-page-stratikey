@@ -186,9 +186,13 @@ L'utente ha ricevuto automaticamente l'email di conferma HTML.
     }
 
     // Send confirmation email to the user (HTML + text fallback)
+    // NOTA: In modalità test Resend, invia a stratikey@gmail.com invece che all'utente
+    const testMode = true; // Cambia a false quando dominio è verificato
+    const emailRecipient = testMode ? 'stratikey@gmail.com' : email;
+    
     const userResult = await sendEmail({
-      to: email,
-      subject: 'Grazie per esserti registrato - Stratikey',
+      to: emailRecipient,
+      subject: `Grazie per esserti registrato - Stratikey ${testMode ? `(Test per: ${email})` : ''}`,
       text: userEmailText,
       html: userEmailHtml,
       attachments: attachments
