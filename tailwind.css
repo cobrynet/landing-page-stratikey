@@ -245,7 +245,7 @@
   position: relative;
   left: 50%;
   /* Fallback per browser senza supporto calc() con divisione */
-  --scale: clamp(0.18, 1, 1.1);
+  --scale: clamp(0.18, 1, 1.6);
   transform: translateX(-50%) scale(var(--scale));
 }
 
@@ -253,27 +253,34 @@
 @supports (transform: scale(calc(100vw / 1728px))) {
   .responsive-container {
     /* Scala fluida sicura usando larghezza design corretta */
-    --scale: clamp(0.18, calc(100vw / 1728px), 1.2);
+    --scale: clamp(0.18, calc(100vw / 1728px), 1.8);
   }
 
   /* Schermi medi (1400px-1919px) - scala ottimale */
   @media (min-width: 1400px) and (max-width: 1919.98px) {
     .responsive-container {
-      --scale: clamp(0.8, calc(100vw / 1728px), 1.1);
+      --scale: clamp(0.8, calc(100vw / 1728px), 1.4);
     }
   }
 
   /* Schermi grandi (1920px-2559px) - scala corretta senza overflow */
   @media (min-width: 1920px) and (max-width: 2559.98px) {
     .responsive-container {
-      --scale: clamp(1.0, calc(100vw / 1728px), 1.3);
+      --scale: clamp(1.0, calc(100vw / 1728px), 1.6);
     }
   }
 
-  /* Schermi 4K (2560px+) - scala massima controllata */
+  /* Schermi 4K e ultrawide (2560px+) - scala massima per riempire schermo */
   @media (min-width: 2560px) {
     .responsive-container {
-      --scale: clamp(1.2, calc(100vw / 1728px), 1.4);
+      --scale: clamp(1.2, calc(100vw / 1728px), 2.0);
+    }
+  }
+
+  /* Ultrawide specifici (21:9, 32:9) - ancora più scale */
+  @media (min-width: 3440px) {
+    .responsive-container {
+      --scale: clamp(1.5, calc(100vw / 1728px), 2.5);
     }
   }
 }
