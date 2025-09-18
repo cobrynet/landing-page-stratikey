@@ -1,0 +1,49 @@
+Genera un’email HTML responsive (compatibile con i client email principali: Gmail, Outlook, Apple Mail). 
+Usa markup a tabelle (600px max-width) con CSS inline dove necessario.
+
+Brand: Stratikey — prendi ispirazione dallo stile del sito https://www.stratikey.com/
+Palette: gradiente porpora/viola scuro (bordo superiore scuro #2b0029 → #7a1c66), card bianche con border-radius ampio, testo bianco su sfondi scuri, ombre morbide.
+Font: Google Fonts “Outfit” (fallback sans-serif). 
+Look&feel: moderno, elegante, ampio respiro, angoli arrotondati 24px, pulsanti pill con leggero shadow.
+
+Contenuti richiesti (in italiano):
+1) Header con il **logo Stratikey** centrato in alto (usa un placeholder se il logo non è disponibile, ma commenta dove inserirlo). 
+2) Hero con gradiente stile Stratikey e titolo grande:
+   - Titolo (H1): “Grazie per esserti registrato!”
+   - Sottotitolo: “Sei ufficialmente nella nostra sala d’attesa.”
+3) Card bianca con testo di ringraziamento:
+   - Paragrafo 1: “Ciao {{firstName}}, grazie per l’interesse verso Stratikey. Sei tra i primi che contatteremo per aggiornamenti, accessi anticipati e novità.”
+   - Paragrafo 2: “In qualità di early supporter, potrai accedere allo **sconto pre-lancio** riservato alla lista d’attesa.”
+4) Call to action primaria (bottone pill, colore brand):
+   - Testo bottone: “Scopri lo sconto pre-lancio”
+   - URL placeholder: https://www.stratikey.com/
+5) Sezione “Cosa aspettarti” a tre punti (icone semplici o emoji se necessario):
+   - “Aggiornamenti esclusivi sul lancio”
+   - “Invito prioritario all’anteprima”
+   - “Sconto pre-lancio riservato”
+6) Footer scuro coerente col brand con:
+   - Testo piccolo e leggibile
+   - Email contatti: info@stratikey.com (cliccabile mailto)
+   - Link al sito: https://www.stratikey.com/ (cliccabile)
+   - Nota privacy breve: “Ricevi questa email perché ti sei registrato alla sala d’attesa di Stratikey.”
+
+Requisiti tecnici:
+- Larghezza contenitore 600px, centrato, con padding adeguato.
+- Gradiente di sfondo full-width nella hero.
+- Titoli in Outfit grassetto, testi in Outfit regular; dimensioni adatte all’email (H1 ~28–32px desktop, 24–26px mobile).
+- Pulsante con border-radius 9999px, hover leggero (dove supportato).
+- Spaziatura verticale ampia e coerente (24–32px).
+- Immagini responsive (max-width:100%; height:auto).
+- Mobile: font leggermente più grandi e padding aumentato via media query; assicurarsi che il bottone sia facilmente tappabile (min 44px di altezza).
+- Solo CSS inline e media query nel <style> con target mobile; evitare JS.
+- Commenta nel codice i punti dove inserire il vero logo (es. <img src="...">) e dove personalizzare i link.
+
+Testo da usare (placeholders inclusi):
+- H1: “Grazie per esserti registrato!”
+- Intro: “Ciao {{firstName}}, grazie per l’interesse verso Stratikey. Sei tra i primi che contatteremo per aggiornamenti, accessi anticipati e novità.”
+- Benefit: “In qualità di early supporter, potrai accedere allo sconto pre-lancio riservato alla lista d’attesa.”
+- CTA: “Scopri lo sconto pre-lancio” → https://www.stratikey.com/
+- Footer: “Per info, scrivici a info@stratikey.com • www.stratikey.com”
+
+Output richiesto:
+- Un unico file HTML pronto per l’invio via qualsiasi ESP (Mailchimp, Brevo, Amazon SES, ecc.), con CSS inline e commenti chiari.

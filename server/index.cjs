@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
+const fs = require('fs');
+const path = require('path');
 // Use Gmail SMTP with nodemailer
 const nodemailer = require('nodemailer');
 
@@ -13,6 +15,25 @@ const createGmailTransporter = () => {
       pass: process.env.GMAIL_APP_PASSWORD // Your Gmail App Password
     }
   });
+};
+
+// Load and process HTML email template
+const getEmailTemplate = (templateName, variables = {}) => {
+  try {
+    const templatePath = path.join(__dirname, 'email-templates', `${templateName}.html`);
+    let htmlTemplate = fs.readFileSync(templatePath, 'utf8');
+    
+    // Replace placeholders with actual values
+    Object.keys(variables).forEach(key => {
+      const placeholder = `{{${key}}}`;
+      htmlTemplate = htmlTemplate.replace(new RegExp(placeholder, 'g'), variables[key]);
+    });
+    
+    return htmlTemplate;
+  } catch (error) {
+    console.error('Error loading email template:', error);
+    return null;
+  }
 };
 
 async function sendEmail(options) {
@@ -75,9 +96,33 @@ app.post('/api/send-registration', registrationLimiter, async (req, res) => {
       });
     }
     
-    // Build email content for user confirmation
-    const userEmailContent = `
-GRAZIE PER ESSERTI REGISTRATO ALLA LISTA D'ATTESA, VERRAI RICONTATTATO A BREVE
+    // Extract first name from full name for personalization
+    const firstName = name.split(' ')[0];
+
+    // Build email content for user confirmation using HTML template
+    const userEmailHtml = getEmailTemplate('registration-confirmation', {
+      firstName: firstName
+    });
+
+    // Fallback text email content
+    const userEmailText = `
+Ciao ${firstName},
+
+Grazie per esserti registrato alla lista d'attesa di Stratikey!
+
+Sei tra i primi che contatteremo per aggiornamenti, accessi anticipati e novità.
+In qualità di early supporter, potrai accedere allo sconto pre-lancio riservato alla lista d'attesa.
+
+Cosa aspettarti:
+• Aggiornamenti esclusivi sul lancio
+• Invito prioritario all'anteprima  
+• Sconto pre-lancio riservato
+
+Per info: info@stratikey.com
+Sito web: https://www.stratikey.com/
+
+Grazie per essere con noi!
+Team Stratikey
     `.trim();
 
     // Build email content for admin notification
@@ -91,14 +136,15 @@ Dettagli del nuovo utente:
 - Telefono: ${phone || 'Non specificato'}
 - Data registrazione: ${new Date().toLocaleString('it-IT')}
 
-L'utente ha ricevuto automaticamente l'email di conferma.
+L'utente ha ricevuto automaticamente l'email di conferma HTML.
     `.trim();
 
-    // Send confirmation email to the user
+    // Send confirmation email to the user (HTML + text fallback)
     const userResult = await sendEmail({
       to: email,
-      subject: 'Conferma registrazione - Stratikey',
-      text: userEmailContent
+      subject: 'Grazie per esserti registrato - Stratikey',
+      text: userEmailText,
+      html: userEmailHtml
     });
 
     console.log('User confirmation email sent successfully:', userResult);
