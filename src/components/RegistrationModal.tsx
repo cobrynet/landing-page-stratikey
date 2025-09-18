@@ -134,13 +134,16 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
               backgroundColor: '#390035'
             }}
           >
-            {/* Logo/Icon - Responsive */}
-            <div className="flex justify-center pt-12 md:pt-16 lg:pt-20">
+            {/* Logo/Icon + Text - Responsive */}
+            <div className="flex items-center justify-center gap-3 pt-12 md:pt-16 lg:pt-20">
               <img 
                 src="/simbolo-stratikey.png" 
-                alt="Stratikey Logo" 
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 object-contain"
+                alt="Stratikey Symbol" 
+                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain"
               />
+              <span className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium" style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}>
+                stratikey
+              </span>
             </div>
 
             {/* Title - Responsive */}
