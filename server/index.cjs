@@ -3,19 +3,15 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
 const path = require('path');
-// Use Gmail SMTP with nodemailer
-const nodemailer = require('nodemailer');
+// Use SendGrid for email sending
+const sgMail = require('@sendgrid/mail');
 
-// Gmail SMTP transporter configuration
-const createGmailTransporter = () => {
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER, // Your Gmail address
-      pass: process.env.GMAIL_APP_PASSWORD // Your Gmail App Password
-    }
-  });
-};
+// SendGrid configuration
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+} else {
+  console.error('SENDGRID_API_KEY not found - email sending will fail');
+}
 
 // Load and process HTML email template
 const getEmailTemplate = (templateName, variables = {}) => {
@@ -40,27 +36,27 @@ const getEmailTemplate = (templateName, variables = {}) => {
 const logoPath = path.resolve(__dirname, 'assets', 'stratikey-logo.png');
 
 async function sendEmail(options) {
-  const transporter = createGmailTransporter();
-  
-  const mailOptions = {
-    from: process.env.GMAIL_USER,
+  const msg = {
     to: options.to,
+    from: 'info@stratikey.com', // Must be verified in SendGrid
     subject: options.subject,
     text: options.text,
-    html: options.html,
-    attachments: options.attachments || []
+    html: options.html
   };
 
   try {
-    const result = await transporter.sendMail(mailOptions);
+    const result = await sgMail.send(msg);
     return {
       accepted: [options.to],
       rejected: [],
-      messageId: result.messageId,
-      response: 'Email sent successfully with Gmail'
+      messageId: result[0].headers['x-message-id'],
+      response: 'Email sent successfully with SendGrid'
     };
   } catch (error) {
-    console.error('Gmail sending error:', error);
+    console.error('SendGrid sending error:', error);
+    if (error.response) {
+      console.error('SendGrid response:', error.response.body);
+    }
     throw new Error(`Failed to send email: ${error.message}`);
   }
 }
@@ -90,10 +86,13 @@ const registrationLimiter = rateLimit({
 // Registration endpoint with rate limiting
 app.post('/api/send-registration', registrationLimiter, async (req, res) => {
   try {
-    const { name, company, email, phone, acceptTerms } = req.body;
+    const { name, company, email, phone, acceptTerms, terms } = req.body;
+    
+    // Handle both acceptTerms (boolean) and terms (checkbox "on") formats
+    const termsAccepted = acceptTerms === true || acceptTerms === 'true' || terms === 'on' || terms === true;
     
     // Validate required fields
-    if (!name || !email || !acceptTerms) {
+    if (!name || !email || !termsAccepted) {
       return res.status(400).json({ 
         success: false, 
         message: 'Campi obbligatori mancanti' 
@@ -200,12 +199,12 @@ app.get('/api/health', (req, res) => {
 });
 
 // Validate required environment variables on startup
-if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-  console.error('ERROR: Missing required Gmail credentials (GMAIL_USER, GMAIL_APP_PASSWORD)');
+if (!process.env.SENDGRID_API_KEY) {
+  console.error('ERROR: Missing required SendGrid API key (SENDGRID_API_KEY)');
   process.exit(1);
 }
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Registration API server running on port ${port}`);
-  console.log('Gmail SMTP configured successfully');
+  console.log('SendGrid configured successfully');
 });

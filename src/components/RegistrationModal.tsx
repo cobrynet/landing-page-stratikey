@@ -3,7 +3,7 @@ import React from 'react';
 interface RegistrationModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (e: React.FormEvent<Element>) => Promise<void>;
   isSubmitting: boolean;
   successMessage: string;
 }
