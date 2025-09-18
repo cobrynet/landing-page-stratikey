@@ -238,27 +238,43 @@
   transform: translateY(0) scale(1);
 }
 
-/* Responsive Scaling System - preserva la struttura originale ma scala proporzionalmente */
+/* Responsive Scaling System - SICURO e corretto per tutti gli schermi */
 .responsive-container {
   width: 1728px;
   transform-origin: top center;
   position: relative;
   left: 50%;
-  --scale: clamp(0.18, calc(100vw / 1728px), 1);
+  /* Fallback per browser senza supporto calc() con divisione */
+  --scale: clamp(0.18, 1, 1.1);
   transform: translateX(-50%) scale(var(--scale));
 }
 
-/* Large screens (1920px+) - permetti scala maggiore di 1 */
-@media (min-width: 1920px) {
+/* Supporto calc() con divisione per browser moderni */
+@supports (transform: scale(calc(100vw / 1728px))) {
   .responsive-container {
-    --scale: 1.1;
+    /* Scala fluida sicura usando larghezza design corretta */
+    --scale: clamp(0.18, calc(100vw / 1728px), 1.2);
   }
-}
 
-/* Per dispositivi molto grandi, usa scala massima 1 */
-@media (min-width: 1728px) {
-  .responsive-container {
-    --scale: 1;
+  /* Schermi medi (1400px-1919px) - scala ottimale */
+  @media (min-width: 1400px) and (max-width: 1919.98px) {
+    .responsive-container {
+      --scale: clamp(0.8, calc(100vw / 1728px), 1.1);
+    }
+  }
+
+  /* Schermi grandi (1920px-2559px) - scala corretta senza overflow */
+  @media (min-width: 1920px) and (max-width: 2559.98px) {
+    .responsive-container {
+      --scale: clamp(1.0, calc(100vw / 1728px), 1.3);
+    }
+  }
+
+  /* Schermi 4K (2560px+) - scala massima controllata */
+  @media (min-width: 2560px) {
+    .responsive-container {
+      --scale: clamp(1.2, calc(100vw / 1728px), 1.4);
+    }
   }
 }
 
