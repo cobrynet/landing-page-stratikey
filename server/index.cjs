@@ -56,7 +56,7 @@ async function sendEmail(options) {
     }
 
     const emailData = {
-      from: 'Stratikey <onboarding@resend.dev>',
+      from: 'Stratikey <info@stratikey.com>',
       to: [options.to],
       subject: options.subject,
       text: options.text,
@@ -186,13 +186,9 @@ L'utente ha ricevuto automaticamente l'email di conferma HTML.
     }
 
     // Send confirmation email to the user (HTML + text fallback)
-    // NOTA: In modalità test Resend, invia a stratikey@gmail.com invece che all'utente
-    const testMode = true; // Cambia a false quando dominio è verificato
-    const emailRecipient = testMode ? 'stratikey@gmail.com' : email;
-    
     const userResult = await sendEmail({
-      to: emailRecipient,
-      subject: `Grazie per esserti registrato - Stratikey ${testMode ? `(Test per: ${email})` : ''}`,
+      to: email,
+      subject: 'Grazie per esserti registrato - Stratikey',
       text: userEmailText,
       html: userEmailHtml,
       attachments: attachments
@@ -202,7 +198,7 @@ L'utente ha ricevuto automaticamente l'email di conferma HTML.
 
     // Send notification email to admin
     const adminResult = await sendEmail({
-      to: 'stratikey@gmail.com',
+      to: 'info@stratikey.com',
       subject: `Nuova registrazione: ${name}`,
       text: adminEmailContent
     });
