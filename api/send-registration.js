@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { welcomeEmail } from '../emails/welcome.js';
+import { adminNotificationEmail } from '../emails/admin-notification.js';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -33,29 +34,56 @@ export default async function handler(req, res) {
       });
     }
 
-    // Send email with Resend
-    const { data, error } = await resend.emails.send({
+    // Send welcome email to user
+    const { data: userData, error: userError } = await resend.emails.send({
       from: 'Stratikey <info@stratikey.com>',
       to: email,
       subject: 'Grazie per esserti registrato!',
       html: welcomeEmail(name || 'utente')
     });
 
-    if (error) {
-      console.error('Resend email error:', error);
+    if (userError) {
+      console.error('User email error:', userError);
       return res.status(500).json({ 
         success: false,
-        message: error.message || 'Errore durante l\'invio dell\'email'
+        message: userError.message || 'Errore durante l\'invio dell\'email di conferma'
       });
     }
 
-    console.log('Registration email sent successfully with Resend:', data.id);
+    console.log('User welcome email sent successfully:', userData.id);
+
+    // Send notification email to admin
+    const { data: adminData, error: adminError } = await resend.emails.send({
+      from: 'Stratikey <info@stratikey.com>',
+      to: 'info@stratikey.com',
+      subject: `Nuova registrazione: ${name}`,
+      html: adminNotificationEmail({ name, company, email, phone, acceptTerms }),
+      text: `NUOVA REGISTRAZIONE ALLA LISTA D'ATTESA
+
+Dettagli del nuovo utente:
+- Nome: ${name}
+- Azienda: ${company || 'Non specificata'}
+- Email: ${email}
+- Telefono: ${phone || 'Non specificato'}
+- Data registrazione: ${new Date().toLocaleString('it-IT')}
+
+L'utente ha ricevuto automaticamente l'email di conferma HTML.`
+    });
+
+    if (adminError) {
+      console.error('Admin notification email error:', adminError);
+      // Log error but don't fail the entire request since user email was sent
+      console.warn('User registration succeeded but admin notification failed');
+    } else {
+      console.log('Admin notification email sent successfully:', adminData.id);
+    }
 
     // Return success response matching frontend expectations
     return res.status(200).json({ 
       success: true,
       message: 'Registrazione completata con successo!',
-      id: data.id
+      userEmailId: userData.id,
+      adminEmailId: adminData?.id || null
     });
 
   } catch (error) {
