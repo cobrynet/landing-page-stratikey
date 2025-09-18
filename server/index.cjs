@@ -3,14 +3,51 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
 const path = require('path');
-// Use SendGrid for email sending
-const sgMail = require('@sendgrid/mail');
+// Use ReplitMail for email sending - inline implementation
+function getAuthToken() {
+  const xReplitToken = process.env.REPL_IDENTITY
+    ? "repl " + process.env.REPL_IDENTITY
+    : process.env.WEB_REPL_RENEWAL
+      ? "depl " + process.env.WEB_REPL_RENEWAL
+      : null;
 
-// SendGrid configuration
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-} else {
-  console.error('SENDGRID_API_KEY not found - email sending will fail');
+  if (!xReplitToken) {
+    throw new Error(
+      "No authentication token found. Please set REPL_IDENTITY or ensure you're running in Replit environment."
+    );
+  }
+
+  return xReplitToken;
+}
+
+async function sendReplitEmail(message) {
+  const authToken = getAuthToken();
+
+  const response = await fetch(
+    "https://connectors.replit.com/api/v2/mailer/send",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X_REPLIT_TOKEN": authToken,
+      },
+      body: JSON.stringify({
+        to: message.to,
+        cc: message.cc,
+        subject: message.subject,
+        text: message.text,
+        html: message.html,
+        attachments: message.attachments,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || "Failed to send email");
+  }
+
+  return await response.json();
 }
 
 // Load and process HTML email template
@@ -38,25 +75,21 @@ const logoPath = path.resolve(__dirname, 'assets', 'stratikey-logo.png');
 async function sendEmail(options) {
   const msg = {
     to: options.to,
-    from: 'info@stratikey.com', // Must be verified in SendGrid
     subject: options.subject,
     text: options.text,
     html: options.html
   };
 
   try {
-    const result = await sgMail.send(msg);
+    const result = await sendReplitEmail(msg);
     return {
-      accepted: [options.to],
-      rejected: [],
-      messageId: result[0].headers['x-message-id'],
-      response: 'Email sent successfully with SendGrid'
+      accepted: result.accepted || [options.to],
+      rejected: result.rejected || [],
+      messageId: result.messageId,
+      response: 'Email sent successfully with ReplitMail'
     };
   } catch (error) {
-    console.error('SendGrid sending error:', error);
-    if (error.response) {
-      console.error('SendGrid response:', error.response.body);
-    }
+    console.error('ReplitMail sending error:', error);
     throw new Error(`Failed to send email: ${error.message}`);
   }
 }
@@ -198,13 +231,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Validate required environment variables on startup
-if (!process.env.SENDGRID_API_KEY) {
-  console.error('ERROR: Missing required SendGrid API key (SENDGRID_API_KEY)');
-  process.exit(1);
-}
+// ReplitMail uses Replit's internal authentication - no API keys needed
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Registration API server running on port ${port}`);
-  console.log('SendGrid configured successfully');
+  console.log('ReplitMail configured successfully');
 });
