@@ -131,19 +131,16 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
             className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] overflow-hidden pb-6 md:pb-8"
             style={{ 
               borderRadius: '23px',
-              backgroundColor: '#390035'
+              background: 'linear-gradient(180deg, #390035 0%, #5a1450 50%, #7d2569 100%)'
             }}
           >
-            {/* Logo/Icon + Text - Responsive */}
-            <div className="flex items-center justify-center gap-3 pt-12 md:pt-16 lg:pt-20">
+            {/* Logo Symbol Only - Responsive */}
+            <div className="flex justify-center pt-12 md:pt-16 lg:pt-20">
               <img 
                 src="/simbolo-stratikey.png" 
                 alt="Stratikey Symbol" 
-                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 object-contain"
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain"
               />
-              <span className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium" style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}>
-                stratikey
-              </span>
             </div>
 
             {/* Title - Responsive */}
@@ -174,8 +171,16 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="modal-input w-full h-12 md:h-14 px-4 md:px-6 bg-transparent border border-[#cd8fbe] border-opacity-30 rounded-full text-white text-base md:text-lg placeholder-[#cd8fbe] placeholder-opacity-70 focus:outline-none focus:border-[#cd8fbe] focus:border-opacity-60 transition-all duration-200"
-                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
+                    className="modal-input w-full h-14 px-6 rounded-full text-white text-lg placeholder-white placeholder-opacity-60 focus:outline-none transition-all duration-200"
+                    style={{ 
+                      fontFamily: 'Outfit, Helvetica, sans-serif', 
+                      fontWeight: '300', 
+                      color: '#ffffff', 
+                      WebkitTextFillColor: '#ffffff', 
+                      caretColor: '#ffffff',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
                     placeholder="Nome e Cognome"
                     required
                   />
@@ -188,8 +193,16 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="modal-input w-full h-12 md:h-14 px-4 md:px-6 bg-transparent border border-[#cd8fbe] border-opacity-30 rounded-full text-white text-base md:text-lg placeholder-[#cd8fbe] placeholder-opacity-70 focus:outline-none focus:border-[#cd8fbe] focus:border-opacity-60 transition-all duration-200"
-                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
+                    className="modal-input w-full h-14 px-6 rounded-full text-white text-lg placeholder-white placeholder-opacity-60 focus:outline-none transition-all duration-200"
+                    style={{ 
+                      fontFamily: 'Outfit, Helvetica, sans-serif', 
+                      fontWeight: '300', 
+                      color: '#ffffff', 
+                      WebkitTextFillColor: '#ffffff', 
+                      caretColor: '#ffffff',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
                     placeholder="Azienda"
                     required
                   />
@@ -202,8 +215,16 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="modal-input w-full h-12 md:h-14 px-4 md:px-6 bg-transparent border border-[#cd8fbe] border-opacity-30 rounded-full text-white text-base md:text-lg placeholder-[#cd8fbe] placeholder-opacity-70 focus:outline-none focus:border-[#cd8fbe] focus:border-opacity-60 transition-all duration-200"
-                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
+                    className="modal-input w-full h-14 px-6 rounded-full text-white text-lg placeholder-white placeholder-opacity-60 focus:outline-none transition-all duration-200"
+                    style={{ 
+                      fontFamily: 'Outfit, Helvetica, sans-serif', 
+                      fontWeight: '300', 
+                      color: '#ffffff', 
+                      WebkitTextFillColor: '#ffffff', 
+                      caretColor: '#ffffff',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
                     placeholder="Telefono"
                   />
                 </div>
@@ -215,8 +236,16 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, on
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="modal-input w-full h-12 md:h-14 px-4 md:px-6 bg-transparent border border-[#cd8fbe] border-opacity-30 rounded-full text-white text-base md:text-lg placeholder-[#cd8fbe] placeholder-opacity-70 focus:outline-none focus:border-[#cd8fbe] focus:border-opacity-60 transition-all duration-200"
-                    style={{ fontFamily: 'Outfit, Helvetica, sans-serif', fontWeight: '300', color: '#ffffff', WebkitTextFillColor: '#ffffff', caretColor: '#ffffff' }}
+                    className="modal-input w-full h-14 px-6 rounded-full text-white text-lg placeholder-white placeholder-opacity-60 focus:outline-none transition-all duration-200"
+                    style={{ 
+                      fontFamily: 'Outfit, Helvetica, sans-serif', 
+                      fontWeight: '300', 
+                      color: '#ffffff', 
+                      WebkitTextFillColor: '#ffffff', 
+                      caretColor: '#ffffff',
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
                     placeholder="Email"
                     required
                   />
