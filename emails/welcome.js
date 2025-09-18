@@ -1,83 +1,143 @@
 export function welcomeEmail(name) {
-  return `<!doctype html>
-<html lang="it">
+  // Extract first name from full name for personalization
+  const firstName = name ? name.split(' ')[0] : 'utente';
+  
+  return `<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Grazie per esserti registrato!</title>
-  <style>
-    @media (prefers-color-scheme: dark) { .bg { background:#0b0b0c !important; } }
-    @media screen and (max-width:600px){ .container{width:100%!important} .px{padding-left:20px!important;padding-right:20px!important} .logo img{max-width:120px!important}}
-    a[x-apple-data-detectors]{color:inherit!important;text-decoration:none!important}
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
+    <title>Grazie per esserti registrato - Stratikey</title>
+    
+    <!-- Google Fonts Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style type="text/css">
+        /* Reset styles */
+        * { box-sizing: border-box; }
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        
+        /* Base styles */
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #f4f4f4;
+            font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        /* Mobile responsive */
+        @media screen and (max-width: 599px) {
+            .mobile-padding { padding: 20px !important; }
+            .mobile-font-large { font-size: 24px !important; line-height: 28px !important; }
+            .mobile-font-medium { font-size: 18px !important; line-height: 22px !important; }
+            .mobile-font-small { font-size: 16px !important; line-height: 20px !important; }
+            .mobile-hidden { display: none !important; }
+        }
+    </style>
 </head>
-<body class="bg" style="margin:0;padding:24px;background:#F2F4F7;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-    <tr><td align="center">
-      <table role="presentation" class="container" width="640" cellspacing="0" cellpadding="0" border="0"
-             style="width:640px;max-width:640px;border-radius:28px;overflow:hidden;
-             background:linear-gradient(180deg,#2B0932 0%, #5C1E66 45%, #762A7E 46%, #762A7E 100%);
-             box-shadow:0 10px 30px rgba(0,0,0,.18); color:#fff;">
-        <tr><td style="height:24px;line-height:24px">&nbsp;</td></tr>
 
-        <!-- LOGO -->
+<body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+    
+    <!-- Main Container Table -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
         <tr>
-          <td align="center" class="px" style="padding:0 32px">
-            <a href="https://www.stratikey.com" target="_blank" class="logo" style="display:inline-block">
-              <img src="https://www.stratikey.com/stratikey-alto.png" width="160" alt="Stratikey" style="display:block;border:0;outline:0">
-            </a>
-          </td>
+            <td align="center" style="padding: 20px 0;">
+                
+                <!-- Email Container -->
+                <table border="0" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background-color: #390035; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 32px rgba(43, 0, 41, 0.1);">
+                    
+                    <!-- Header with Logo -->
+                    <tr>
+                        <td align="center" style="padding: 32px 32px 16px 32px;" class="mobile-padding">
+                            <!-- Stratikey Logo -->
+                            <img src="https://www.stratikey.com/stratikey-alto.png" alt="Stratikey" width="240" style="display: block; max-width: 100%; height: auto; border: 0; outline: none; text-decoration: none;">
+                        </td>
+                    </tr>
+                    
+                    <!-- Hero Section with Gradient -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #2b0029 0%, #7a1c66 100%); padding: 40px 32px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <h1 style="margin: 0; color: #ffffff; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 32px; font-weight: 700; line-height: 36px; text-align: center;" class="mobile-font-large">
+                                            Grazie per esserti registrato!
+                                        </h1>
+                                        <p style="margin: 16px 0 0 0; color: #cd8fbe; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; text-align: center;" class="mobile-font-medium">
+                                            Sei ufficialmente nella nostra sala d'attesa.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Main Content Card -->
+                    <tr>
+                        <td style="padding: 40px 32px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td>
+                                        <p style="margin: 0 0 24px 0; color: #ffffff; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;" class="mobile-font-small">
+                                            Ciao <strong>${firstName}</strong>, grazie per l'interesse verso <strong>Stratikey</strong>. Sei tra i primi che contatteremo per aggiornamenti, accessi anticipati e novità.
+                                        </p>
+                                        <p style="margin: 0 0 32px 0; color: rgba(255,255,255,0.82); font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;" class="mobile-font-small">
+                                            In qualità di <strong style="color: #ffffff;">early supporter</strong>, potrai accedere allo <strong style="color: #ffffff;">sconto pre-lancio</strong> riservato alla lista d'attesa.
+                                        </p>
+                                        
+                                        <!-- Benefits Section -->
+                                        <div style="background-color: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+                                            <h2 style="margin: 0 0 16px 0; color: #ffffff; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 600; line-height: 22px;">
+                                                Cosa aspettarti:
+                                            </h2>
+                                            <ul style="margin: 0; padding-left: 20px; color: rgba(255,255,255,0.82); font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 20px;">
+                                                <li style="margin-bottom: 8px;">✨ Aggiornamenti esclusivi sul lancio</li>
+                                                <li style="margin-bottom: 8px;">🎯 Invito prioritario all'anteprima</li>
+                                                <li style="margin-bottom: 0;">💰 Sconto pre-lancio riservato</li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <p style="margin: 0; color: #cd8fbe; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 20px; text-align: center;">
+                                            <strong>Grazie per essere con noi!</strong><br>
+                                            Team Stratikey
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #2b0029 0%, #7a1c66 100%); padding: 32px;" class="mobile-padding">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <p style="margin: 0 0 16px 0; color: #cd8fbe; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px; text-align: center;">
+                                            Per info, scrivici a <a href="mailto:info@stratikey.com" style="color: #ffffff; text-decoration: none; font-weight: 500;">info@stratikey.com</a>
+                                        </p>
+                                        <p style="margin: 0 0 16px 0; color: #cd8fbe; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px; text-align: center;">
+                                            <a href="https://www.stratikey.com/" target="_blank" style="color: #ffffff; text-decoration: none; font-weight: 500;">www.stratikey.com</a>
+                                        </p>
+                                        <p style="margin: 0; color: #8a5d82; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 300; line-height: 16px; text-align: center;">
+                                            Ricevi questa email perché ti sei registrato alla sala d'attesa di Stratikey.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+            </td>
         </tr>
-
-        <tr><td style="height:28px;line-height:28px">&nbsp;</td></tr>
-        <tr><td style="height:1px;background:linear-gradient(180deg,rgba(255,255,255,.0),rgba(255,255,255,.12))"></td></tr>
-
-        <!-- TITOLI -->
-        <tr>
-          <td align="center" class="px" style="padding:28px 32px 8px 32px">
-            <h1 style="margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-weight:800;font-size:28px;line-height:1.25;color:#fff">
-              Grazie per esserti registrato!
-            </h1>
-            <p style="margin:8px 0 0 0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:15px;line-height:1.6;color:#EADAF0">
-              Sei ufficialmente nella nostra sala d'attesa.
-            </p>
-          </td>
-        </tr>
-
-        <!-- TESTO -->
-        <tr>
-          <td class="px" style="padding:20px 32px 24px 32px">
-            <div style="background:rgba(0,0,0,.18);border-radius:12px;padding:20px">
-              <p style="margin:0 0 12px 0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:15px;line-height:1.8;color:#F5ECF8">
-                Ciao <strong>${name}</strong>, grazie per l'interesse verso <strong>Stratikey</strong>.
-                Sei tra i primi che contatteremo per aggiornamenti, accessi anticipati e novità.
-              </p>
-              <p style="margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:15px;line-height:1.8;color:#F5ECF8">
-                In qualità di <strong>early supporter</strong>, potrai accedere allo
-                <strong>sconto pre-lancio</strong> riservato alla lista d'attesa.
-              </p>
-            </div>
-          </td>
-        </tr>
-
-        <!-- FOOTER -->
-        <tr>
-          <td align="center" class="px" style="padding:8px 32px 26px 32px">
-            <p style="margin:12px 0 4px 0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:13px;line-height:1.7;color:#D8CBE0">
-              Per info: <a href="mailto:info@stratikey.com" style="color:#fff;text-decoration:underline">info@stratikey.com</a>
-            </p>
-            <p style="margin:0 0 8px 0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-weight:700;font-size:13px">
-              <a href="https://www.stratikey.com" style="color:#fff;text-decoration:none">www.stratikey.com</a>
-            </p>
-            <p style="margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:11px;line-height:1.6;color:#BFAFD0">
-              Ricevi questa email perché ti sei registrato alla sala d'attesa di Stratikey.
-              &nbsp;<a href="{{unsubscribe_url}}" style="color:#EADAF0;text-decoration:underline">Disiscriviti</a>
-            </p>
-          </td>
-        </tr>
-      </table>
-    </td></tr>
-  </table>
+    </table>
+    
 </body>
 </html>`;
 }
