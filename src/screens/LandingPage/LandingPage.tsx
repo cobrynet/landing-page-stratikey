@@ -219,8 +219,8 @@ export const LandingPage = (): JSX.Element => {
 
             <img
               className="absolute w-[246px] h-[57px] top-[184px] left-[1276px] object-cover"
-              alt="Stratikey alto"
-              src="/stratikey-alto.png"
+              alt="Stratikey Logo"
+              src="/marchio-bianco-stratikey.png"
             />
 
             <div className="absolute top-[375px] left-[1777px] [font-family:'Outfit',Helvetica] font-normal text-white text-[64px] text-center tracking-[0] leading-[normal]">
