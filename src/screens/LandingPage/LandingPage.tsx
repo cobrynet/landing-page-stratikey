@@ -203,7 +203,7 @@ export const LandingPage = (): JSX.Element => {
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
       <div className="responsive-wrapper">
         <div className="responsive-container bg-white overflow-hidden relative">
-        <div className="absolute w-[4180px] h-[6780px] top-[-109px] left-[-1226px]">
+        <div className="absolute w-[4180px] h-[6775px] top-[-109px] left-[-1226px]">
           <div className="absolute w-[4180px] h-[6557px] top-0 left-0">
             <div className="absolute w-[1728px] h-[3053px] top-[109px] left-[1226px] bg-[linear-gradient(180deg,rgba(57,0,53,1)_0%,rgba(144,29,107,1)_50%,rgba(255,255,255,1)_100%)]" />
 
