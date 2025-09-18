@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { Card, CardContent } from "../../components/ui/card";
+import { RegistrationModal } from "../../components/RegistrationModal";
 
 const featureBadges = [
   {
@@ -56,6 +57,9 @@ const ellipseImages = [
 
 
 export const LandingPage = (): JSX.Element => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -139,6 +143,59 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSuccessMessage('');
+    setIsSubmitting(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSuccessMessage('');
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      company: formData.get('company') as string,
+      phone: formData.get('phone') as string,
+      terms: formData.get('terms') as string
+    };
+    
+    try {
+      const response = await fetch('/api/send-registration', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        setSuccessMessage('GRAZIE PER ESSERTI REGISTRATO! Ti invieremo un\'email di conferma a breve.');
+        (e.target as HTMLFormElement).reset();
+        
+        setTimeout(() => {
+          handleCloseModal();
+        }, 3000);
+      } else {
+        setSuccessMessage(result.message || 'Errore durante la registrazione. Riprova più tardi.');
+      }
+      
+    } catch (error) {
+      console.error('Errore invio registrazione:', error);
+      setSuccessMessage('Errore durante la registrazione. Riprova più tardi.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
@@ -177,7 +234,7 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             {/* Pulsante Registrati Ora sotto il testo hero */}
-            <div className="absolute top-[720px] left-[1961px] w-[246px] h-[50px]">
+            <div className="absolute top-[720px] left-[1961px] w-[246px] h-[50px]" onClick={handleOpenModal}>
               <div className="glow-button flex items-center justify-center gap-2 group cursor-pointer" style={{ background: 'rgba(144, 29, 107, 0.3)' }}>
                   <span className="[font-family:'Outfit',Helvetica] font-medium group-hover:font-semibold text-white text-xl tracking-[0] leading-[normal] antialiased">
                     Registrati ora
@@ -366,6 +423,7 @@ export const LandingPage = (): JSX.Element => {
                       Piattaforma
                     </h4>
                     <button 
+                      onClick={handleOpenModal}
                       className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px] mt-[8px] cursor-pointer hover:text-[#901d6b] transition-colors duration-200 bg-transparent border-none p-0 text-left"
                     >
                       Registrati
@@ -529,7 +587,15 @@ export const LandingPage = (): JSX.Element => {
 
         </div>
       </div>
-      
+
+      {/* Registration Modal */}
+      <RegistrationModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmit}
+        isSubmitting={isSubmitting}
+        successMessage={successMessage}
+      />
 
     </div>
   );
