@@ -307,11 +307,11 @@
     padding: 16px !important;
   }
   
-  /* Riduzione animazioni per performance mobile */
+  /* Leggera ottimizzazione animazioni per mobile - mantenendo fluidità */
   .animate-spiral-interweave,
   .animate-spiral-flip, 
   .animate-spiral-weave {
-    animation-duration: 30s !important; /* Più lente per risparmiare batteria */
+    animation-duration: 12s !important; /* Rallentate leggermente per batteria */
   }
   
   /* Miglioramento leggibilità testi su schermi piccoli */
