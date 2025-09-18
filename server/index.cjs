@@ -37,7 +37,7 @@ const getEmailTemplate = (templateName, variables = {}) => {
 };
 
 // Path to Stratikey logo
-const logoPath = path.resolve(__dirname, '..', 'attached_assets', 'LOGOTIPO BIANCOpng_1758176751278.png');
+const logoPath = path.resolve(__dirname, '..', 'attached_assets', 'SIMBOLO FACEBOOK_1758177896292.png');
 
 async function sendEmail(options) {
   const transporter = createGmailTransporter();
