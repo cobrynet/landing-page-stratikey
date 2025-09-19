@@ -30,7 +30,7 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
 .hero{
   background:var(--grad-hero);
   color:var(--white);
-  padding:calc(8vw + 8px) 5vw calc(8vw + 4vw);
+  padding:calc(12vw + 8px) 5vw calc(8vw + 4vw);
   display:grid;gap:6vw;text-align:center;
   position:relative;
   width:100vw;
@@ -53,7 +53,7 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   pointer-events:none;
 }
 .brand{width:min(100px, 25vw);height:auto;margin-bottom:4vw;}
-.hero__title{font-weight:500;font-size:clamp(32px, 8vw, 42px);line-height:1.2;margin:0;margin-bottom:3vw;}
+.hero__title{font-weight:500;font-size:clamp(32px, 8vw, 42px);line-height:1.2;margin:0;margin-bottom:1.5vw;}
 .hero__subtitle{font-weight:300;font-size:clamp(18px, 4.5vw, 22px);line-height:1.25;margin:0;opacity:.95;margin-bottom:5vw;}
 
 .cta{display:inline-flex;align-items:center;justify-content:center;gap:3vw;
