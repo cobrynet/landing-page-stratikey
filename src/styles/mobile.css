@@ -82,6 +82,15 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 .card p{margin:0 0 clamp(12px, 3vw, 20px);font-size:clamp(15px, 4vw, 24px);line-height:1.35;font-weight:300}
 .card p:last-child{margin-bottom:0;}
 
+/* ===== CARD SPECIFICHE - CONNESSIONE/RICONNESSIONE ===== */
+/* Selettori robusti per le due card target usando classi specifiche */
+/* Regola consolidata che si applica a tutti i breakpoint */
+/* Card "La connessione si è persa" e "È il momento di ritrovarla" */
+.card--connection,
+.card--reconnection {
+  min-height: 290px;
+}
+
 .text-gradient{
   background:var(--grad-text);
   -webkit-background-clip:text;

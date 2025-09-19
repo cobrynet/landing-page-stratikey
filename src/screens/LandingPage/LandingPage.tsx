@@ -611,13 +611,13 @@ export const LandingPage = (): JSX.Element => {
           </section>
 
           {/* CARDS */}
-          <section className="stack" style={{marginTop:'calc(var(--s6) + 30px)'}}>
-            <div className="card card--light">
+          <section className="stack stack--connection" style={{marginTop:'calc(var(--s6) + 30px)'}}>
+            <div className="card card--light card--connection">
               <h2>La connessione si è persa.</h2>
               <p>Le aziende industriali si trovano a lavorare con strumenti separati: il marketing gestisce lead e campagne, le vendite trattano con i clienti, ma manca la sincronizzazione.</p>
             </div>
 
-            <div className="card card--dark">
+            <div className="card card--dark card--reconnection">
               <h2>È il momento di ritrovarla.</h2>
               <p>Il commerciale diventa finalmente connesso al digitale: ogni interazione è tracciata, ogni opportunità è ottimizzata, ogni decisione è basata su dati concreti.</p>
             </div>
