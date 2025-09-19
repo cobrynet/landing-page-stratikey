@@ -52,15 +52,15 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   z-index:-1;
   pointer-events:none;
 }
-.brand{width:min(120px, 30vw);height:auto;margin-bottom:calc(12vw + 100px);}
+.brand{width:min(140px, 35vw);height:auto;margin-bottom:calc(12vw + 100px);}
 .hero__title{font-weight:500;font-size:clamp(32px, 8vw, 42px);line-height:1.2;margin:0;margin-bottom:1vw;}
 .hero__subtitle{font-weight:300;font-size:clamp(18px, 4.5vw, 22px);line-height:1.25;margin:0;opacity:.95;margin-bottom:5vw;}
 
-.cta{display:inline-flex;align-items:center;justify-content:center;gap:3vw;
+.cta{display:flex;align-items:center;justify-content:center;gap:3vw;
   width:min(238px, 65vw);height:clamp(44px, 12vw, 52px);border-radius:999px;background:rgba(57,0,53,.3);
   border:1px solid rgba(255,255,255,.2);box-shadow:0 0 12px rgba(144,29,107,.4);
   color:var(--white);font-weight:500;font-size:clamp(16px, 4.5vw, 20px);text-decoration:none;
-  transition:all 0.3s ease;cursor:pointer;}
+  transition:all 0.3s ease;cursor:pointer;margin:0 auto;}
 .cta:hover{background:rgba(57,0,53,.4);transform:translateY(-1px);box-shadow:0 0 16px rgba(144,29,107,.6);}
 .cta svg{width:16px;height:12px}
 
