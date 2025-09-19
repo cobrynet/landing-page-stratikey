@@ -222,13 +222,13 @@ export const LandingPage = (): JSX.Element => {
               src="/marchio-bianco-stratikey.png"
             />
 
-            <div className="absolute top-[375px] left-[1777px] [font-family:'Outfit',Helvetica] font-normal text-white text-[64px] text-center tracking-[0] leading-[normal]">
+            <div className="absolute top-[345px] left-[1777px] [font-family:'Outfit',Helvetica] font-normal text-white text-[64px] text-center tracking-[0] leading-[normal]">
               Il digitale che potenzia
               <br />
               il tuo commerciale.
             </div>
 
-            <div className="absolute top-[565px] left-[1758px] [font-family:'Outfit',Helvetica] font-light text-white text-[32px] text-center tracking-[0] leading-[normal]">
+            <div className="absolute top-[535px] left-[1758px] [font-family:'Outfit',Helvetica] font-light text-white text-[32px] text-center tracking-[0] leading-[normal]">
               La piattaforma che allinea marketing e vendite:
               <br />
               trattative più rapide, più contratti chiusi.
