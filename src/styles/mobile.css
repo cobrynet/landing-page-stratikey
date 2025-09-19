@@ -74,3 +74,16 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   filter:drop-shadow(0 8px 30px rgba(207,31,150,.35))
 }
 
+.divider{height:1px;background:var(--magenta-900);margin:var(--s6) 0}
+.footer{display:grid;gap:var(--s2);color:var(--magenta-700)}
+.footer__brand{width:120px;height:auto}
+.footer__col-title{font-size:14px;font-weight:300;color:var(--magenta-700);margin-top:var(--s2)}
+.footer__item{font-size:16px;font-weight:500;color:var(--ink)}
+.footer__note{text-align:center;font-size:16px;font-weight:300;color:var(--magenta-700);margin-top:var(--s5)}
+
+@media (max-width:390px){
+  .hero__title{font-size:34px;line-height:42px}
+  .hero__subtitle{font-size:18px;line-height:22px}
+  .card h2{font-size:32px;line-height:40px}
+  .card p{font-size:18px;line-height:22px}
+}
