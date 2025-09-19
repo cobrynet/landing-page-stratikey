@@ -159,6 +159,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   .ai__wrap { padding: clamp(16px, 5vw, 28px) clamp(12px, 4vw, 20px); }
 }
 
+
 /* Schermi medi: 401px-600px */
 @media (min-width: 401px) and (max-width: 600px) {
   .container-mobile { padding-inline: clamp(16px, 4.5vw, 24px); }
@@ -216,4 +217,103 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   .card p { font-size: clamp(18px, 3.8vw, 24px); }
   .ai__wrap { padding: clamp(28px, 5vw, 40px) clamp(20px, 4vw, 32px); }
   .text-gradient { font-size: clamp(28px, 5.5vw, 36px); }
+}
+
+/* iPhone 16 Pro Max e dispositivi simili: 428px-430px */
+/* POSIZIONATA ALLA FINE per priorità massima nel cascade CSS */
+@media (min-width: 428px) and (max-width: 430px) {
+  .container-mobile { 
+    padding-inline: 20px; /* Padding fisso per consistenza */
+    min-width: 430px; /* Assicura che il container si adatti al viewport */
+  }
+  
+  .hero {
+    padding: 36px 20px 48px; /* Padding ottimizzato per 430px */
+    gap: 28px; /* Gap fisso per controllo preciso */
+  }
+  
+  .hero::after { 
+    height: 300px; /* Altezza fissa per consistenza */
+  }
+  
+  .brand { 
+    width: 150px; /* Dimensione ottimale per 430px */
+    margin-bottom: 80px; 
+  }
+  
+  .hero__title { 
+    font-size: 36px; /* Dimensione fissa ottimale */
+    line-height: 1.15; 
+    margin-bottom: 12px;
+  }
+  
+  .hero__subtitle { 
+    font-size: 20px; /* Dimensione fissa per leggibilità */
+    line-height: 1.3; 
+    margin-bottom: 28px;
+  }
+  
+  .cta { 
+    width: 250px; /* Larghezza ottimale per touch */
+    height: 52px; /* Altezza per accessibilità */
+    font-size: 18px; /* Dimensione leggibile */
+    gap: 12px;
+  }
+  
+  .badges { 
+    gap: 18px; /* Spacing ottimizzato */
+    margin-top: 50px; 
+  }
+  
+  .badge { 
+    font-size: 16px; /* Dimensione leggibile */
+    gap: 12px; 
+  }
+  
+  .card { 
+    padding: 32px; /* Padding consistente */
+    margin-bottom: 24px;
+    border-radius: 28px;
+  }
+  
+  .card h2 { 
+    font-size: 32px; /* Dimensione ottimale */
+    margin-bottom: 20px;
+  }
+  
+  .card p { 
+    font-size: 19px; /* Leggibilità ottimale */
+    line-height: 1.35;
+  }
+  
+  .ai__wrap { 
+    padding: 32px 20px; /* Padding bilanciato */
+  }
+  
+  .ai__title {
+    font-size: 34px; /* Dimensione per impact */
+  }
+  
+  .ai__text {
+    font-size: 19px; /* Consistente con card p */
+  }
+  
+  .text-gradient { 
+    font-size: 32px; /* Dimensione bilanciata */
+    margin: 6vw 0;
+    padding: 0 20px; /* Padding fisso */
+  }
+  
+  .card--simplicity {
+    padding: 32px; /* Padding consistente */
+  }
+  
+  .card--simplicity h2 {
+    font-size: 36px; /* Dimensione per impact */
+    margin-bottom: 20px;
+  }
+  
+  .card--simplicity p {
+    font-size: 18px; /* Leggibilità */
+  }
 }
