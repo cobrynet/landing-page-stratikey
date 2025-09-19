@@ -605,8 +605,8 @@ export const LandingPage = (): JSX.Element => {
 
             <div className="badges">
               <span className="badge"><i className="fa-solid fa-bolt"></i> Attiva 24h</span>
-              <span className="badge">💼 Forza commerciale</span>
-              <span className="badge">📈 Integrazione completa</span>
+              <span className="badge"><i className="fa-solid fa-briefcase"></i> Forza commerciale</span>
+              <span className="badge"><i className="fa-solid fa-circle-nodes"></i> Integrazione completa</span>
             </div>
           </section>
 
