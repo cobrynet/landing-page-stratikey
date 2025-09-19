@@ -52,7 +52,7 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   z-index:-1;
   pointer-events:none;
 }
-.brand{width:min(100px, 25vw);height:auto;margin-bottom:calc(12vw + 100px);}
+.brand{width:min(120px, 30vw);height:auto;margin-bottom:calc(12vw + 100px);}
 .hero__title{font-weight:500;font-size:clamp(32px, 8vw, 42px);line-height:1.2;margin:0;margin-bottom:1vw;}
 .hero__subtitle{font-weight:300;font-size:clamp(18px, 4.5vw, 22px);line-height:1.25;margin:0;opacity:.95;margin-bottom:5vw;}
 
