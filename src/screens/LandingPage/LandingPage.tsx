@@ -623,7 +623,14 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             <h2 className="text-gradient">Con Stratikey la strategia diventa semplice e concreta.</h2>
-            <p className="text-gradient">Un'unica visione che unisce marketing e vendite per risultati che si vedono davvero.</p>
+          </section>
+
+          {/* SEMPLICITA CARD */}
+          <section>
+            <div className="card card--simplicity">
+              <h2>Semplicità</h2>
+              <p>Da processi complessi a<br />un'unica piattaforma<br />intuitiva</p>
+            </div>
           </section>
 
           {/* AI section */}
@@ -644,7 +651,7 @@ export const LandingPage = (): JSX.Element => {
               <h2>Applicativi</h2>
               <p>Email marketing e automazioni</p>
               <p>Live chat e assistenza clienti</p>
-              <p style={{fontWeight:600, fontSize:'16px', lineHeight:'17px'}}>Work in progress…</p>
+              <p style={{fontWeight:500, fontSize:'14px', lineHeight:'17px', marginTop:'var(--s3)', opacity:0.9}}>Work in progress…</p>
             </div>
 
             <div className="card card--dark">
@@ -654,7 +661,7 @@ export const LandingPage = (): JSX.Element => {
               <p>Foto e video aziendali</p>
               <p>Materiale stampato</p>
               <p>Contenuti per piani editoriali</p>
-              <p style={{fontWeight:600, fontSize:'16px', lineHeight:'17px'}}>Work in progress…</p>
+              <p style={{fontWeight:500, fontSize:'14px', lineHeight:'17px', marginTop:'var(--s3)', opacity:0.9}}>Work in progress…</p>
             </div>
           </section>
 
