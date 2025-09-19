@@ -604,7 +604,7 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             <div className="badges">
-              <span className="badge">⚡ Attiva 24h</span>
+              <span className="badge"><img src="/lightning.png" alt="Lightning" className="w-4 h-4 inline-block" /> Attiva 24h</span>
               <span className="badge">💼 Forza commerciale</span>
               <span className="badge">📈 Integrazione completa</span>
             </div>
