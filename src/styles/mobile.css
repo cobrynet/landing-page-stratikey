@@ -22,7 +22,7 @@
 
 body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
-.container-mobile{width:100%;margin:0 auto;padding-inline:5vw;min-width:320px;}
+.container-mobile{width:100%;margin:0 auto;padding-inline:5vw;min-width:320px;box-sizing:border-box;}
 .stack > * + *{margin-top:var(--s5)}
 
 /* ===== HERO ===== */
@@ -34,7 +34,9 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   border-bottom-right-radius:min(32px, 8vw);
   display:grid;gap:6vw;text-align:left;
   position:relative;
-  width:100%;
+  width:100vw;
+  margin-left:calc(-50vw + 50%);
+  box-sizing:border-box;
 }
 .brand{width:min(100px, 25vw);height:auto;margin-bottom:4vw;}
 .hero__title{font-weight:500;font-size:clamp(32px, 8vw, 42px);line-height:1.2;margin:0;margin-bottom:3vw;}
