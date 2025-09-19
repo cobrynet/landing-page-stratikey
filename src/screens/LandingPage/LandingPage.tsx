@@ -198,7 +198,7 @@ export const LandingPage = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-white grid justify-items-center [align-items:start] w-screen">
+    <div className="bg-white grid justify-items-center [align-items:start] w-full">
       {/* DESKTOP VERSION */}
       <div className="responsive-wrapper hidden md:block">
         <div className="responsive-container bg-white overflow-hidden relative">

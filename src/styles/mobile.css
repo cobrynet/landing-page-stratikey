@@ -22,6 +22,10 @@
 
 body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
+/* ===== OVERFLOW GUARD ===== */
+html, body { overflow-x: hidden; } /* fallback per browser legacy */
+html, body { overflow-x: clip; } /* override per browser moderni */
+
 .container-mobile{width:100%;margin:0 auto;padding-inline:5vw;min-width:320px;box-sizing:border-box;}
 .stack > * + *{margin-top:var(--s5)}
 
@@ -33,8 +37,10 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   padding:clamp(24px, 8vw, 48px) clamp(16px, 5vw, 32px) clamp(32px, calc(8vw + 4vw), 64px);
   display:grid;gap:clamp(24px, 6vw, 40px);text-align:center;
   position:relative;
-  width:100vw;
-  margin-left:calc(-50vw + 50%);
+  width:100vw; /* fallback per browser più vecchi */
+  margin-left:calc(50% - 50vw); /* fallback per browser più vecchi */
+  width:100svw; /* override per browser moderni */
+  margin-left:calc(50% - 50svw); /* override per browser moderni */
   box-sizing:border-box;
   z-index:0;
 }
@@ -43,10 +49,11 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
 .hero::after{
   content:"";
   position:absolute;
-  left:50%;
-  transform:translateX(-50%);
+  left:0;
+  right:0;
+  transform:none;
   top:100%;
-  width:100vw;
+  width:100%;
   height:clamp(240px, 80vw, 400px);
   background:linear-gradient(180deg, #E859B8 0%, rgba(207,31,150,0.7) 25%, rgba(207,31,150,0.5) 50%, rgba(207,31,150,0.3) 75%, rgba(255,255,255,0) 100%);
   z-index:-1;
