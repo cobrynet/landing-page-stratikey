@@ -31,8 +31,6 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
   background:var(--grad-hero);
   color:var(--white);
   padding:calc(8vw + 8px) 5vw calc(8vw + 4vw);
-  border-bottom-left-radius:min(32px, 8vw);
-  border-bottom-right-radius:min(32px, 8vw);
   display:grid;gap:6vw;text-align:left;
   position:relative;
   width:100vw;
