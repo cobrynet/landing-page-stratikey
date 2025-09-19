@@ -199,7 +199,8 @@ export const LandingPage = (): JSX.Element => {
 
   return (
     <div className="bg-white grid justify-items-center [align-items:start] w-screen">
-      <div className="responsive-wrapper">
+      {/* DESKTOP VERSION */}
+      <div className="responsive-wrapper hidden md:block">
         <div className="responsive-container bg-white overflow-hidden relative">
         <div className="absolute w-[4180px] h-[6775px] top-[-109px] left-[-1226px]">
           <div className="absolute w-[4180px] h-[6557px] top-0 left-0">
@@ -585,6 +586,101 @@ export const LandingPage = (): JSX.Element => {
           </div>
         </div>
 
+        </div>
+      </div>
+
+      {/* MOBILE VERSION */}
+      <div className="md:hidden">
+        <div className="container-mobile">
+          {/* HERO */}
+          <section className="hero stack">
+            <img className="brand" src="/marchio-bianco-stratikey.png" alt="stratikey" />
+            <h1 className="hero__title">Il digitale che potenzia il tuo commerciale</h1>
+            <p className="hero__subtitle">La piattaforma che allinea marketing e vendite: trattative più rapide, più contratti chiusi.</p>
+
+            <div onClick={handleOpenModal} className="cta">
+              Registrati adesso
+              <svg aria-hidden="true" viewBox="0 0 16 12"><path d="M1 6h13M8 1l6 5-6 5" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
+            </div>
+
+            <div className="badges">
+              <span className="badge">⚡ Attiva 24h</span>
+              <span className="badge">💼 Forza commerciale</span>
+              <span className="badge">📈 Integrazione completa</span>
+            </div>
+          </section>
+
+          {/* CARDS */}
+          <section className="stack" style={{marginTop:'var(--s6)'}}>
+            <div className="card card--light">
+              <h2>La connessione si è persa.</h2>
+              <p>Le aziende industriali si trovano a lavorare con strumenti separati: il marketing gestisce lead e campagne, le vendite trattano con i clienti, ma manca la sincronizzazione.</p>
+            </div>
+
+            <div className="card card--dark">
+              <h2>È il momento di ritrovarla.</h2>
+              <p>Il commerciale diventa finalmente connesso al digitale: ogni interazione è tracciata, ogni opportunità è ottimizzata, ogni decisione è basata su dati concreti.</p>
+            </div>
+
+            <h2 className="text-gradient">Con Stratikey la strategia diventa semplice e concreta.</h2>
+            <p className="text-gradient">Un'unica visione che unisce marketing e vendite per risultati che si vedono davvero.</p>
+          </section>
+
+          {/* AI section */}
+          <section className="ai">
+            <div className="ai__wrap">
+              <h2 className="ai__title">Intelligenza Artificiale per l'Industria</h2>
+              <p className="ai__text">L'intelligenza artificiale di Stratikey è progettata specificamente per l'industria: analizza i comportamenti dei tuoi clienti e suggerisce le mosse migliori per chiudere più contratti.</p>
+              <div className="ai__disc" aria-hidden="true"></div>
+              <p className="card" style={{background:'#fff', color:'#390035', textAlign:'center', marginTop:'var(--s5)'}}>
+                Con il nostro marketplace interno puoi acquistare applicativi e servizi per potenziare ulteriormente la tua strategia commerciale.
+              </p>
+            </div>
+          </section>
+
+          {/* DUE CARD FINALI */}
+          <section className="stack" style={{marginTop:'var(--s6)'}}>
+            <div className="card card--magenta">
+              <h2>Applicativi</h2>
+              <p>Email marketing e automazioni</p>
+              <p>Live chat e assistenza clienti</p>
+              <p style={{fontWeight:600, fontSize:'16px', lineHeight:'17px'}}>Work in progress…</p>
+            </div>
+
+            <div className="card card--dark">
+              <h2>Servizi</h2>
+              <p>Brand Identity</p>
+              <p>Sito Web</p>
+              <p>Foto e video aziendali</p>
+              <p>Materiale stampato</p>
+              <p>Contenuti per piani editoriali</p>
+              <p style={{fontWeight:600, fontSize:'16px', lineHeight:'17px'}}>Work in progress…</p>
+            </div>
+          </section>
+
+          {/* FOOTER */}
+          <div className="divider"></div>
+          <footer className="footer">
+            <img className="footer__brand" src="/marchio-bianco-stratikey.png" alt="stratikey" />
+            <div className="footer__col-title">Contatti</div>
+            <div className="footer__item">info@stratikey.com</div>
+            <div className="footer__item">351 663 8114</div>
+            <div className="footer__item">P.IVA 02100690474</div>
+
+            <div className="footer__col-title">Servizi</div>
+            <div className="footer__item">Brand Identity</div>
+            <div className="footer__item">Sito Web</div>
+            <div className="footer__item">Foto e video aziendali</div>
+            <div className="footer__item">Materiale stampato</div>
+            <div className="footer__item">Contenuti per piani editoriali</div>
+
+            <div className="footer__col-title">Piattaforma</div>
+            <div className="footer__item">Registrati</div>
+            <div className="footer__item">Email marketing e automazioni</div>
+            <div className="footer__item">Live chat e assistenza clienti</div>
+
+            <p className="footer__note">© 2025 COBRYNET. Tutti i diritti riservati.</p>
+          </footer>
         </div>
       </div>
 
