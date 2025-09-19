@@ -611,7 +611,7 @@ export const LandingPage = (): JSX.Element => {
           </section>
 
           {/* CARDS */}
-          <section className="stack" style={{marginTop:'var(--s6)'}}>
+          <section className="stack" style={{marginTop:'calc(var(--s6) + 30px)'}}>
             <div className="card card--light">
               <h2>La connessione si è persa.</h2>
               <p>Le aziende industriali si trovano a lavorare con strumenti separati: il marketing gestisce lead e campagne, le vendite trattano con i clienti, ma manca la sincronizzazione.</p>
