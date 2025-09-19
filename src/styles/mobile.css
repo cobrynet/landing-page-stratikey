@@ -30,7 +30,7 @@ body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
 .hero{
   background:var(--grad-hero);
   color:var(--white);
-  padding:calc(8vw - 22px) 5vw calc(8vw + 4vw);
+  padding:calc(8vw - 52px) 5vw calc(8vw + 4vw);
   display:grid;gap:6vw;text-align:center;
   position:relative;
   width:100vw;
