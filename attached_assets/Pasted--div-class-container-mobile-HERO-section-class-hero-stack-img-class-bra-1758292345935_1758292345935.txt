@@ -1,0 +1,91 @@
+<div class="container-mobile">
+  <!-- HERO -->
+  <section class="hero stack">
+    <img class="brand" src="/assets/logo.svg" alt="stratikey" />
+    <h1 class="hero__title">Il digitale che potenzia il tuo commerciale</h1>
+    <p class="hero__subtitle">La piattaforma che allinea marketing e vendite: trattative più rapide, più contratti chiusi.</p>
+
+    <a href="/registrati" class="cta">
+      Registrati adesso
+      <svg aria-hidden="true" viewBox="0 0 16 12"><path d="M1 6h13M8 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </a>
+
+    <div class="badges">
+      <span class="badge">⚡ Attiva 24h</span>
+      <span class="badge">💼 Forza commerciale</span>
+      <span class="badge">📈 Integrazione completa</span>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="stack" style="margin-top:var(--s6)">
+    <div class="card card--light">
+      <h2>La connessione si è persa.</h2>
+      <p>Le aziende industriali si trovano a lavorare con strumenti separati…</p>
+    </div>
+
+    <div class="card card--dark">
+      <h2>È il momento di ritrovarla.</h2>
+      <p>Il commerciale diventa finalmente connesso al digitale…</p>
+    </div>
+
+    <h2 class="text-gradient">Con Stratikey la strategia diventa semplice e concreta.</h2>
+    <p class="text-gradient">Un’unica visione che unisce marketing e vendite…</p>
+  </section>
+
+  <!-- AI section -->
+  <section class="ai">
+    <div class="ai__wrap">
+      <h2 class="ai__title">Intelligenza Artificiale per l’Industria</h2>
+      <p class="ai__text">L’intelligenza artificiale di Stratikey è progettata…</p>
+      <div class="ai__disc" aria-hidden="true"></div>
+      <p class="card" style="background:#fff;color:#390035;text-align:center;margin-top:var(--s5)">
+        Con il nostro marketplace interno puoi acquistare applicativi e servizi…
+      </p>
+    </div>
+  </section>
+
+  <!-- DUE CARD FINALI -->
+  <section class="stack" style="margin-top:var(--s6)">
+    <div class="card card--magenta">
+      <h2>Applicativi</h2>
+      <p>Email marketing e automazioni</p>
+      <p>Live chat e assistenza clienti</p>
+      <p style="font-weight:600;font-size:16px;line-height:17px">Work in progress…</p>
+    </div>
+
+    <div class="card card--dark">
+      <h2>Servizi</h2>
+      <p>Brand Identity</p>
+      <p>Sito Web</p>
+      <p>Foto e video aziendali</p>
+      <p>Materiale stampato</p>
+      <p>Contenuti per piani editoriali</p>
+      <p style="font-weight:600;font-size:16px;line-height:17px">Work in progress…</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="divider"></div>
+  <footer class="footer">
+    <img class="footer__brand" src="/assets/logo.svg" alt="stratikey" />
+    <div class="footer__col-title">Contatti</div>
+    <div class="footer__item">info@stratikey.com</div>
+    <div class="footer__item">351 663 8114</div>
+    <div class="footer__item">P.IVA 02100690474</div>
+
+    <div class="footer__col-title">Servizi</div>
+    <div class="footer__item">Brand Identity</div>
+    <div class="footer__item">Sito Web</div>
+    <div class="footer__item">Foto e video aziendali</div>
+    <div class="footer__item">Materiale stampato</div>
+    <div class="footer__item">Contenuti per piani editoriali</div>
+
+    <div class="footer__col-title">Piattaforma</div>
+    <div class="footer__item">Registrati</div>
+    <div class="footer__item">Email marketing e automazioni</div>
+    <div class="footer__item">Live chat e assistenza clienti</div>
+
+    <p class="footer__note">2025 COBRYNET. All rights reserved.</p>
+  </footer>
+</div>
