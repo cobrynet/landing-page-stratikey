@@ -500,24 +500,9 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             <div className="quadranti absolute top-[2952px] left-[1493px] w-[1194px] h-[650px]">
-              <article className="quad left card bg-[#390035] semplicita-card">
-                {/* PNG decorativo con classe specifica */}
-                <img 
-                  className="maschera-stratikey" 
-                  src="/maschera-stratikey.png" 
-                  alt="Maschera Stratikey"
-                />
-
-                {/* Contenuto normale */}
-                <div className="absolute w-[490px] bottom-[71px] left-[30px] [font-family:'Outfit',Helvetica] font-medium text-white text-5xl tracking-[0] leading-[39.8px] card-title">
-                    Semplicità
-                </div>
-                
-                {/* Sottotitolo che appare in hover */}
-                <div className="absolute w-[490px] bottom-[67px] left-[30px] [font-family:'Outfit',Helvetica] font-light text-white text-[32px] tracking-[0] leading-[36px] card-subtitle">
-                    Da processi complessi a<br />un'unica piattaforma<br />intuitiva
-                </div>
-              </article>
+              <div className="quad left" style={{ position: 'relative', width: '368px', height: '350px' }}>
+                <CarouselSimplicity />
+              </div>
 
               <article className="quad center card bg-[#390035] gestione-card">
                 {/* Immagine di sfondo che scala con hover */}
