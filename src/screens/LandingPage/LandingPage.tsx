@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useRef } from "react";
 import { Card, CardContent } from "../../components/ui/card";
 import { RegistrationModal } from "../../components/RegistrationModal";
+import { CarouselSimplicity } from "../../components/CarouselSimplicity";
 
 const featureBadges = [
   {
@@ -625,12 +626,9 @@ export const LandingPage = (): JSX.Element => {
             <h2 className="text-gradient">Con Stratikey la strategia diventa semplice e concreta.</h2>
           </section>
 
-          {/* SEMPLICITA CARD */}
+          {/* CAROUSEL SIMPLICITY */}
           <section>
-            <div className="card card--simplicity">
-              <h2>Semplicità</h2>
-              <p>Da processi complessi a<br />un'unica piattaforma<br />intuitiva</p>
-            </div>
+            <CarouselSimplicity />
           </section>
 
           {/* AI section */}
