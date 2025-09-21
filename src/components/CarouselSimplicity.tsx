@@ -13,7 +13,7 @@ const slides: CarouselSlide[] = [
   {
     id: 'semplicita',
     title: 'Semplicità',
-    subtitle: 'Da processi complessi a<br />un\'unica piattaforma<br />intuitiva',
+    subtitle: "Da processi complessi a<br />un'unica piattaforma<br />intuitiva",
     background: '#390035',
     image: '/maschera-stratikey.png'
   },
