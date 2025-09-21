@@ -1,26 +1,30 @@
 import React, { useState, useRef } from 'react';
 
-interface CarouselCard {
+interface CarouselSlide {
+  id: number;
   title: string;
   description: string;
-  className: string;
+  className?: string;
 }
 
-const carouselCards: CarouselCard[] = [
+const slides: CarouselSlide[] = [
   {
+    id: 1,
     title: "Semplicità",
-    description: "Da processi complessi a un'unica piattaforma intuitiva",
-    className: "bg-[#390035]"
+    description: "Da processi complessi a un'unica piattaforma intuitiva.",
+    className: "slide-simplicity"
   },
   {
-    title: "Gestione più rapida", 
-    description: "Velocizza ogni processo, dall'acquisizione alla conversione",
-    className: "bg-gradient-to-br from-[#390035] to-[#901D6B]"
+    id: 2,
+    title: "Gestione più rapida",
+    description: "Meno tempo sprecato, più opportunità colte.",
+    className: "slide-speed"
   },
   {
-    title: "Efficienza",
-    description: "Massimizza i risultati con il minimo sforzo e tempo",
-    className: "bg-[#901D6B]"
+    id: 3,
+    title: "Efficienza", 
+    description: "Ogni attività, dal marketing al commerciale, gestita in un solo ecosistema.",
+    className: "slide-efficiency"
   }
 ];
 
@@ -28,35 +32,75 @@ export const CarouselSimplicity: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [startX, setStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setStartX(e.touches[0].clientX);
     setIsDragging(true);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = (_e: React.TouchEvent) => {
     if (!isDragging) return;
-    e.preventDefault();
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!isDragging) return;
-    setIsDragging(false);
     
     const endX = e.changedTouches[0].clientX;
     const diffX = startX - endX;
-    const threshold = 50;
-
-    if (Math.abs(diffX) > threshold) {
-      if (diffX > 0 && currentSlide < carouselCards.length - 1) {
+    
+    // Swipe threshold of 50px
+    if (Math.abs(diffX) > 50) {
+      if (diffX > 0) {
         // Swipe left - next slide
-        setCurrentSlide(prev => prev + 1);
-      } else if (diffX < 0 && currentSlide > 0) {
+        nextSlide();
+      } else {
         // Swipe right - previous slide  
-        setCurrentSlide(prev => prev - 1);
+        prevSlide();
       }
     }
+    
+    setIsDragging(false);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setStartX(e.clientX);
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (_e: React.MouseEvent) => {
+    if (!isDragging) return;
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    
+    const endX = e.clientX;
+    const diffX = startX - endX;
+    
+    if (Math.abs(diffX) > 50) {
+      if (diffX > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    
+    setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+    }
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
   const goToSlide = (index: number) => {
@@ -64,43 +108,50 @@ export const CarouselSimplicity: React.FC = () => {
   };
 
   return (
-    <section className="carousel-simplicity-section">
+    <div className="carousel-simplicity">
       <div 
-        className="carousel-simplicity-container"
-        ref={carouselRef}
+        ref={containerRef}
+        className="carousel-container"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
       >
         <div 
-          className="carousel-simplicity-track"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          className="carousel-track"
+          style={{
+            transform: `translateX(-${currentSlide * 100}%)`
+          }}
         >
-          {carouselCards.map((card, index) => (
-            <div 
-              key={index}
-              className={`carousel-simplicity-card ${card.className}`}
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`carousel-slide ${slide.className}`}
+              data-slide={index}
             >
-              <h2>{card.title}</h2>
-              <p>{card.description}</p>
+              <div className="slide-content">
+                <h2 className="slide-title">{slide.title}</h2>
+                <p className="slide-description">{slide.description}</p>
+              </div>
             </div>
           ))}
         </div>
-        
-        {/* Indicators */}
-        <div className="carousel-simplicity-indicators">
-          {carouselCards.map((_, index) => (
-            <button
-              key={index}
-              className={`carousel-simplicity-indicator ${
-                index === currentSlide ? 'active' : ''
-              }`}
-              onClick={() => goToSlide(index)}
-              aria-label={`Vai alla slide ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
-    </section>
+      
+      <div className="carousel-indicators">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className={`indicator ${index === currentSlide ? 'active' : ''}`}
+            onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
