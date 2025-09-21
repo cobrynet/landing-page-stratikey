@@ -624,10 +624,8 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             <h2 className="text-gradient">Con Stratikey la strategia diventa semplice e concreta.</h2>
-          </section>
-
-          {/* CAROUSEL SIMPLICITY */}
-          <section>
+            
+            {/* CAROUSEL SIMPLICITY */}
             <CarouselSimplicity />
           </section>
 
