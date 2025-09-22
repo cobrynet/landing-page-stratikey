@@ -765,6 +765,20 @@ export const LandingPage = (): JSX.Element => {
                     ))}
                   </div>
                 </div>
+
+                {/* Group-23 e Group-24 sovrapposti */}
+                <div className="ai__groups">
+                  <img
+                    className="ai__group23 ia-float"
+                    src="/Group-23.svg"
+                    alt="Group 23 AI"
+                  />
+                  <img
+                    className="ai__group24 ia-blink"
+                    src="/Group-24.svg"
+                    alt="Group 24 AI"
+                  />
+                </div>
               </div>
             </div>
           </section>
