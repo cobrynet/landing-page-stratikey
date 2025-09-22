@@ -796,7 +796,7 @@ export const LandingPage = (): JSX.Element => {
 
           {/* FOOTER */}
           <footer className="footer">
-            <img className="footer__brand" src="/marchio-bianco-stratikey.png" alt="stratikey" />
+            <img className="footer__brand" src="/STRATIKEY-MARCHIO-NERO.png" alt="stratikey" />
             <div className="footer__divider"></div>
             
             <div className="footer__content">
