@@ -718,33 +718,15 @@ export const LandingPage = (): JSX.Element => {
               ))}
             </div>
             
-            <div className="carousel-nav">
-              <button 
-                className="carousel-arrow" 
-                onClick={prevSlide}
-                aria-label="Slide precedente"
-              >
-                ‹
-              </button>
-              
-              <div className="carousel-dots">
-                {carouselSlides.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
-                    onClick={() => goToSlide(index)}
-                    aria-label={`Vai alla slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-              
-              <button 
-                className="carousel-arrow" 
-                onClick={nextSlide}
-                aria-label="Slide successiva"
-              >
-                ›
-              </button>
+            <div className="carousel-dots">
+              {carouselSlides.map((_, index) => (
+                <button
+                  key={index}
+                  className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Vai alla slide ${index + 1}`}
+                />
+              ))}
             </div>
           </section>
 
