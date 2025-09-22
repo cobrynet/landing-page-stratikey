@@ -102,14 +102,11 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 
 /* ===== SEMPLICITA CARD ===== */
 .card--simplicity{
-  background:linear-gradient(135deg, #390035 0%, #901d6b 30%, #cf1f96 70%, #e859b8 100%);
-  color:var(--white);
-  text-align:left;
-  padding:clamp(32px, 6vw, 48px);
   margin-top:100px;
   min-height:290px;
-  position:relative;
-  overflow:hidden;
+  max-height:290px;
+  height:290px;
+  padding:0;
 }
 .card--simplicity h2{
   font-size:clamp(42px, 8vw, 52px);
