@@ -250,6 +250,41 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   opacity:0.95;
 }
 
+/* ====== SVG ANIMATI AI (copiati dal desktop) ====== */
+.ai__graphics {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 60vw, 400px);
+  margin: 8vw auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai__luce {
+  width: clamp(240px, 50vw, 320px);
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.ai__ellipses {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-3.12deg);
+  width: clamp(280px, 60vw, 360px);
+  height: clamp(280px, 60vw, 360px);
+  z-index: 1;
+}
+
+.ai__ellipses-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.8);
+}
+
 .divider{height:1px;background:var(--magenta-900);margin:8vw 0;width:100%;}
 .footer{display:grid;gap:4vw;color:var(--magenta-700);padding-bottom:5vw;width:100%;}
 .footer__brand{width:min(100px, 25vw);height:auto;margin-bottom:4vw;}

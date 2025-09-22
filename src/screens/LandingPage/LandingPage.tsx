@@ -740,6 +740,32 @@ export const LandingPage = (): JSX.Element => {
             <div className="ai__wrap">
               <h2 className="ai__title">Intelligenza Artificiale<br />per l'Industria</h2>
               <p className="ai__text">L'intelligenza artificiale di Stratikey è progettata e istruita specificamente per il settore industriale: comprende dinamiche, tempi e complessità delle vendite B2B, supportando il commerciale con suggerimenti mirati, automazioni intelligenti e analisi capaci di trasformare i dati in opportunità reali.</p>
+              
+              {/* SVG Animati copiati dal desktop */}
+              <div className="ai__graphics">
+                <img
+                  className="ai__luce animate-fade-through"
+                  alt="Luce"
+                  src="/luce.svg"
+                />
+
+                <div className="ai__ellipses">
+                  <div className="ai__ellipses-container">
+                    {ellipseImages.map((ellipse, index) => (
+                      <img
+                        key={index}
+                        className={`absolute ${ellipse.className} ${
+                          index % 3 === 0 ? 'animate-spiral-interweave' :
+                          index % 3 === 1 ? 'animate-spiral-flip' :
+                          'animate-spiral-weave'
+                        }`}
+                        alt="Ellipse"
+                        src={ellipse.src}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
