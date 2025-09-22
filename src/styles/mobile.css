@@ -293,17 +293,16 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-family: 'Outfit', Helvetica, Arial, sans-serif;
   font-size: clamp(16px, 4vw, 18px);
   line-height: 1.4;
-  font-weight: 300;
-  color: #fff;
+  font-weight: 400;
+  color: #390035;
   text-align: center;
   margin: 6vw auto 0;
   max-width: 90%;
-  opacity: 0.95;
 }
 
 .ai__highlight {
-  font-weight: 600;
-  color: #fff;
+  font-weight: 700;
+  color: #901D6B;
 }
 
 .divider{height:1px;background:var(--magenta-900);margin:8vw 0;width:100%;}
