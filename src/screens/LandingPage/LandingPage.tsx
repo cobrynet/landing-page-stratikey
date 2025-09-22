@@ -216,6 +216,71 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
+  // Parallax effect per gli SVG della sezione AI
+  React.useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const parallaxFactor = 0.06;
+    const scrollHandlers = new Map();
+    
+    const panel23 = document.getElementById('panel-23');
+    const panel24 = document.getElementById('panel-24');
+    const el23 = document.getElementById('ia-23');
+    const el24 = document.getElementById('ia-24');
+    
+    const targets = [
+      { panel: panel23, el: el23 },
+      { panel: panel24, el: el24 },
+    ].filter(t => t.panel && t.el);
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const t = targets.find(x => x.panel === entry.target);
+        if (!t || !t.panel || !t.el) return;
+
+        if (entry.isIntersecting) {
+          const onScroll = () => {
+            if (!t.panel || !t.el) return;
+            const rect = t.panel.getBoundingClientRect();
+            const vh = window.innerHeight || 1;
+            const progress = (vh / 2 - rect.top) / (vh + rect.height);
+            const offsetY = (progress - 0.5) * vh * parallaxFactor;
+            t.el.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0)`;
+          };
+          onScroll();
+          scrollHandlers.set(t.panel, onScroll);
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', onScroll, { passive: true });
+        } else {
+          const handler = scrollHandlers.get(t.panel);
+          if (handler) {
+            window.removeEventListener('scroll', handler);
+            window.removeEventListener('resize', handler);
+            scrollHandlers.delete(t.panel);
+          }
+          if (t.el) {
+            t.el.style.transform = '';
+          }
+        }
+      });
+    }, { threshold: [0, 0.15, 0.5, 1] });
+
+    targets.forEach(t => {
+      if (t.panel) {
+        io.observe(t.panel);
+      }
+    });
+
+    return () => {
+      scrollHandlers.forEach((handler) => {
+        window.removeEventListener('scroll', handler);
+        window.removeEventListener('resize', handler);
+      });
+      scrollHandlers.clear();
+    };
+  }, []);
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -739,7 +804,39 @@ export const LandingPage = (): JSX.Element => {
             <div className="ai__wrap">
               <h2 className="ai__title">Intelligenza Artificiale<br />per l'Industria</h2>
               <p className="ai__text">L'intelligenza artificiale di Stratikey è progettata e istruita specificamente per il settore industriale: comprende dinamiche, tempi e complessità delle vendite B2B, supportando il commerciale con suggerimenti mirati, automazioni intelligenti e analisi capaci di trasformare i dati in opportunità reali.</p>
-              <div className="ai__disc" aria-hidden="true"></div>
+              
+              {/* Pannelli SVG animati */}
+              <div className="ia-panels">
+                {/* Pannello 1: Group-23.svg (floating) */}
+                <div className="ia-panel" id="panel-23">
+                  <div className="ia-media">
+                    <img
+                      id="ia-23"
+                      className="ia-float"
+                      src="/Group-23.svg"
+                      alt="Grafica AI – animazione flottante"
+                      width="1200" 
+                      height="900"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                {/* Pannello 2: Group-24.svg (blink) */}
+                <div className="ia-panel" id="panel-24">
+                  <div className="ia-media">
+                    <img
+                      id="ia-24"
+                      className="ia-blink"
+                      src="/Group-24.svg"
+                      alt="Elemento AI a intermittenza"
+                      width="1200" 
+                      height="900"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
