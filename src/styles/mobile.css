@@ -96,7 +96,10 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
-  font-size:clamp(26px, 6.5vw, 36px);line-height:1.25;font-weight:500;
+  font-family: 'Outfit', Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  line-height:1.25;
+  font-weight:500;
   text-align:center;margin:calc(6vw + 100px) 0 6vw 0;padding:0 2vw;
 }
 
