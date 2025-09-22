@@ -552,6 +552,9 @@ export const LandingPage = (): JSX.Element => {
                     >
                       Cookie Policy
                     </a>
+                    <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '16px', fontFamily: 'Outfit', display: 'block', marginTop: '8px'}}>
+                      Aggiorna le preferenze sui cookie
+                    </a>
                     <a 
                       href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
                       target="_blank" 
@@ -569,10 +572,6 @@ export const LandingPage = (): JSX.Element => {
             <div className="absolute w-[1194px] top-[6750px] left-[1493px] text-center">
               <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
                 © 2025 Cobrynet – Tutti i diritti riservati.
-                <br />
-                <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '16px'}}>
-                  Aggiorna le preferenze sui cookie
-                </a>
               </div>
             </div>
 
@@ -841,6 +840,9 @@ export const LandingPage = (): JSX.Element => {
                   >
                     Cookie Policy
                   </a>
+                  <a href="#" className="lb-cs-settings-link footer__item footer__item--link" style={{color: '#901D6B', textDecoration: 'underline', marginTop: '8px', display: 'block'}}>
+                    Aggiorna le preferenze sui cookie
+                  </a>
                 </div>
               </div>
 
@@ -864,11 +866,7 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             <p className="footer__note">
-              2025 COBRYNET. All rights reserved. 
-              <br />
-              <a href="#" className="lb-cs-settings-link" style={{color: '#901D6B', textDecoration: 'underline'}}>
-                Aggiorna le preferenze sui cookie
-              </a>
+              2025 COBRYNET. All rights reserved.
             </p>
           </footer>
         </div>
