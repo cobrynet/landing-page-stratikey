@@ -100,6 +100,20 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   text-align:center;margin:calc(6vw + 100px) 0 6vw 0;padding:0 2vw;
 }
 
+.text-gradient-subtitle{
+  background:var(--grad-text);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-family: 'Outfit', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height:1.4;
+  font-weight:400;
+  text-align:center;
+  margin:calc(2vw + 10px) 0 6vw 0;
+  padding:0 2vw;
+}
+
 /* ===== CAROUSEL CARDS ===== */
 .carousel{
   position:relative;

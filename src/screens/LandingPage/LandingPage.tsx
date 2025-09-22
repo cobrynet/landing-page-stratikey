@@ -696,7 +696,7 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             <h2 className="text-gradient">Con Stratikey la strategia diventa semplice e concreta.</h2>
-            <p className="text-gradient">Un'unica visione che unisce marketing e vendite, assicura coerenza tra digitale e fisico e trasforma i dati in decisioni efficaci per far crescere la tua azienda.</p>
+            <p className="text-gradient-subtitle">Un'unica visione che unisce marketing e vendite, assicura coerenza tra digitale e fisico e trasforma i dati in decisioni efficaci per far crescere la tua azienda.</p>
           </section>
 
           {/* CAROUSEL CARDS */}
