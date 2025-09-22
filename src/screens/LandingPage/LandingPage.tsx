@@ -60,9 +60,39 @@ export const LandingPage = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
+
+  // Carousel data
+  const carouselSlides = [
+    { 
+      image: '/semplicita-card.png', 
+      alt: 'Semplicità - Da processi complessi a un\'unica piattaforma intuitiva' 
+    },
+    { 
+      image: '/efficenza-card.png', 
+      alt: 'Efficenza - Ogni attività, dal marketing al commerciale, gestita in un solo ecosistema' 
+    },
+    { 
+      image: '/gestione-card.png', 
+      alt: 'Gestione più rapida - Meno tempo sprecato, più opportunità colte' 
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   React.useEffect(() => {
     const minAngle = -80;
@@ -625,13 +655,48 @@ export const LandingPage = (): JSX.Element => {
             <h2 className="text-gradient">Con Stratikey la strategia diventa semplice e concreta.</h2>
           </section>
 
-          {/* SEMPLICITA CARD */}
-          <section>
-            <img 
-              src="/semplicita-card.png" 
-              alt="Semplicità - Da processi complessi a un'unica piattaforma intuitiva"
-              className="card card--simplicity object-cover"
-            />
+          {/* CAROUSEL CARDS */}
+          <section className="carousel">
+            <div className="carousel-container" style={{transform: `translateX(-${currentSlide * 100}%)`}}>
+              {carouselSlides.map((slide, index) => (
+                <div key={index} className="carousel-slide">
+                  <img 
+                    src={slide.image} 
+                    alt={slide.alt}
+                    className="card card--carousel object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+            
+            <div className="carousel-nav">
+              <button 
+                className="carousel-arrow" 
+                onClick={prevSlide}
+                aria-label="Slide precedente"
+              >
+                ‹
+              </button>
+              
+              <div className="carousel-dots">
+                {carouselSlides.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+                    onClick={() => goToSlide(index)}
+                    aria-label={`Vai alla slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+              
+              <button 
+                className="carousel-arrow" 
+                onClick={nextSlide}
+                aria-label="Slide successiva"
+              >
+                ›
+              </button>
+            </div>
           </section>
 
           {/* AI section */}

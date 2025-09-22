@@ -100,14 +100,84 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   text-align:center;margin:calc(6vw + 100px) 0 6vw 0;padding:0 2vw;
 }
 
-/* ===== SEMPLICITA CARD ===== */
-.card--simplicity{
+/* ===== CAROUSEL CARDS ===== */
+.carousel{
+  position:relative;
   margin-top:100px;
+  width:100%;
+  overflow:hidden;
+}
+
+.carousel-container{
+  display:flex;
+  transition:transform 0.5s ease-in-out;
+}
+
+.carousel-slide{
+  min-width:100%;
+  flex-shrink:0;
+}
+
+.card--carousel{
   min-height:290px;
   padding:0;
   width:100%;
   box-sizing:border-box;
   border-radius:clamp(20px, 6vw, 32px);
+}
+
+/* Carousel Controls */
+.carousel-nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:20px;
+  padding:0 2vw;
+}
+
+.carousel-arrow{
+  background:rgba(255,255,255,0.9);
+  border:none;
+  border-radius:50%;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:background 0.3s ease;
+  font-size:18px;
+  color:var(--magenta-700);
+}
+
+.carousel-arrow:hover{
+  background:white;
+  transform:scale(1.05);
+}
+
+.carousel-arrow:disabled{
+  opacity:0.3;
+  cursor:not-allowed;
+}
+
+.carousel-dots{
+  display:flex;
+  gap:8px;
+}
+
+.carousel-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  background:rgba(255,255,255,0.4);
+}
+
+.carousel-dot.active{
+  background:white;
+  transform:scale(1.2);
 }
 .card--simplicity h2{
   font-size:clamp(42px, 8vw, 52px);
