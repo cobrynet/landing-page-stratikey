@@ -237,7 +237,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-size:clamp(32px, 8vw, 44px);
   line-height:1.15;
   font-weight:500;
-  margin:25px 0 6vw;
+  margin:0 0 6vw;
   color:#fff;
 }
 .ai__text{
@@ -245,7 +245,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-size:18px;
   line-height:1.4;
   font-weight:300;
-  margin:50px 0 8vw;
+  margin:0 0 8vw;
   color:#fff;
   opacity:0.95;
 }
