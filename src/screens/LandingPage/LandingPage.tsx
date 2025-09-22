@@ -795,27 +795,51 @@ export const LandingPage = (): JSX.Element => {
           </section>
 
           {/* FOOTER */}
-          <div className="divider"></div>
           <footer className="footer">
             <img className="footer__brand" src="/marchio-bianco-stratikey.png" alt="stratikey" />
-            <div className="footer__col-title">Contatti</div>
-            <div className="footer__item">info@stratikey.com</div>
-            <div className="footer__item">351 663 8114</div>
-            <div className="footer__item">P.IVA 02100690474</div>
+            <div className="footer__divider"></div>
+            
+            <div className="footer__content">
+              {/* Colonna Sinistra */}
+              <div className="footer__left">
+                <div className="footer__section">
+                  <div className="footer__col-title">Contatti</div>
+                  <div className="footer__item">info@stratikey.com</div>
+                  <div className="footer__item">351 663 8114</div>
+                  <div className="footer__item">P.IVA 02100690474</div>
+                </div>
 
-            <div className="footer__col-title">Servizi</div>
-            <div className="footer__item">Brand Identity</div>
-            <div className="footer__item">Sito Web</div>
-            <div className="footer__item">Foto e video aziendali</div>
-            <div className="footer__item">Materiale stampato</div>
-            <div className="footer__item">Contenuti per piani editoriali</div>
+                <div className="footer__section">
+                  <div className="footer__col-title">Piattaforma</div>
+                  <div className="footer__item" onClick={handleOpenModal}>Registrati</div>
+                </div>
 
-            <div className="footer__col-title">Piattaforma</div>
-            <div className="footer__item">Registrati</div>
-            <div className="footer__item">Email marketing e automazioni</div>
-            <div className="footer__item">Live chat e assistenza clienti</div>
+                <div className="footer__section">
+                  <div className="footer__item">Privacy Policy</div>
+                  <div className="footer__item">Cookie Policy</div>
+                </div>
+              </div>
 
-            <p className="footer__note">© 2025 COBRYNET. Tutti i diritti riservati.</p>
+              {/* Colonna Destra */}
+              <div className="footer__right">
+                <div className="footer__section">
+                  <div className="footer__col-title">Servizi</div>
+                  <div className="footer__item">Brand Identity</div>
+                  <div className="footer__item">Sito Web</div>
+                  <div className="footer__item">Foto e video aziendali</div>
+                  <div className="footer__item">Materiale stampato</div>
+                  <div className="footer__item">Contenuti per piani editoriali</div>
+                </div>
+
+                <div className="footer__section">
+                  <div className="footer__col-title">Applicativi</div>
+                  <div className="footer__item">Email marketing e automazioni</div>
+                  <div className="footer__item">Live chat e assistenza clienti</div>
+                </div>
+              </div>
+            </div>
+
+            <p className="footer__note">2025 COBRYNET. All rights reserved.</p>
           </footer>
         </div>
       </div>
