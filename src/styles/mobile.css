@@ -242,7 +242,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 }
 .ai__text{
   font-family:'Outfit', Helvetica, Arial, sans-serif;
-  font-size:clamp(18px, 4.5vw, 24px);
+  font-size:18px;
   line-height:1.4;
   font-weight:300;
   margin:0 0 8vw;
