@@ -296,7 +296,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-weight: 400;
   color: #390035;
   text-align: center;
-  margin: 6vw auto 0;
+  margin: calc(6vw + 50px) auto 0;
   max-width: 90%;
 }
 
