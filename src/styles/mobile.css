@@ -354,11 +354,6 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-weight: 400;
   color: #390035;
   margin-bottom: 2vw;
-  cursor: pointer;
-}
-
-.footer__item:hover {
-  color: #901D6B;
 }
 
 .footer__note {
@@ -381,10 +376,16 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   color: #901D6B;
   text-decoration: none;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .footer__item--link:hover {
   color: #cd8fbe;
+}
+
+/* Cursor pointer solo per Registrati */
+.footer__item[onclick] {
+  cursor: pointer;
 }
 
 /* Spaziatura per Cookie Policy sotto Privacy Policy */
