@@ -627,10 +627,11 @@ export const LandingPage = (): JSX.Element => {
 
           {/* SEMPLICITA CARD */}
           <section>
-            <div className="card card--simplicity">
-              <h2>Semplicità</h2>
-              <p>Da processi complessi a<br />un'unica piattaforma<br />intuitiva</p>
-            </div>
+            <img 
+              src="/semplicita-card.png" 
+              alt="Semplicità - Da processi complessi a un'unica piattaforma intuitiva"
+              className="card card--simplicity w-full h-auto object-contain rounded-[50px]"
+            />
           </section>
 
           {/* AI section */}
