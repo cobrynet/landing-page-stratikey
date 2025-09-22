@@ -386,6 +386,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 /* Cursor pointer e hover per Registrati */
 .footer__item[onclick] {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .footer__item[onclick]:hover {
