@@ -247,7 +247,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-weight:300;
   margin:0 0 8vw;
   color:#fff;
-  text-align:justify;
+  text-align:left;
   opacity:0.95;
 }
 .ai__disc{
