@@ -699,23 +699,25 @@ export const LandingPage = (): JSX.Element => {
           </section>
 
           {/* CAROUSEL CARDS */}
-          <section className="carousel">
-            <div 
-              className="carousel-container" 
-              style={{transform: `translateX(-${currentSlide * 100}%)`}}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            >
-              {carouselSlides.map((slide, index) => (
-                <div key={index} className="carousel-slide">
-                  <img 
-                    src={slide.image} 
-                    alt={slide.alt}
-                    className="card card--carousel object-cover"
-                  />
-                </div>
-              ))}
+          <section className="carousel" aria-roledescription="carousel">
+            <div className="carousel-viewport">
+              <div 
+                className="carousel-container" 
+                style={{transform: `translateX(-${currentSlide * 100}%)`}}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {carouselSlides.map((slide, index) => (
+                  <div key={index} className="carousel-slide">
+                    <img 
+                      src={slide.image} 
+                      alt={slide.alt}
+                      className="card--carousel"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
             
             <div className="carousel-dots">
@@ -724,6 +726,7 @@ export const LandingPage = (): JSX.Element => {
                   key={index}
                   className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
                   onClick={() => goToSlide(index)}
+                  aria-current={index === currentSlide ? 'true' : undefined}
                   aria-label={`Vai alla slide ${index + 1}`}
                 />
               ))}
