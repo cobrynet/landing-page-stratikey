@@ -630,8 +630,7 @@ export const LandingPage = (): JSX.Element => {
             <img 
               src="/semplicita-card.png" 
               alt="Semplicità - Da processi complessi a un'unica piattaforma intuitiva"
-              className="card card--simplicity w-full object-cover rounded-[50px]"
-              style={{height: '290px'}}
+              className="card card--simplicity object-cover"
             />
           </section>
 

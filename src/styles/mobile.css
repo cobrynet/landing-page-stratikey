@@ -104,9 +104,10 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 .card--simplicity{
   margin-top:100px;
   min-height:290px;
-  max-height:290px;
-  height:290px;
   padding:0;
+  width:100%;
+  box-sizing:border-box;
+  border-radius:clamp(20px, 6vw, 32px);
 }
 .card--simplicity h2{
   font-size:clamp(42px, 8vw, 52px);
