@@ -126,6 +126,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   margin-right:auto;
   user-select:none;
   touch-action:pan-y;
+  z-index:10;
 }
 
 .carousel-viewport{
@@ -211,14 +212,16 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 }
 
 .ai{
-  margin-top:-93px;
+  margin-top:-350px;
   margin-bottom:8vw;
   width:100vw;
   margin-left:calc(-50vw + 50%);
+  position:relative;
+  z-index:1;
 }
 .ai__wrap{
-  background:linear-gradient(180deg,rgba(230,179,214,0.3) 0%,rgba(230,179,214,0.7) 15%,#E6B3D6 30%,#CF1F96 50%,#901D6B 75%,#390035 100%);
-  padding-top:calc(93px + 10vw);
+  background:linear-gradient(180deg,#E8C2E0 0%,#D893C7 20%,#CF1F96 40%,#901D6B 70%,#390035 100%);
+  padding-top:400px;
   padding-bottom:12vw;
   padding-left:5vw;
   padding-right:5vw;
@@ -227,10 +230,10 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   position:relative;
   width:100%;
   box-sizing:border-box;
-  min-height:calc(100vh + 93px);
+  min-height:100vh;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  justify-content:flex-start;
 }
 .ai__title{
   font-family:'Outfit', Helvetica, Arial, sans-serif;
