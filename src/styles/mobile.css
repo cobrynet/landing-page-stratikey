@@ -211,14 +211,17 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 }
 
 .ai{
-  margin-top:8vw;
+  margin-top:-200px;
   margin-bottom:8vw;
   width:100vw;
   margin-left:calc(-50vw + 50%);
 }
 .ai__wrap{
-  background:linear-gradient(180deg,#F5E8F0 0%,#E8C2E0 15%,#D893C7 30%,#CF1F96 50%,#901D6B 75%,#390035 100%);
-  padding:15vw 5vw 12vw;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(245,232,240,0.3) 20%,rgba(232,194,224,0.6) 35%,#E8C2E0 50%,#CF1F96 70%,#901D6B 85%,#390035 100%);
+  padding-top:250px;
+  padding-bottom:12vw;
+  padding-left:5vw;
+  padding-right:5vw;
   color:var(--white);
   text-align:center;
   position:relative;
