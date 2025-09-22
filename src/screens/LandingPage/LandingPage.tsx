@@ -216,22 +216,17 @@ export const LandingPage = (): JSX.Element => {
     };
   }, []);
 
-  // Parallax effect per gli SVG della sezione AI
+  // Parallax effect per gli SVG della sezione AI (desktop system)
   React.useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    const parallaxFactor = 0.06;
-    const scrollHandlers = new Map();
-    
-    const panel23 = document.getElementById('panel-23');
-    const panel24 = document.getElementById('panel-24');
-    const el23 = document.getElementById('ia-23');
-    const el24 = document.getElementById('ia-24');
-    
+    const parallaxFactor = parseFloat(getComputedStyle(document.documentElement)
+      .getPropertyValue('--ia-parallax-factor')) || 0.06;
+
     const targets = [
-      { panel: panel23, el: el23 },
-      { panel: panel24, el: el24 },
+      { panel: document.getElementById('panel-23'), el: document.getElementById('ia-23') },
+      { panel: document.getElementById('panel-24'), el: document.getElementById('ia-24') },
     ].filter(t => t.panel && t.el);
 
     const io = new IntersectionObserver((entries) => {
@@ -240,28 +235,32 @@ export const LandingPage = (): JSX.Element => {
         if (!t || !t.panel || !t.el) return;
 
         if (entry.isIntersecting) {
+          // attacca listener di scroll solo quando il pannello è visibile
           const onScroll = () => {
             if (!t.panel || !t.el) return;
             const rect = t.panel.getBoundingClientRect();
             const vh = window.innerHeight || 1;
+            // progress -0.5..+0.5 circa attraverso il centro del viewport
             const progress = (vh / 2 - rect.top) / (vh + rect.height);
             const offsetY = (progress - 0.5) * vh * parallaxFactor;
-            t.el.style.transform = `translate3d(0, ${offsetY.toFixed(1)}px, 0)`;
+            t.el.style.transform = (t.el.classList.contains('ia-float'))
+              ? `translate3d(0, ${offsetY.toFixed(1)}px, 0)` // si somma al keyframe via compositor
+              : `translate3d(0, ${offsetY.toFixed(1)}px, 0)`;
           };
+          // esegui subito e registra
           onScroll();
-          scrollHandlers.set(t.panel, onScroll);
+          (entry.target as any)._onScroll = onScroll;
           window.addEventListener('scroll', onScroll, { passive: true });
           window.addEventListener('resize', onScroll, { passive: true });
         } else {
-          const handler = scrollHandlers.get(t.panel);
-          if (handler) {
-            window.removeEventListener('scroll', handler);
-            window.removeEventListener('resize', handler);
-            scrollHandlers.delete(t.panel);
+          // pulizia quando esce
+          if ((entry.target as any)._onScroll) {
+            window.removeEventListener('scroll', (entry.target as any)._onScroll);
+            window.removeEventListener('resize', (entry.target as any)._onScroll);
+            (entry.target as any)._onScroll = null;
           }
-          if (t.el) {
-            t.el.style.transform = '';
-          }
+          // reset transform per evitare drift quando non visibile
+          t.el.style.transform = '';
         }
       });
     }, { threshold: [0, 0.15, 0.5, 1] });
@@ -273,11 +272,12 @@ export const LandingPage = (): JSX.Element => {
     });
 
     return () => {
-      scrollHandlers.forEach((handler) => {
-        window.removeEventListener('scroll', handler);
-        window.removeEventListener('resize', handler);
+      targets.forEach(t => {
+        if ((t.panel as any)?._onScroll) {
+          window.removeEventListener('scroll', (t.panel as any)._onScroll);
+          window.removeEventListener('resize', (t.panel as any)._onScroll);
+        }
       });
-      scrollHandlers.clear();
     };
   }, []);
 

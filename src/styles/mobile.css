@@ -249,6 +249,24 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   color:#fff;
   opacity:0.95;
 }
+/* ====== VARIABILI SVG ANIMATI (come desktop) ====== */
+:root {
+  /* movimento dolce "floating" del primo SVG */
+  --ia-float-amp: 12px;         /* 8–18px */
+  --ia-float-dur: 6s;           /* 4–9s */
+  /* parallax su scroll (valori piccoli) */
+  --ia-parallax-factor: 0.06;   /* 0.04–0.12 */
+
+  /* blink/intermittenza del secondo SVG */
+  --blink-dur: 1.4s;            /* 0.8–2s  */
+  --blink-off: 0.25;            /* opacità minima quando "spento" */
+
+  /* layout pannelli */
+  --card-radius: 18px;
+  --pad: 18px;
+  --panel: #101522;
+}
+
 /* ====== PANNELLI SVG ANIMATI ====== */
 .ia-panels {
   display: grid;
@@ -264,8 +282,8 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   width: 100%;
   background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.00));
   border: 1px solid rgba(255,255,255,.06);
-  border-radius: 18px;
-  padding: 18px;
+  border-radius: var(--card-radius);
+  padding: var(--pad);
   box-shadow: 0 10px 40px rgba(0,0,0,.35);
 }
 
@@ -274,10 +292,10 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: calc(var(--card-radius) - 6px);
   display: grid;
   place-items: center;
-  background: #101522;
+  background: var(--panel);
 }
 
 .ia-media img, .ia-media svg {
@@ -290,27 +308,27 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   user-select: none;
 }
 
-/* FLOAT ANIMATION per Group-23.svg */
+/* FLOAT + PARALLAX per il primo SVG (Group-23) */
 .ia-float {
-  animation: iaFloat 6s ease-in-out infinite;
+  animation: iaFloat var(--ia-float-dur) ease-in-out infinite;
 }
 @keyframes iaFloat {
   0%   { transform: translate3d(0, 0, 0); }
-  50%  { transform: translate3d(0, -12px, 0); }
+  50%  { transform: translate3d(0, calc(-1 * var(--ia-float-amp)), 0); }
   100% { transform: translate3d(0, 0, 0); }
 }
 
-/* BLINK ANIMATION per Group-24.svg */
+/* BLINK/INTERMITTENZA per il secondo SVG (Group-24) */
 .ia-blink {
-  animation: iaBlink 1.4s steps(2, end) infinite;
+  animation: iaBlink var(--blink-dur) steps(2, end) infinite;
 }
 @keyframes iaBlink {
   0%   { opacity: 1; }
-  50%  { opacity: 0.25; }
+  50%  { opacity: var(--blink-off); }
   100% { opacity: 1; }
 }
 
-/* Accessibilità: riduci animazioni se richiesto */
+/* Accessibilità: riduci i motion-heavy effects */
 @media (prefers-reduced-motion: reduce) {
   .ia-float, .ia-blink { 
     animation: none !important; 
