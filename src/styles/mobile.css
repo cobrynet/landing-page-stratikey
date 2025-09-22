@@ -120,7 +120,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 /* ===== CAROUSEL CARDS ===== */
 .carousel{
   position:relative;
-  margin-top:100px;
+  margin-top:137px;
   max-width:100%;
   margin-left:auto;
   margin-right:auto;
