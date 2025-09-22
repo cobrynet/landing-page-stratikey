@@ -825,7 +825,7 @@ export const LandingPage = (): JSX.Element => {
                     href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="footer__item footer__item--link footer__item--indented"
+                    className="footer__item footer__item--link"
                   >
                     Privacy Policy
                   </a>

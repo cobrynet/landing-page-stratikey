@@ -387,16 +387,11 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   color: #cd8fbe;
 }
 
-/* Indentazione solo per Cookie Policy (secondo link) */
-.footer__item--indented:nth-child(2) {
+/* Indentazione per Cookie Policy sotto Privacy Policy */
+.footer__item--indented {
   margin-left: 16px;
   margin-top: 8px;
-}
-
-/* Reset per Privacy Policy (primo link) */
-.footer__item--indented:first-child {
-  margin-left: 0;
-  margin-top: 0;
+  display: block;
 }
 
 /* ===== MEDIA QUERIES RESPONSIVE ===== */
