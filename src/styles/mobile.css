@@ -383,9 +383,13 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   color: #cd8fbe;
 }
 
-/* Cursor pointer solo per Registrati */
+/* Cursor pointer e hover per Registrati */
 .footer__item[onclick] {
   cursor: pointer;
+}
+
+.footer__item[onclick]:hover {
+  color: #901D6B;
 }
 
 /* Spaziatura per Cookie Policy sotto Privacy Policy */
