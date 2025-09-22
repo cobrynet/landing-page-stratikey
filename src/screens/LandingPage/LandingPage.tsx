@@ -462,8 +462,8 @@ export const LandingPage = (): JSX.Element => {
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     className="w-[243px] h-[57px] mb-4 object-cover"
                     style={{ cursor: 'pointer' }}
-                    alt="Stratikey marchio nero"
-                    src="/stratikey-marchio-nero.png"
+                    alt="Stratkey basso"
+                    src="/stratkey-basso.png"
                   />
                   <div className="[font-family:'Outfit',Helvetica] font-normal text-[#901d6b] text-xl tracking-[0] leading-[24px] mb-6">
                     <div style={{ marginTop: '23px' }}>
