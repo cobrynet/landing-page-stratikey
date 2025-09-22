@@ -569,6 +569,10 @@ export const LandingPage = (): JSX.Element => {
             <div className="absolute w-[1194px] top-[6750px] left-[1493px] text-center">
               <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
                 © 2025 Cobrynet – Tutti i diritti riservati.
+                <br />
+                <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '16px'}}>
+                  Aggiorna le preferenze sui cookie
+                </a>
               </div>
             </div>
 
@@ -859,7 +863,13 @@ export const LandingPage = (): JSX.Element => {
               </div>
             </div>
 
-            <p className="footer__note">2025 COBRYNET. All rights reserved.</p>
+            <p className="footer__note">
+              2025 COBRYNET. All rights reserved. 
+              <br />
+              <a href="#" className="lb-cs-settings-link" style={{color: '#901D6B', textDecoration: 'underline'}}>
+                Aggiorna le preferenze sui cookie
+              </a>
+            </p>
           </footer>
         </div>
       </div>
