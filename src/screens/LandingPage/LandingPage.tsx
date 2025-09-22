@@ -75,12 +75,12 @@ export const LandingPage = (): JSX.Element => {
       alt: 'Semplicità - Da processi complessi a un\'unica piattaforma intuitiva' 
     },
     { 
-      image: '/carosello-3.svg', 
-      alt: 'Efficenza - Ogni attività, dal marketing al commerciale, gestita in un solo ecosistema' 
-    },
-    { 
       image: '/carosello-2.svg', 
       alt: 'Gestione più rapida - Meno tempo sprecato, più opportunità colte' 
+    },
+    { 
+      image: '/carosello-3.svg', 
+      alt: 'Efficenza - Ogni attività, dal marketing al commerciale, gestita in un solo ecosistema' 
     }
   ];
 
