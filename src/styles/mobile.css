@@ -142,10 +142,9 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   display:block;
   pointer-events:none;
   border-radius:clamp(20px, 6vw, 32px);
-  image-rendering:-webkit-optimize-contrast;
-  image-rendering:crisp-edges;
-  image-rendering:pixelated;
-  -ms-interpolation-mode:nearest-neighbor;
+  image-rendering:auto;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
 }
 
 /* Carousel Controls */

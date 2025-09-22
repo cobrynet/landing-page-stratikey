@@ -71,15 +71,15 @@ export const LandingPage = (): JSX.Element => {
   // Carousel data
   const carouselSlides = [
     { 
-      image: '/semplicita-card.png', 
+      image: '/carosello-1.svg', 
       alt: 'Semplicità - Da processi complessi a un\'unica piattaforma intuitiva' 
     },
     { 
-      image: '/efficenza-card.png', 
+      image: '/carosello-3.svg', 
       alt: 'Efficenza - Ogni attività, dal marketing al commerciale, gestita in un solo ecosistema' 
     },
     { 
-      image: '/gestione-card.png', 
+      image: '/carosello-2.svg', 
       alt: 'Gestione più rapida - Meno tempo sprecato, più opportunità colte' 
     }
   ];
