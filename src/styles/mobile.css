@@ -387,9 +387,9 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   color: #cd8fbe;
 }
 
-/* Indentazione per Cookie Policy sotto Privacy Policy */
+/* Spaziatura per Cookie Policy sotto Privacy Policy */
 .footer__item--indented {
-  margin-left: 16px;
+  margin-left: 0;
   margin-top: 8px;
   display: block;
 }
