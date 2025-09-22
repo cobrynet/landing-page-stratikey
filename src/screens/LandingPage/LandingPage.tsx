@@ -821,7 +821,7 @@ export const LandingPage = (): JSX.Element => {
 
                 <div className="footer__section">
                   <div className="footer__col-title">Piattaforma</div>
-                  <div className="footer__item" onClick={handleOpenModal}>Registrati</div>
+                  <div className="footer__item footer__registrati" onClick={handleOpenModal}>Registrati</div>
                 </div>
 
                 <div className="footer__section">

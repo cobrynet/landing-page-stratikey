@@ -396,7 +396,20 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   transition: color 0.3s ease !important;
 }
 
+/* Aggiunto selettore per React onClick */
+.footer__section .footer__item.footer__registrati {
+  cursor: pointer !important;
+  text-decoration: underline !important;
+  color: #390035 !important;
+  transition: color 0.3s ease !important;
+}
+
 .footer__section .footer__item[onclick]:hover {
+  color: #901D6B !important;
+}
+
+/* Hover anche per la classe React */
+.footer__section .footer__item.footer__registrati:hover {
   color: #901D6B !important;
 }
 
