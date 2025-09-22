@@ -218,7 +218,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 }
 .ai__wrap{
   background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(161,64,130,0.25) 20%,rgba(161,64,130,0.6) 35%,rgba(161,64,130,0.8) 50%,rgba(161,64,130,0.75) 65%,rgba(161,64,130,0.4) 75%,rgba(161,64,130,0.25) 85%,rgba(161,64,130,0.15) 92%,rgba(161,64,130,0.08) 96%,rgba(255,255,255,0.02) 100%);
-  padding-top:200px;
+  padding-top:300px;
   padding-bottom:20vw;
   padding-left:5vw;
   padding-right:5vw;
