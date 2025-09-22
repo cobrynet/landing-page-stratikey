@@ -105,7 +105,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   position:relative;
   margin-top:100px;
   width:100%;
-  overflow:hidden;
+  overflow:visible;
 }
 
 .carousel-container{
@@ -116,16 +116,22 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 .carousel-slide{
   min-width:100%;
   flex-shrink:0;
+  height:auto;
+  overflow:visible;
 }
 
 .card--carousel{
+  width:100%;
   height:auto;
   max-width:100%;
+  min-height:unset;
+  max-height:none;
   padding:0;
-  width:100%;
   box-sizing:border-box;
   border-radius:clamp(20px, 6vw, 32px);
   object-fit:contain;
+  object-position:center;
+  display:block;
 }
 
 /* Carousel Controls */
