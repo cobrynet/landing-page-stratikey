@@ -166,14 +166,14 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   border:none;
   cursor:pointer;
   transition:all 0.3s ease;
-  background:rgba(255,255,255,0.6);
+  background:rgba(57, 0, 53, 0.6);
   opacity:1;
   visibility:visible;
   flex-shrink:0;
 }
 
 .carousel-dot.active{
-  background:white;
+  background:var(--magenta-700);
   width:22px;
   border-radius:8px;
   opacity:1;
