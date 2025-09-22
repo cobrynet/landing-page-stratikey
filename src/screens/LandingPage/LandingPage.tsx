@@ -796,7 +796,13 @@ export const LandingPage = (): JSX.Element => {
 
           {/* FOOTER */}
           <footer className="footer">
-            <img className="footer__brand" src="/STRATIKEY-MARCHIO-NERO.png" alt="stratikey" />
+            <img 
+              className="footer__brand" 
+              src="/STRATIKEY-MARCHIO-NERO.png" 
+              alt="stratikey" 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              style={{ cursor: 'pointer' }}
+            />
             <div className="footer__divider"></div>
             
             <div className="footer__content">
@@ -815,8 +821,22 @@ export const LandingPage = (): JSX.Element => {
                 </div>
 
                 <div className="footer__section">
-                  <div className="footer__item">Privacy Policy</div>
-                  <div className="footer__item">Cookie Policy</div>
+                  <a 
+                    href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="footer__item footer__item--link"
+                  >
+                    Privacy Policy
+                  </a>
+                  <a 
+                    href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/cookie-policy-it" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="footer__item footer__item--link"
+                  >
+                    Cookie Policy
+                  </a>
                 </div>
               </div>
 
