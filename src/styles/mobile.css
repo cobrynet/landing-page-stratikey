@@ -211,19 +211,23 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 }
 
 .ai{
-  margin:8vw 0;
+  margin-top:-93px;
+  margin-bottom:8vw;
   width:100vw;
   margin-left:calc(-50vw + 50%);
 }
 .ai__wrap{
-  background:linear-gradient(180deg,#E6B3D6 0%,#CF1F96 35%,#901D6B 65%,#390035 100%);
-  padding:15vw 5vw 12vw;
+  background:linear-gradient(180deg,rgba(230,179,214,0.3) 0%,rgba(230,179,214,0.7) 15%,#E6B3D6 30%,#CF1F96 50%,#901D6B 75%,#390035 100%);
+  padding-top:calc(93px + 10vw);
+  padding-bottom:12vw;
+  padding-left:5vw;
+  padding-right:5vw;
   color:var(--white);
   text-align:center;
   position:relative;
   width:100%;
   box-sizing:border-box;
-  min-height:100vh;
+  min-height:calc(100vh + 93px);
   display:flex;
   flex-direction:column;
   justify-content:center;
