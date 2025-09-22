@@ -250,7 +250,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   opacity:0.95;
 }
 
-/* ====== SVG ANIMATI AI (copiati dal desktop) ====== */
+/* ====== GROUP-23 E GROUP-24 CENTRATI ====== */
 .ai__graphics {
   position: relative;
   width: 100%;
@@ -261,28 +261,52 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   justify-content: center;
 }
 
-.ai__luce {
-  width: clamp(240px, 50vw, 320px);
+.ai__group24 {
+  width: clamp(280px, 60vw, 360px);
   height: auto;
-  position: relative;
-  z-index: 2;
-}
-
-.ai__ellipses {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-3.12deg);
-  width: clamp(280px, 60vw, 360px);
-  height: clamp(280px, 60vw, 360px);
+  transform: translate(-50%, -50%);
   z-index: 1;
 }
 
-.ai__ellipses-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform: scale(0.8);
+.ai__group23 {
+  width: clamp(240px, 50vw, 320px);
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* ANIMAZIONI IDENTICHE AL DESKTOP */
+.ia-float {
+  animation: iaFloat 6s ease-in-out infinite;
+}
+@keyframes iaFloat {
+  0%   { transform: translate(-50%, -50%) translate3d(0, 0, 0); }
+  50%  { transform: translate(-50%, -50%) translate3d(0, -12px, 0); }
+  100% { transform: translate(-50%, -50%) translate3d(0, 0, 0); }
+}
+
+.ia-blink {
+  animation: iaBlink 1.4s steps(2, end) infinite;
+}
+@keyframes iaBlink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.25; }
+  100% { opacity: 1; }
+}
+
+/* Accessibilità */
+@media (prefers-reduced-motion: reduce) {
+  .ia-float, .ia-blink { 
+    animation: none !important; 
+    transform: translate(-50%, -50%) !important; 
+    opacity: 1 !important; 
+  }
 }
 
 .divider{height:1px;background:var(--magenta-900);margin:8vw 0;width:100%;}
