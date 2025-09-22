@@ -871,3 +871,28 @@ html, body { overflow-x: clip; } /* override per browser moderni */
     padding-top: clamp(56px, 4vw, 80px);
   }
 }
+
+/* AI text organization styles */
+.ai__text p{
+  margin:0 0 4vw 0;
+  line-height:1.4;
+}
+
+.ai__text p:last-of-type{
+  margin-bottom:5vw;
+}
+
+.ai__features{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.ai__features li{
+  font-family:'Outfit', Helvetica, Arial, sans-serif;
+  font-size:clamp(18px, 4.5vw, 24px);
+  font-weight:300;
+  margin:2.5vw 0;
+  line-height:1.4;
+  padding-left:0;
+}

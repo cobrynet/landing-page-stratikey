@@ -738,7 +738,17 @@ export const LandingPage = (): JSX.Element => {
           <section className="ai">
             <div className="ai__wrap">
               <h2 className="ai__title">Intelligenza Artificiale<br />per l'Industria</h2>
-              <p className="ai__text">L'intelligenza artificiale di Stratikey è progettata e istruita specificamente per il settore industriale: comprende dinamiche, tempi e complessità delle vendite B2B, supportando il commerciale con suggerimenti mirati, automazioni intelligenti e analisi capaci di trasformare i dati in opportunità reali.</p>
+              <div className="ai__text">
+                <p>L'intelligenza artificiale di Stratikey è progettata e istruita specificamente per il settore industriale.</p>
+                
+                <p>Comprende dinamiche, tempi e complessità delle vendite B2B, supportando il commerciale con:</p>
+                
+                <ul className="ai__features">
+                  <li>• Suggerimenti mirati</li>
+                  <li>• Automazioni intelligenti</li>
+                  <li>• Analisi capaci di trasformare i dati in opportunità reali</li>
+                </ul>
+              </div>
               <div className="ai__disc" aria-hidden="true"></div>
             </div>
           </section>
