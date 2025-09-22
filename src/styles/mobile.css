@@ -113,7 +113,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   line-height:1.4;
   font-weight:300;
   text-align:center;
-  margin:calc(0.2vw - 40px) 0 6vw 0;
+  margin:calc(0.2vw - 30px) 0 6vw 0;
   padding:0 2vw;
 }
 
