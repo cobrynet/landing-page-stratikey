@@ -14,7 +14,13 @@
     
     <!-- Cookie consent scripts -->
     <script type="text/javascript" src="https://app.legalblink.it/api/scripts/lb_cs.js"></script>
-    <script id="lb_cs" type="text/javascript">lb_cs("67d49eda117e0a002358d719");</script>
+    <script id="lb_cs" type="text/javascript">
+      // Reset cookie consent per test
+      localStorage.removeItem('lb_cs_67d49eda117e0a002358d719');
+      sessionStorage.removeItem('lb_cs_67d49eda117e0a002358d719');
+      
+      lb_cs("67d49eda117e0a002358d719");
+    </script>
   </head>
   <body>
     <div id="app"></div>
