@@ -325,7 +325,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 
 .footer__divider {
   height: 2px;
-  background: #00A0E3;
+  background: #000000;
   width: 100%;
   margin-bottom: 6vw;
 }
