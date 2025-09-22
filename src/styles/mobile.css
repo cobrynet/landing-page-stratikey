@@ -383,24 +383,30 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   color: #cd8fbe;
 }
 
-/* Cursor pointer e hover per Registrati */
-.footer__item[onclick] {
-  cursor: pointer;
-  text-decoration: underline;
+/* Stile specifico per Registrati nel footer mobile */
+.footer__section .footer__item {
+  cursor: default;
 }
 
-.footer__item[onclick]:hover {
+.footer__section .footer__item[onclick] {
+  cursor: pointer !important;
+  text-decoration: underline !important;
+  color: #390035 !important;
+  transition: color 0.3s ease !important;
+}
+
+.footer__section .footer__item[onclick]:hover {
   color: #901D6B !important;
 }
 
 /* Per dispositivi mobile, aggiunge anche effetto active */
-.footer__item[onclick]:active {
+.footer__section .footer__item[onclick]:active {
   color: #901D6B !important;
 }
 
 /* Media query specifica per hover su dispositivi che lo supportano */
 @media (hover: hover) {
-  .footer__item[onclick]:hover {
+  .footer__section .footer__item[onclick]:hover {
     color: #901D6B !important;
   }
 }
