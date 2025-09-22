@@ -273,7 +273,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 
 .ai__ellipses {
   position: absolute;
-  top: calc(50% - 65px);
+  top: calc(50% - 75px);
   left: calc(50% - 60px);
   transform: translate(-50%, -50%) rotate(-3.12deg);
   width: clamp(280px, 60vw, 360px);
