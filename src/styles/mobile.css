@@ -249,6 +249,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   color:#fff;
   text-align:left;
   opacity:0.95;
+  /* Updated */
 }
 .ai__disc{
   width:clamp(160px, 45vw, 220px);height:clamp(160px, 45vw, 220px);margin:6vw auto 5vw;
