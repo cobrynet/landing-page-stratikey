@@ -371,9 +371,9 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   padding-top: 4vw;
 }
 
-/* Alzare la sezione Applicativi di 20px */
+/* Alzare la sezione Applicativi di 40px */
 .footer__right .footer__section:last-child {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 /* ===== MEDIA QUERIES RESPONSIVE ===== */
