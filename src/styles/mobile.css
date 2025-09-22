@@ -108,7 +108,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-family: 'Outfit', Helvetica, Arial, sans-serif;
   font-size: 20px;
   line-height:1.4;
-  font-weight:400;
+  font-weight:300;
   text-align:center;
   margin:calc(2vw + 10px) 0 6vw 0;
   padding:0 2vw;
