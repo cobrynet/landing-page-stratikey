@@ -61,6 +61,9 @@ export const LandingPage = (): JSX.Element => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -92,6 +95,46 @@ export const LandingPage = (): JSX.Element => {
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
+  };
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStartY(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+    
+    // Prevent vertical scroll during horizontal swipe
+    if (touchStart && touchStartY) {
+      const diffX = Math.abs(e.targetTouches[0].clientX - touchStart);
+      const diffY = Math.abs(e.targetTouches[0].clientY - touchStartY);
+      
+      if (diffX > diffY) {
+        e.preventDefault();
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+    
+    // Reset touch states
+    setTouchStart(null);
+    setTouchEnd(null);
+    setTouchStartY(null);
   };
 
   React.useEffect(() => {
@@ -657,7 +700,13 @@ export const LandingPage = (): JSX.Element => {
 
           {/* CAROUSEL CARDS */}
           <section className="carousel">
-            <div className="carousel-container" style={{transform: `translateX(-${currentSlide * 100}%)`}}>
+            <div 
+              className="carousel-container" 
+              style={{transform: `translateX(-${currentSlide * 100}%)`}}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               {carouselSlides.map((slide, index) => (
                 <div key={index} className="carousel-slide">
                   <img 
