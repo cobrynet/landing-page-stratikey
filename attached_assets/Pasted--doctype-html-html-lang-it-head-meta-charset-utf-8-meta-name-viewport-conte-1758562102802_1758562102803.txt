@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sezione – Intelligenza Artificiale (Mobile)</title>
+  <style>
+    :root{
+      /* --- TWEAKS VELOCEMENTE QUI --- */
+      /* movimento dolce “floating” del primo SVG */
+      --ia-float-amp: 12px;         /* 8–18px */
+      --ia-float-dur: 6s;           /* 4–9s */
+      /* parallax su scroll (valori piccoli) */
+      --ia-parallax-factor: 0.06;   /* 0.04–0.12 */
+
+      /* blink/intermittenza del secondo SVG */
+      --blink-dur: 1.4s;            /* 0.8–2s  */
+      --blink-off: 0.25;            /* opacità minima quando “spento” */
+
+      /* layout */
+      --maxw: 560px;
+      --card-radius: 18px;
+      --pad: 18px;
+      --bg: #0f1115;
+      --panel: #101522;
+      --text: #ffffff;
+      --muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ====== SEZIONE ====== */
+    section.ia {
+      padding: 56px 16px 64px;
+      display: grid;
+      place-items: center;
+      gap: 32px;
+    }
+
+    .ia-header {
+      max-width: var(--maxw);
+      width: 100%;
+    }
+    .eyebrow {
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin: 0 0 6px;
+    }
+    h2 {
+      font-size: clamp(22px, 5vw, 28px);
+      line-height: 1.15;
+      margin: 0 0 8px;
+    }
+    p.sub {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    /* pannelli grafici */
+    .ia-panel {
+      width: 100%;
+      max-width: var(--maxw);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.00));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--card-radius);
+      padding: var(--pad);
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    }
+    .media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;           /* evita layout shift su mobile */
+      overflow: hidden;
+      border-radius: calc(var(--card-radius) - 6px);
+      display: grid;
+      place-items: center;
+      background: var(--panel);
+    }
+    .media img, .media svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      will-change: transform, opacity;
+      transform: translateZ(0);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ====== ANIMAZIONI ====== */
+
+    /* FLOAT + PARALLAX per il primo SVG */
+    .ia-float {
+      animation: iaFloat var(--ia-float-dur) ease-in-out infinite;
+    }
+    @keyframes iaFloat {
+      0%   { transform: translate3d(0, 0, 0); }
+      50%  { transform: translate3d(0, calc(-1 * var(--ia-float-amp)), 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    /* BLINK/INTERMITTENZA per il secondo SVG */
+    .ia-blink {
+      animation: iaBlink var(--blink-dur) steps(2, end) infinite;
+    }
+    @keyframes iaBlink {
+      0%   { opacity: 1; }
+      50%  { opacity: var(--blink-off); }
+      100% { opacity: 1; }
+    }
+
+    /* Accessibilità: riduci i motion-heavy effects */
+    @media (prefers-reduced-motion: reduce) {
+      .ia-float, .ia-blink { animation: none !important; transform: none !important; opacity: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== INTELLIGENZA ARTIFICIALE ========== -->
+  <section id="intelligenza-artificiale" class="ia" aria-labelledby="ia-title">
+    <header class="ia-header">
+      <p class="eyebrow">Intelligenza Artificiale</p>
+      <h2 id="ia-title">Soluzioni AI con animazioni ottimizzate per mobile</h2>
+      <p class="sub">Stessa resa del desktop: movimento dolce, parallax leggero e un layer a intermittenza.</p>
+    </header>
+
+    <!-- Pannello 1: SVG “Group-23.svg” (floating + parallax su scroll) -->
+    <div class="ia-panel" id="panel-23">
+      <div class="media">
+        <!-- Usa il file caricato nel tuo progetto -->
+        <img
+          id="ia-23"
+          class="ia-float"
+          src="Group-23.svg"
+          alt="Grafica AI – animazione flottante"
+          width="1200" height="900"
+          decoding="async" loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Pannello 2: SVG “Group-24.svg” (intermittenza/blink + lieve parallax) -->
+    <div class="ia-panel" id="panel-24">
+      <div class="media">
+        <img
+          id="ia-24"
+          class="ia-blink"
+          src="Group-24.svg"
+          alt="Elemento AI a intermittenza"
+          width="1200" height="900"
+          decoding="async" loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Parallax leggero per entrambi gli SVG quando sono in vista
+    (function () {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      const parallaxFactor = parseFloat(getComputedStyle(document.documentElement)
+        .getPropertyValue('--ia-parallax-factor')) || 0.06;
+
+      const targets = [
+        { panel: document.getElementById('panel-23'), el: document.getElementById('ia-23') },
+        { panel: document.getElementById('panel-24'), el: document.getElementById('ia-24') },
+      ].filter(t => t.panel && t.el);
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const t = targets.find(x => x.panel === entry.target);
+          if (!t) return;
+
+          if (entry.isIntersecting) {
+            // attacca listener di scroll solo quando il pannello è visibile
+            const onScroll = () => {
+              const rect = t.panel.getBoundingClientRect();
+              const vh = window.innerHeight || 1;
+              // progress -0.5..+0.5 circa attraverso il centro del viewport
+              const progress = (vh / 2 - rect.top) / (vh + rect.height);
+              const offsetY = (progress - 0.5) * vh * parallaxFactor;
+              t.el.style.transform = (t.el.classList.contains('ia-float'))
+                ? `translate3d(0, ${offsetY.toFixed(1)}px, 0)` // si somma al keyframe via compositor
+                : `translate3d(0, ${offsetY.toFixed(1)}px, 0)`;
+            };
+            // esegui subito e registra
+            onScroll();
+            entry.target._onScroll = onScroll;
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll, { passive: true });
+          } else {
+            // pulizia quando esce
+            if (entry.target._onScroll) {
+              window.removeEventListener('scroll', entry.target._onScroll);
+              window.removeEventListener('resize', entry.target._onScroll);
+              entry.target._onScroll = null;
+            }
+            // reset transform per evitare drift quando non visibile
+            t.el.style.transform = '';
+          }
+        });
+      }, { threshold: [0, 0.15, 0.5, 1] });
+
+      targets.forEach(t => io.observe(t.panel));
+    })();
+  </script>
+</body>
+</html>

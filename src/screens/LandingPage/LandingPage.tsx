@@ -60,9 +60,82 @@ export const LandingPage = (): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
   const disconnessioneSvgRef = useRef<HTMLImageElement>(null);
   const connessioneSvgRef = useRef<HTMLImageElement>(null);
   const badgeRefs = useRef<(HTMLImageElement | null)[]>([]);
+
+  // Carousel data
+  const carouselSlides = [
+    { 
+      image: '/carosello-1.svg', 
+      alt: 'Semplicità - Da processi complessi a un\'unica piattaforma intuitiva' 
+    },
+    { 
+      image: '/carosello-3.svg', 
+      alt: 'Efficenza - Ogni attività, dal marketing al commerciale, gestita in un solo ecosistema' 
+    },
+    { 
+      image: '/carosello-2.svg', 
+      alt: 'Gestione più rapida - Meno tempo sprecato, più opportunità colte' 
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStartY(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+    
+    // Prevent vertical scroll during horizontal swipe
+    if (touchStart && touchStartY) {
+      const diffX = Math.abs(e.targetTouches[0].clientX - touchStart);
+      const diffY = Math.abs(e.targetTouches[0].clientY - touchStartY);
+      
+      if (diffX > diffY) {
+        e.preventDefault();
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+    
+    // Reset touch states
+    setTouchStart(null);
+    setTouchEnd(null);
+    setTouchStartY(null);
+  };
 
   React.useEffect(() => {
     const minAngle = -80;
@@ -142,6 +215,7 @@ export const LandingPage = (): JSX.Element => {
       });
     };
   }, []);
+
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -495,6 +569,10 @@ export const LandingPage = (): JSX.Element => {
             <div className="absolute w-[1194px] top-[6750px] left-[1493px] text-center">
               <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
                 © 2025 Cobrynet – Tutti i diritti riservati.
+                <br />
+                <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '16px'}}>
+                  Aggiorna le preferenze sui cookie
+                </a>
               </div>
             </div>
 
@@ -613,34 +691,89 @@ export const LandingPage = (): JSX.Element => {
           {/* CARDS */}
           <section className="stack stack--connection" style={{marginTop:'calc(var(--s6) + 30px)'}}>
             <div className="card card--light card--connection">
-              <h2>La connessione si è persa.</h2>
+              <h2>La connessione si<br />è persa.</h2>
               <p>Le aziende industriali si trovano a lavorare con strumenti separati: il marketing gestisce lead e campagne, le vendite trattano con i clienti, ma manca la sincronizzazione.</p>
             </div>
 
             <div className="card card--dark card--reconnection">
-              <h2>È il momento di ritrovarla.</h2>
+              <h2>È il momento di<br />ritrovarla.</h2>
               <p>Il commerciale diventa finalmente connesso al digitale: ogni interazione è tracciata, ogni opportunità è ottimizzata, ogni decisione è basata su dati concreti.</p>
             </div>
 
-            <h2 className="text-gradient">Con Stratikey la strategia diventa semplice e concreta.</h2>
+            <h2 className="text-gradient">Con Stratikey la strategia<br />diventa semplice e concreta.</h2>
+            <p className="text-gradient-subtitle">Un'unica visione che unisce marketing e vendite, assicura coerenza tra digitale e fisico e trasforma i dati in decisioni efficaci per far crescere la tua azienda.</p>
           </section>
 
-          {/* SEMPLICITA CARD */}
-          <section>
-            <div className="card card--simplicity">
-              <h2>Semplicità</h2>
-              <p>Da processi complessi a<br />un'unica piattaforma<br />intuitiva</p>
+          {/* CAROUSEL CARDS */}
+          <section className="carousel" aria-roledescription="carousel">
+            <div className="carousel-viewport">
+              <div 
+                className="carousel-container" 
+                style={{transform: `translateX(-${currentSlide * 100}%)`}}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {carouselSlides.map((slide, index) => (
+                  <div key={index} className="carousel-slide">
+                    <img 
+                      src={slide.image} 
+                      alt={slide.alt}
+                      className="card--carousel"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="carousel-dots">
+              {carouselSlides.map((_, index) => (
+                <button
+                  key={index}
+                  className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+                  onClick={() => goToSlide(index)}
+                  aria-current={index === currentSlide ? 'true' : undefined}
+                  aria-label={`Vai alla slide ${index + 1}`}
+                />
+              ))}
             </div>
           </section>
 
           {/* AI section */}
           <section className="ai">
             <div className="ai__wrap">
-              <h2 className="ai__title">Intelligenza Artificiale per l'Industria</h2>
-              <p className="ai__text">L'intelligenza artificiale di Stratikey è progettata specificamente per l'industria: analizza i comportamenti dei tuoi clienti e suggerisce le mosse migliori per chiudere più contratti.</p>
-              <div className="ai__disc" aria-hidden="true"></div>
-              <p className="card" style={{background:'#fff', color:'#390035', textAlign:'center', marginTop:'var(--s5)'}}>
-                Con il nostro marketplace interno puoi acquistare applicativi e servizi per potenziare ulteriormente la tua strategia commerciale.
+              <h2 className="ai__title">Intelligenza Artificiale<br />per l'Industria</h2>
+              <p className="ai__text">L'intelligenza artificiale di Stratikey è progettata e istruita specificamente per il settore industriale: comprende dinamiche, tempi e complessità delle vendite B2B, supportando il commerciale con suggerimenti mirati, automazioni intelligenti e analisi capaci di trasformare i dati in opportunità reali.</p>
+              
+              {/* SVG Animati copiati dal desktop */}
+              <div className="ai__graphics">
+                <img
+                  className="ai__luce animate-fade-through"
+                  alt="Luce"
+                  src="/luce.svg"
+                />
+
+                <div className="ai__ellipses">
+                  <div className="ai__ellipses-container">
+                    {ellipseImages.map((ellipse, index) => (
+                      <img
+                        key={index}
+                        className={`absolute ${ellipse.className} ${
+                          index % 3 === 0 ? 'animate-spiral-interweave' :
+                          index % 3 === 1 ? 'animate-spiral-flip' :
+                          'animate-spiral-weave'
+                        }`}
+                        alt="Ellipse"
+                        src={ellipse.src}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Testo marketplace sotto gli ellipse */}
+              <p className="ai__marketplace-text">
+                Con il nostro marketplace interno puoi acquistare applicativi e servizi <span className="ai__highlight">con un solo click</span>, senza perdite di tempo e senza fornitori esterni.
               </p>
             </div>
           </section>
@@ -666,27 +799,77 @@ export const LandingPage = (): JSX.Element => {
           </section>
 
           {/* FOOTER */}
-          <div className="divider"></div>
           <footer className="footer">
-            <img className="footer__brand" src="/marchio-bianco-stratikey.png" alt="stratikey" />
-            <div className="footer__col-title">Contatti</div>
-            <div className="footer__item">info@stratikey.com</div>
-            <div className="footer__item">351 663 8114</div>
-            <div className="footer__item">P.IVA 02100690474</div>
+            <img 
+              className="footer__brand" 
+              src="/STRATIKEY-MARCHIO-NERO.png" 
+              alt="stratikey" 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              style={{ cursor: 'pointer' }}
+            />
+            <div className="footer__divider"></div>
+            
+            <div className="footer__content">
+              {/* Colonna Sinistra */}
+              <div className="footer__left">
+                <div className="footer__section">
+                  <div className="footer__col-title">Contatti</div>
+                  <div className="footer__item">info@stratikey.com</div>
+                  <div className="footer__item">351 663 8114</div>
+                  <div className="footer__item">P.IVA 02100690474</div>
+                </div>
 
-            <div className="footer__col-title">Servizi</div>
-            <div className="footer__item">Brand Identity</div>
-            <div className="footer__item">Sito Web</div>
-            <div className="footer__item">Foto e video aziendali</div>
-            <div className="footer__item">Materiale stampato</div>
-            <div className="footer__item">Contenuti per piani editoriali</div>
+                <div className="footer__section">
+                  <div className="footer__col-title">Piattaforma</div>
+                  <div className="footer__item" onClick={handleOpenModal}>Registrati</div>
+                </div>
 
-            <div className="footer__col-title">Piattaforma</div>
-            <div className="footer__item">Registrati</div>
-            <div className="footer__item">Email marketing e automazioni</div>
-            <div className="footer__item">Live chat e assistenza clienti</div>
+                <div className="footer__section">
+                  <a 
+                    href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="footer__item footer__item--link"
+                  >
+                    Privacy Policy
+                  </a>
+                  <a 
+                    href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/cookie-policy-it" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="footer__item footer__item--link footer__item--indented"
+                  >
+                    Cookie Policy
+                  </a>
+                </div>
+              </div>
 
-            <p className="footer__note">© 2025 COBRYNET. Tutti i diritti riservati.</p>
+              {/* Colonna Destra */}
+              <div className="footer__right">
+                <div className="footer__section">
+                  <div className="footer__col-title">Servizi</div>
+                  <div className="footer__item">Brand Identity</div>
+                  <div className="footer__item">Sito Web</div>
+                  <div className="footer__item">Foto e video aziendali</div>
+                  <div className="footer__item">Materiale stampato</div>
+                  <div className="footer__item">Contenuti per piani editoriali</div>
+                </div>
+
+                <div className="footer__section">
+                  <div className="footer__col-title">Applicativi</div>
+                  <div className="footer__item">Email marketing e automazioni</div>
+                  <div className="footer__item">Live chat e assistenza clienti</div>
+                </div>
+              </div>
+            </div>
+
+            <p className="footer__note">
+              2025 COBRYNET. All rights reserved. 
+              <br />
+              <a href="#" className="lb-cs-settings-link" style={{color: '#901D6B', textDecoration: 'underline'}}>
+                Aggiorna le preferenze sui cookie
+              </a>
+            </p>
           </footer>
         </div>
       </div>
