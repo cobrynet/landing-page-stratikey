@@ -153,8 +153,8 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   justify-content:center;
   align-items:center;
   gap:8px;
-  margin-top:-200px;
-  margin-bottom:200px;
+  margin-top:-150px;
+  margin-bottom:150px;
   padding:0 2vw;
   position:relative;
   z-index:10;
