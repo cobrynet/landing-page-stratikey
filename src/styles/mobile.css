@@ -101,7 +101,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 }
 
 /* ===== SEMPLICITA CARD ===== */
-.card--simplicity{background:var(--magenta-900);color:var(--white);text-align:center;padding:8vw;margin-top:100px;min-height:290px;}
+.card--simplicity{background:var(--magenta-900);color:var(--white);text-align:center;padding:0;margin-top:100px;min-height:290px;max-height:290px;height:290px;}
 .card--simplicity h2{font-size:clamp(32px, 8vw, 42px);line-height:1.2;margin-bottom:4vw;}
 .card--simplicity p{font-size:clamp(16px, 4.2vw, 20px);line-height:1.3;opacity:0.9;}
 
