@@ -136,19 +136,28 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 .card--carousel{
   max-width:100%;
   max-height:100%;
+  width:auto;
+  height:auto;
   object-fit:contain;
   display:block;
   pointer-events:none;
   border-radius:clamp(20px, 6vw, 32px);
+  image-rendering:-webkit-optimize-contrast;
+  image-rendering:crisp-edges;
+  image-rendering:pixelated;
+  -ms-interpolation-mode:nearest-neighbor;
 }
 
 /* Carousel Controls */
 .carousel-dots{
   display:flex;
   justify-content:center;
+  align-items:center;
   gap:8px;
-  margin-top:16px;
+  margin-top:20px;
   padding:0 2vw;
+  position:relative;
+  z-index:10;
 }
 
 .carousel-dot{
@@ -158,13 +167,17 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   border:none;
   cursor:pointer;
   transition:all 0.3s ease;
-  background:rgba(255,255,255,0.4);
+  background:rgba(255,255,255,0.6);
+  opacity:1;
+  visibility:visible;
+  flex-shrink:0;
 }
 
 .carousel-dot.active{
   background:white;
   width:22px;
   border-radius:8px;
+  opacity:1;
 }
 .card--simplicity h2{
   font-size:clamp(42px, 8vw, 52px);
