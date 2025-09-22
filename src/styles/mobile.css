@@ -288,6 +288,24 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   transform: scale(0.8);
 }
 
+/* ====== TESTO MARKETPLACE SOTTO ELLIPSE ====== */
+.ai__marketplace-text {
+  font-family: 'Outfit', Helvetica, Arial, sans-serif;
+  font-size: clamp(16px, 4vw, 18px);
+  line-height: 1.4;
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  margin: 6vw auto 0;
+  max-width: 90%;
+  opacity: 0.95;
+}
+
+.ai__highlight {
+  font-weight: 600;
+  color: #fff;
+}
+
 .divider{height:1px;background:var(--magenta-900);margin:8vw 0;width:100%;}
 .footer{display:grid;gap:4vw;color:var(--magenta-700);padding-bottom:5vw;width:100%;}
 .footer__brand{width:min(100px, 25vw);height:auto;margin-bottom:4vw;}

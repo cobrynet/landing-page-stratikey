@@ -766,6 +766,11 @@ export const LandingPage = (): JSX.Element => {
                   </div>
                 </div>
               </div>
+              
+              {/* Testo marketplace sotto gli ellipse */}
+              <p className="ai__marketplace-text">
+                Con il nostro marketplace interno puoi acquistare applicativi e servizi <span className="ai__highlight">con un solo click</span>, senza perdite di tempo e senza fornitori esterni.
+              </p>
             </div>
           </section>
 
