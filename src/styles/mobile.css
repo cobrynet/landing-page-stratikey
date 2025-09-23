@@ -135,29 +135,24 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 .cta:hover{background:rgba(57,0,53,.4);transform:translateY(-1px);box-shadow:0 0 16px rgba(144,29,107,.6);}
 .cta svg{width:16px;height:12px;position:relative;z-index:2;}
 
-/* Fascio di luce mobile compatibile iOS */
+/* Fascio di luce solo sul bordo del pulsante */
 .cta::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, #901d6b, #E859B8, #901d6b, transparent);
-  background-size: 300% 100%;
-  animation: mobile-glow 2s linear infinite;
-  z-index: -1;
-  opacity: 0.8;
-}
-
-.cta::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background: rgba(57,0,53,.3);
-  z-index: -1;
+  padding: 2px;
+  background: linear-gradient(90deg, transparent, #901d6b, #E859B8, #901d6b, transparent);
+  background-size: 300% 100%;
+  animation: border-glow-mobile 2s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
 }
 
-@keyframes mobile-glow {
+@keyframes border-glow-mobile {
   0% { background-position: 300% 0; }
   100% { background-position: -300% 0; }
 }
