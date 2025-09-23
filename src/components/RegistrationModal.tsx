@@ -19,7 +19,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[200] p-4">
-      <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-[348px] max-h-[90vh] overflow-y-auto">
         {/* Modal con gradient viola */}
         <div 
           className="rounded-3xl shadow-2xl backdrop-blur-sm border border-white/20 relative"
@@ -37,20 +37,20 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
           </button>
           
           {/* Logo simbolo */}
-          <div className="flex justify-center pt-8 pb-6">
+          <div className="flex justify-center pt-6 pb-4">
             <img
               src="/simbolo-stratikey.png"
               alt="Stratikey Simbolo"
-              className="h-16 w-auto object-contain filter drop-shadow-lg"
+              className="h-12 w-auto object-contain filter drop-shadow-lg"
             />
           </div>
           
           {/* Contenuto del modal */}
-          <div className="px-8 pb-8">
+          <div className="px-6 pb-6">
             {/* Titolo */}
-            <div className="text-center mb-6">
+            <div className="text-center mb-4">
               <h2 
-                className="text-white text-3xl font-medium leading-tight"
+                className="text-white text-2xl font-medium leading-tight"
                 style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}
               >
                 Registrati alla<br />lista di attesa!
@@ -59,7 +59,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
 
             {/* Subtitle */}
             <p 
-              className="text-white/90 text-center mb-8 text-sm leading-relaxed"
+              className="text-white/90 text-center mb-6 text-sm leading-relaxed"
               style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}
             >
               Lascia i tuoi dati per ricevere l'ingresso in anteprima alla piattaforma
@@ -86,7 +86,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   id="name"
                   name="name"
                   required
-                  className="w-full px-6 py-4 bg-black/30 border border-white/40 rounded-full text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/60 backdrop-blur-sm transition-all duration-200"
+                  className="w-full px-4 py-3 bg-black/30 border border-white/40 rounded-full text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/60 backdrop-blur-sm transition-all duration-200"
                   placeholder="Nome e Cognome"
                   style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}
                 />
@@ -99,7 +99,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   id="email"
                   name="email"
                   required
-                  className="w-full px-6 py-4 bg-black/30 border border-white/40 rounded-full text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/60 backdrop-blur-sm transition-all duration-200"
+                  className="w-full px-4 py-3 bg-black/30 border border-white/40 rounded-full text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/60 backdrop-blur-sm transition-all duration-200"
                   placeholder="Email"
                   style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}
                 />
@@ -112,7 +112,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   id="company"
                   name="company"
                   required
-                  className="w-full px-6 py-4 bg-black/30 border border-white/40 rounded-full text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/60 backdrop-blur-sm transition-all duration-200"
+                  className="w-full px-4 py-3 bg-black/30 border border-white/40 rounded-full text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/60 backdrop-blur-sm transition-all duration-200"
                   placeholder="Azienda"
                   style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}
                 />
@@ -124,7 +124,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   type="tel"
                   id="phone"
                   name="phone"
-                  className="w-full px-6 py-4 bg-black/30 border border-white/40 rounded-full text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/60 backdrop-blur-sm transition-all duration-200"
+                  className="w-full px-4 py-3 bg-black/30 border border-white/40 rounded-full text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/60 backdrop-blur-sm transition-all duration-200"
                   placeholder="Telefono (opzionale)"
                   style={{ fontFamily: 'Outfit, Helvetica, sans-serif' }}
                 />
@@ -159,11 +159,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
               </div>
 
               {/* Pulsante ACCEDI */}
-              <div className="pt-6">
+              <div className="pt-4">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 px-8 rounded-full font-semibold text-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent transform hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full py-3 px-6 rounded-full font-semibold text-base transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent transform hover:scale-[1.02] active:scale-[0.98]"
                   style={{ 
                     fontFamily: 'Outfit, Helvetica, sans-serif',
                     background: isSubmitting 
