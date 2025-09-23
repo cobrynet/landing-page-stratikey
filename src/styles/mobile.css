@@ -14,35 +14,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Fix specifico per iOS Safari - Background estesi responsive */
+/* Fix specifico per iOS Safari - Solo controllo overflow */
 @supports (-webkit-touch-callout: none) {
-  /* Reset dei margini e forcing full-width per background */
-  .hero, .ai, .footer { 
-    width: calc(100vw - (100vw - 100%)) !important;
-    margin-left: calc(50% - 50vw) !important;
-    margin-right: calc(50% - 50vw) !important;
-    box-sizing: border-box !important;
-    position: relative !important;
-  }
-  
-  /* Assicura che il contenuto rimanga centrato e leggibile */
-  .hero .container-mobile, 
-  .ai .container-mobile, 
-  .footer .container-mobile,
-  .hero > div,
-  .ai > div, 
-  .footer > div {
-    max-width: 90vw !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 5vw !important;
-    padding-right: 5vw !important;
-  }
-  
-  .container-mobile { 
-    min-height: -webkit-fill-available; 
-  }
-  
   html, body { 
     overflow-x: hidden !important; 
     width: 100% !important;
@@ -53,6 +26,10 @@ body {
     overflow-x: hidden !important;
     width: 100% !important;
     max-width: 100% !important;
+  }
+  
+  .container-mobile { 
+    min-height: -webkit-fill-available; 
   }
 }
 
