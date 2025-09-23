@@ -560,7 +560,7 @@ export const LandingPage = (): JSX.Element => {
                     >
                       Cookie Policy
                     </a>
-                    <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '16px', fontFamily: 'Outfit', display: 'block', marginTop: '8px'}}>
+                    <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '30px', fontFamily: 'Outfit', display: 'block', marginTop: '8px'}}>
                       Aggiorna le preferenze sui cookie
                     </a>
                   </div>
@@ -840,7 +840,7 @@ export const LandingPage = (): JSX.Element => {
                   >
                     Cookie Policy
                   </a>
-                  <a href="#" className="footer__item footer__item--link" style={{color: '#901D6B', textDecoration: 'underline', marginTop: '8px', display: 'block', fontSize: '30px !important'}}>
+                  <a href="#" className="lb-cs-settings-link footer__item footer__item--link" style={{color: '#901D6B', textDecoration: 'underline', marginTop: '8px', display: 'block'}}>
                     Aggiorna le preferenze sui cookie
                   </a>
                 </div>
