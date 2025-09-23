@@ -135,21 +135,18 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 .cta:hover{background:rgba(57,0,53,.4);transform:translateY(-1px);box-shadow:0 0 16px rgba(144,29,107,.6);}
 .cta svg{width:16px;height:12px;position:relative;z-index:2;}
 
-/* Fascio di luce solo sul bordo del pulsante */
+/* Fascio di luce all'esterno del pulsante */
 .cta::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -6px;
   border-radius: 999px;
-  padding: 2px;
   background: linear-gradient(90deg, transparent, #901d6b, #E859B8, #901d6b, transparent);
   background-size: 300% 100%;
   animation: border-glow-mobile 8s linear infinite;
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  filter: blur(2px);
+  opacity: 0.8;
+  z-index: -1;
 }
 
 @keyframes border-glow-mobile {
