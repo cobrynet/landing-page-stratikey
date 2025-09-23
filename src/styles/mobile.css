@@ -143,7 +143,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   border-radius: 999px;
   background: linear-gradient(90deg, transparent, #901d6b, #E859B8, #901d6b, transparent);
   background-size: 300% 100%;
-  animation: border-glow-mobile 8s linear infinite;
+  animation: border-glow-mobile 12s linear infinite;
   filter: blur(2px);
   opacity: 0.8;
   z-index: -1;
