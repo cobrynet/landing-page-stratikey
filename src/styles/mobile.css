@@ -1,3 +1,42 @@
+/* ===== iOS/SAFARI FIX ===== */
+/* Fix per iOS/Safari mobile */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix per viewport su iOS */
+@supports (-webkit-touch-callout: none) {
+  .mobile-container {
+    min-height: -webkit-fill-available;
+  }
+  
+  html, body {
+    height: -webkit-fill-available;
+  }
+  
+  /* Fix per unità viewport su iOS */
+  .hero {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  
+  /* Fix per overflow su iOS */
+  html, body {
+    overflow-x: hidden !important;
+    position: relative;
+  }
+}
+
 /* ===== TOKENS ===== */
 :root{
   --magenta-900:#390035;
