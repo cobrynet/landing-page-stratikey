@@ -135,26 +135,31 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 .cta:hover{background:rgba(57,0,53,.4);transform:translateY(-1px);box-shadow:0 0 16px rgba(144,29,107,.6);}
 .cta svg{width:16px;height:12px;position:relative;z-index:2;}
 
-/* Copia animazione glow-button desktop */
+/* Fascio di luce mobile compatibile iOS */
 .cta::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #901d6b, #E859B8, #901d6b, transparent);
+  background-size: 300% 100%;
+  animation: mobile-glow 2s linear infinite;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+.cta::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  padding: 2px;
-  background: linear-gradient(90deg, transparent, #901d6b, transparent);
-  background-size: 200% 100%;
-  animation: border-glow 2s linear infinite;
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  background: rgba(57,0,53,.3);
+  z-index: -1;
 }
 
-@keyframes border-glow {
-  from { background-position: 200% 0; }
-  to   { background-position: -200% 0; }
+@keyframes mobile-glow {
+  0% { background-position: 300% 0; }
+  100% { background-position: -300% 0; }
 }
 
 .badges{display:grid;gap:clamp(12px, 3vw, 24px);color:var(--white);margin-top:clamp(32px, 10vw, 64px);justify-items:center;text-align:center;}
