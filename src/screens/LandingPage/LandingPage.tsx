@@ -560,7 +560,7 @@ export const LandingPage = (): JSX.Element => {
                     >
                       Cookie Policy
                     </a>
-                    <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '30px', fontFamily: 'Outfit', display: 'block', marginTop: '8px'}}>
+                    <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '20px', fontFamily: 'Outfit', display: 'block', marginTop: '8px'}}>
                       Aggiorna le preferenze sui cookie
                     </a>
                   </div>
