@@ -144,7 +144,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   padding: 2px;
   background: linear-gradient(90deg, transparent, #901d6b, #E859B8, #901d6b, transparent);
   background-size: 300% 100%;
-  animation: border-glow-mobile 2s linear infinite;
+  animation: border-glow-mobile 4s linear infinite;
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
