@@ -545,6 +545,14 @@ export const LandingPage = (): JSX.Element => {
                   </div>
                   <div className="mt-[96px] space-y-3">
                     <a 
+                      href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="[font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] hover:text-[#cd8fbe] transition-colors cursor-pointer block"
+                    >
+                      Privacy Policy
+                    </a>
+                    <a 
                       href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/cookie-policy-it" 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -552,16 +560,8 @@ export const LandingPage = (): JSX.Element => {
                     >
                       Cookie Policy
                     </a>
-                    <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '16px', fontFamily: 'Outfit', display: 'block', marginTop: '8px'}}>
+                    <a href="#" className="lb-cs-settings-link [font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] hover:text-[#cd8fbe] transition-colors cursor-pointer block" style={{textDecoration: 'underline', marginTop: '8px'}}>
                       Aggiorna le preferenze sui cookie
-                    </a>
-                    <a 
-                      href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="[font-family:'Outfit',Helvetica] font-light text-[#901d6b] text-xl tracking-[0] leading-[20px] hover:text-[#cd8fbe] transition-colors cursor-pointer block"
-                    >
-                      Privacy Policy
                     </a>
                   </div>
                 </div>
