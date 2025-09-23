@@ -320,7 +320,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   width: clamp(120px, 30vw, 160px);
   height: auto;
   display: block;
-  margin: 4vw 0 4vw 0;
+  margin: calc(4vw + 20px) 0 4vw 0;
 }
 
 .footer__divider {
@@ -334,7 +334,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6vw;
-  margin-bottom: 6vw;
+  margin: 20px 0 6vw 0;
 }
 
 .footer__section {
@@ -363,7 +363,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-size: clamp(12px, 3vw, 14px);
   font-weight: 400;
   color: #901D6B;
-  margin-top: 4vw;
+  margin-top: calc(4vw + 20px);
   padding-top: 4vw;
 }
 
