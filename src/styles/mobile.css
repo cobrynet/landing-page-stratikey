@@ -367,9 +367,9 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   padding-top: 4vw;
 }
 
-/* Abbassare la sezione Applicativi di 20px */
+/* Abbassare la sezione Applicativi di 15px */
 .footer__right .footer__section:last-child {
-  margin-top: 0px;
+  margin-top: -5px;
 }
 
 /* Stile per i link nel footer */
