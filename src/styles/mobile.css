@@ -14,26 +14,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Fix per viewport su iOS */
+/* Fix specifico per iOS Safari - Disabilita full-bleed pattern */
 @supports (-webkit-touch-callout: none) {
-  .mobile-container {
-    min-height: -webkit-fill-available;
+  .hero, .ai, .footer { 
+    width: 100% !important; 
+    margin-left: 0 !important; 
   }
-  
-  html, body {
-    height: -webkit-fill-available;
+  .container-mobile { 
+    min-height: -webkit-fill-available; 
   }
-  
-  /* Fix per unità viewport su iOS */
-  .hero {
-    width: 100% !important;
-    margin-left: 0 !important;
-  }
-  
-  /* Fix per overflow su iOS */
-  html, body {
-    overflow-x: hidden !important;
-    position: relative;
+  html, body { 
+    overflow-x: hidden !important; 
   }
 }
 
