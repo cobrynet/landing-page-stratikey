@@ -676,6 +676,16 @@ export const LandingPage = (): JSX.Element => {
             <p className="hero__subtitle">La piattaforma che allinea marketing e vendite: trattative più rapide, più contratti chiusi.</p>
 
             <div onClick={handleOpenModal} className="cta">
+              <svg className="perimeter-light" viewBox="0 0 280 56" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="transparent" />
+                    <stop offset="50%" stopColor="#E859B8" />
+                    <stop offset="100%" stopColor="transparent" />
+                  </linearGradient>
+                </defs>
+                <rect x="1" y="1" width="278" height="54" rx="27" ry="27" />
+              </svg>
               Registrati adesso
               <svg aria-hidden="true" viewBox="0 0 16 12"><path d="M1 6h13M8 1l6 5-6 5" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
             </div>
