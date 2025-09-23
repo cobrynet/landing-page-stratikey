@@ -334,7 +334,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6vw;
-  margin: 30px 0 6vw 0;
+  margin-bottom: 6vw;
 }
 
 .footer__section {
@@ -363,7 +363,7 @@ html, body { overflow-x: clip; } /* override per browser moderni */
   font-size: clamp(12px, 3vw, 14px);
   font-weight: 400;
   color: #901D6B;
-  margin-top: calc(4vw + 30px);
+  margin-top: 4vw;
   padding-top: 4vw;
 }
 
