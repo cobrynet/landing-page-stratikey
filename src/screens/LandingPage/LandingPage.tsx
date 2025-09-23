@@ -75,12 +75,12 @@ export const LandingPage = (): JSX.Element => {
       alt: 'Semplicità - Da processi complessi a un\'unica piattaforma intuitiva' 
     },
     { 
-      image: '/carosello-3.svg', 
-      alt: 'Efficenza - Ogni attività, dal marketing al commerciale, gestita in un solo ecosistema' 
-    },
-    { 
       image: '/carosello-2.svg', 
       alt: 'Gestione più rapida - Meno tempo sprecato, più opportunità colte' 
+    },
+    { 
+      image: '/carosello-3.svg', 
+      alt: 'Efficenza - Ogni attività, dal marketing al commerciale, gestita in un solo ecosistema' 
     }
   ];
 
@@ -552,6 +552,9 @@ export const LandingPage = (): JSX.Element => {
                     >
                       Cookie Policy
                     </a>
+                    <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '16px', fontFamily: 'Outfit', display: 'block', marginTop: '8px'}}>
+                      Aggiorna le preferenze sui cookie
+                    </a>
                     <a 
                       href="https://app.legalblink.it/api/documents/67d49eda117e0a002358d716/privacy-policy-per-siti-web-o-e-commerce-it" 
                       target="_blank" 
@@ -569,10 +572,6 @@ export const LandingPage = (): JSX.Element => {
             <div className="absolute w-[1194px] top-[6750px] left-[1493px] text-center">
               <div className="[font-family:'Outfit',Helvetica] font-normal text-[#390035] text-lg tracking-[0] leading-[20px]">
                 © 2025 Cobrynet – Tutti i diritti riservati.
-                <br />
-                <a href="#" className="lb-cs-settings-link" style={{color: '#901d6b', textDecoration: 'underline', fontSize: '16px'}}>
-                  Aggiorna le preferenze sui cookie
-                </a>
               </div>
             </div>
 
@@ -800,6 +799,7 @@ export const LandingPage = (): JSX.Element => {
 
           {/* FOOTER */}
           <footer className="footer">
+            <div className="footer__divider"></div>
             <img 
               className="footer__brand" 
               src="/STRATIKEY-MARCHIO-NERO.png" 
@@ -807,7 +807,6 @@ export const LandingPage = (): JSX.Element => {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               style={{ cursor: 'pointer' }}
             />
-            <div className="footer__divider"></div>
             
             <div className="footer__content">
               {/* Colonna Sinistra */}
@@ -821,7 +820,7 @@ export const LandingPage = (): JSX.Element => {
 
                 <div className="footer__section">
                   <div className="footer__col-title">Piattaforma</div>
-                  <div className="footer__item" onClick={handleOpenModal}>Registrati</div>
+                  <div className="footer__item footer__registrati" onClick={handleOpenModal}>Registrati</div>
                 </div>
 
                 <div className="footer__section">
@@ -840,6 +839,9 @@ export const LandingPage = (): JSX.Element => {
                     className="footer__item footer__item--link footer__item--indented"
                   >
                     Cookie Policy
+                  </a>
+                  <a href="#" className="lb-cs-settings-link footer__item footer__item--link" style={{color: '#901D6B', textDecoration: 'underline', marginTop: '8px', display: 'block'}}>
+                    Aggiorna le preferenze sui cookie
                   </a>
                 </div>
               </div>
@@ -864,11 +866,7 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             <p className="footer__note">
-              2025 COBRYNET. All rights reserved. 
-              <br />
-              <a href="#" className="lb-cs-settings-link" style={{color: '#901D6B', textDecoration: 'underline'}}>
-                Aggiorna le preferenze sui cookie
-              </a>
+              2025 COBRYNET. All rights reserved.
             </p>
           </footer>
         </div>
