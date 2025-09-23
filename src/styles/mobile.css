@@ -147,15 +147,14 @@ html, body { overflow-x: clip; } /* override per browser moderni */
 .cta .perimeter-light rect {
   fill: none;
   stroke: url(#beamGradient);
-  stroke-width: 2;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 0;
-  pathLength: 1000;
-  animation: perimeter-beam 2s linear infinite;
+  stroke-width: 3;
+  stroke-dasharray: 40 360;
+  pathLength: 400;
+  animation: perimeter-beam 3s linear infinite;
 }
 
 @keyframes perimeter-beam {
-  0% { stroke-dashoffset: 1000; }
+  0% { stroke-dashoffset: 400; }
   100% { stroke-dashoffset: 0; }
 }
 

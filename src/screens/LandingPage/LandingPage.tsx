@@ -678,13 +678,15 @@ export const LandingPage = (): JSX.Element => {
             <div onClick={handleOpenModal} className="cta">
               <svg className="perimeter-light" viewBox="0 0 280 56" preserveAspectRatio="none">
                 <defs>
-                  <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <linearGradient id="beamGradient">
                     <stop offset="0%" stopColor="transparent" />
-                    <stop offset="50%" stopColor="#E859B8" />
+                    <stop offset="30%" stopColor="transparent" />
+                    <stop offset="50%" stopColor="#E859B8" stopOpacity="0.9" />
+                    <stop offset="70%" stopColor="#901D6B" stopOpacity="0.7" />
                     <stop offset="100%" stopColor="transparent" />
                   </linearGradient>
                 </defs>
-                <rect x="1" y="1" width="278" height="54" rx="27" ry="27" />
+                <rect x="2" y="2" width="276" height="52" rx="26" ry="26" />
               </svg>
               Registrati adesso
               <svg aria-hidden="true" viewBox="0 0 16 12"><path d="M1 6h13M8 1l6 5-6 5" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
