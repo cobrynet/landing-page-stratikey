@@ -799,6 +799,7 @@ export const LandingPage = (): JSX.Element => {
 
           {/* FOOTER */}
           <footer className="footer">
+            <div className="footer__divider"></div>
             <img 
               className="footer__brand" 
               src="/STRATIKEY-MARCHIO-NERO.png" 
@@ -806,7 +807,6 @@ export const LandingPage = (): JSX.Element => {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               style={{ cursor: 'pointer' }}
             />
-            <div className="footer__divider"></div>
             
             <div className="footer__content">
               {/* Colonna Sinistra */}
